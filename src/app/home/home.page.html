@@ -9,25 +9,44 @@
 
 <ion-content>
 
-<h3>Bienvenido, ,se listaran los accesos disponibles segun su Rol:</h3>
 
   <ion-grid  class="ion-no-padding" no-padding lines="none">
+
+    <ion-row>
+      <ion-col size="3">
+     </ion-col>
+     <ion-col style="text-align: center;" size="6">
+      <h3 style="color:#c4c4c4">¡Bienvenido!</h3>
+     </ion-col>
+     <ion-col size="3">
+    </ion-col>
+   </ion-row>
+
+   <ion-row>
+    <ion-col size="1">
+   </ion-col>
+   <ion-col style="text-align: left;" size="10">
+    <ion-text style="color: #d4d4d4">se listaran los accesos disponibles segun su Rol:</ion-text>
+   </ion-col>
+   <ion-col size="1">
+  </ion-col>
+ </ion-row>
 
 
 
   <!-- <ion-list-header class="ion-no-padding" no-padding lines="none">Permiso {{[i+1]}}:</ion-list-header> -->
-    <ion-row  *ngFor="let permisosdelusuario of permisos; let i = index"  class="ion-no-padding" no-padding lines="none">
+    <ion-row  text-wrap *ngFor="let permisosdelusuario of permisos; let i = index"  class="ion-no-padding" no-padding lines="none">
       <!-- <ion-card class="ion-no-padding" no-padding lines="none">
         <ion-card-title>Permiso {{[i+1]}}:</ion-card-title> -->
         <ion-col size="2" class="ion-no-padding" no-padding lines="none">
         </ion-col>
-        <ion-col size="8"  class="ion-no-padding" no-padding lines="none">
+        <ion-col  class="item-text-wrap" size="8"  class="ion-no-padding" no-padding lines="none">
           <ion-card >
             <ion-item class="ion-no-padding" no-padding lines="none">
-                <ion-label style="margin-left: 12px;" ><ion-text ><strong style="color: #ff0110;">Nombre: </strong>{{permisosdelusuario[0].permiso_nombre}}</ion-text><strong></strong> </ion-label>
+                <ion-text style="margin-left: 15px;" ><ion-text ><strong style="border-radius: 8px; background-color: #ff0110; color: #ffffff;">&nbsp;Nombre: </strong>&nbsp; {{permisosdelusuario[0].permiso_nombre}}</ion-text><strong></strong> </ion-text>
             </ion-item>
-            <ion-item class="ion-no-padding" no-padding lines="none">
-              <ion-label  style="margin-left: 12px;" ><ion-text ><strong style="color: #ff0110;">descripción: </strong>{{permisosdelusuario[0].permiso_descripcion}}</ion-text></ion-label>
+            <ion-item  class="ion-no-padding" no-padding lines="none">
+              <ion-text  style=" margin-left: 15px;" ><ion-text ><strong style="border-radius: 8px; background-color: #ff0110; color: #ffffff;">&nbsp;descripción: </strong>&nbsp; {{permisosdelusuario[0].permiso_descripcion}}</ion-text></ion-text>
             </ion-item>
           </ion-card>
         </ion-col>
