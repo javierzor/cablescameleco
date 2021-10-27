@@ -19,6 +19,9 @@ import { ActivatedRoute } from '@angular/router';
 export class HomePage implements OnInit {
   permisos: any;
   rol: any;
+  userinfo: any;
+  nombre_rol: [];
+  rol_descripcion: any;
 
   constructor(
     private location: Location,
@@ -29,20 +32,38 @@ export class HomePage implements OnInit {
     public loading: LoadingController,
     private route: ActivatedRoute,
     public modalCtrl: ModalController,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    public menuCtrl: MenuController
   )
   
    {
+
+    this.route.params.subscribe(params => {
+      this.userinfo = params; 
+      console.log('userinfo route params this.userinfo=', this.userinfo);
      var data = {
-       id_rol: '5'
+       id_rol: this.userinfo.id_rol
      }
     this.json.rol(data).subscribe((res: any ) =>{
       console.log('respuesta de rol permisos: json.rol ',res);
       this.rol = res['detalles'];
+      this.nombre_rol=res['detalles'].nombre_rol;
+      this.rol_descripcion=res['detalles'].rol_descripcion;
       this.permisos = res['suspermisos'];
     });
 
+}); //cerrando la consulta de navegacion entre parametros.
+   }
 
+   ionViewWillEnter() {
+     if(!this.userinfo.id_rol){
+       console.log('el usuario tiene un rol')
+      this.menuCtrl.enable(false);
+    }
+      else{
+        this.menuCtrl.enable(true);
+
+      }
    }
 
   ngOnInit() {
@@ -54,6 +75,12 @@ export class HomePage implements OnInit {
     // si vuelve a logear y esta activo que lo mantenga aqui
     // si no que lo lleve al login
 
+  }
+
+  salir(){
+    localStorage.clear();  //limpiando cache
+    this.userinfo=null;
+    this.router.navigate(['/login']);
   }
 
 }

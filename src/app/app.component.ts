@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -6,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Home', url: 'home', icon: 'planet' },
+    // { title: 'Home', url: 'home', icon: 'planet' },
     { title: 'Ingreso de Material', url: 'ingreso-material', icon: 'add' },
     { title: 'Consulta', url: 'consulta', icon: 'search' },
     { title: 'Solicitud de Fraccionamiento', url: 'solicitud-fraccionamiento', icon: 'archive' },
@@ -22,5 +24,15 @@ export class AppComponent {
     { title: 'Entregas', url: 'entregas', icon: 'laptop' },
     { title: 'Novedades Supervisor', url: 'novedades-supervisor', icon: 'newspaper' },
   ];
-  constructor() {}
+  constructor(
+    private router: Router
+  ) 
+  {
+
+  }
+
+  salir(){
+    localStorage.clear();  //limpiando cache
+    this.router.navigate(['/login']);
+  }
 }

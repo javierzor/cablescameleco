@@ -7,10 +7,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="!this.userinfo.id_rol">
+
+  <ion-grid  class="ion-no-padding" no-padding lines="none"> 
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button   (click)="salir()" color="danger" ><ion-text style="font-weight: 500;">Debe Reingresar</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+
+
+
+
+<ion-content *ngIf="this.userinfo.id_rol">
 
 
   <ion-grid  class="ion-no-padding" no-padding lines="none">
+    
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button *ngIf="this.userinfo==null"  (click)="salir()" color="danger" ><ion-text style="font-weight: 500;">Debe Reingresar</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
 
     <ion-row>
       <ion-col size="3">
@@ -26,6 +50,8 @@
     <ion-col size="1">
    </ion-col>
    <ion-col style="text-align: left;" size="10">
+    <ion-text style="color: #d4d4d4">Rol: {{this.nombre_rol}}.</ion-text><br>
+      <ion-text style="color: #d4d4d4">Detalles: {{this.rol_descripcion}}.</ion-text><br>
     <ion-text style="color: #d4d4d4">se listaran los accesos disponibles segun su Rol:</ion-text>
    </ion-col>
    <ion-col size="1">

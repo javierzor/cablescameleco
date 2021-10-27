@@ -23,12 +23,16 @@ export class JsonService {
   {headers:new HttpHeaders({"Content-Type":'application/json'})});
   }
 
+  empieza(data: any)
+  {
+  var url = 'http://cables.cameleco.com/api/empieza';
+  return this.http.post(url,data,
+  {headers:new HttpHeaders({"Content-Type":'application/json'})});
+  }
+
   prueba(){
-  
     var url = 'https://cables.cameleco.com/api/prueba';
     return this.http.get(url);
-    
-    
   }
 
 }
