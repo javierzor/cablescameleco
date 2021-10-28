@@ -20,6 +20,7 @@ export class LoginPage implements OnInit {
   dataempieza: any;
   intentando_logear: any;
   quieroaccederporfavordigamelarespuestadelaconsulta:any;
+  static variableglobalintentodelogin: any;
 
   constructor(
     private location: Location,
@@ -69,6 +70,7 @@ export class LoginPage implements OnInit {
         console.log('El usuario no existe');
         }
       if (res.length>0){
+        LoginPage.variableglobalintentodelogin=this.dataempieza
         console.log('el usuario fue registrado previamente');
         this.router.navigate(['/home', this.quieroaccederporfavordigamelarespuestadelaconsulta['0']]);
       }

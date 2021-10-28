@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuditoriaPage implements OnInit {
 
-  constructor() { }
+  constructor() 
+  
+  { 
+    console.log('ingresando a uditoria')
+  }
 
   ngOnInit() {
   }

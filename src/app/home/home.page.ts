@@ -50,7 +50,7 @@ export class HomePage implements OnInit {
       this.nombre_rol=res['detalles'].nombre_rol;
       this.rol_descripcion=res['detalles'].rol_descripcion;
       this.permisos = res['suspermisos'];
-    });
+    }); //cierra la consulta delos permisos
 
 }); //cerrando la consulta de navegacion entre parametros.
    }
