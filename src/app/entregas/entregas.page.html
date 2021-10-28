@@ -9,4 +9,36 @@
 
 <ion-content>
 
+  <ion-grid *ngIf="this.seccionactiva=='no'">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-text  (click)="reingresar()" color="danger" >Sección expirada debe reingresar.</ion-text>
+      </ion-col>
+    </ion-row>
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-button  (click)="reingresar()" color="danger" ><ion-text style="font-weight: 500;">REINGRESAR</ion-text>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="this.puedenavegaraqui=='no'">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-text color="danger" >No tiene permisos para navegar en esta sección.</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid *ngIf="this.puedenavegaraqui=='si'">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-text color="danger" >Bienvenido.</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
 </ion-content>

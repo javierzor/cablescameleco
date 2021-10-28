@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common'
 import { Location } from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
+import { AppComponent } from '../app.component';
+import { GlobalpermisosService } from '../globalpermisos.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +34,9 @@ export class LoginPage implements OnInit {
     private route: ActivatedRoute,
     public modalCtrl: ModalController,
     public datepipe: DatePipe,
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
+    public myapp: AppComponent,
+    public globalpermisos: GlobalpermisosService
          )
   
   {
@@ -59,7 +63,21 @@ export class LoginPage implements OnInit {
 
 
 
-   intentoLogin(){
+   async intentoLogin(){
+    const verifiqueconexion = await this.loadingController.create({
+      message: 'Porfavor verifique su conexion..',spinner: 'bubbles',duration: 1400,
+      });
+    const espereporfavor = await this.loadingController.create({
+      message: 'Verificando, espere porfavor...',spinner: 'bubbles',duration: 25000,
+      });
+      const exitoso = await this.loadingController.create({
+      message: 'Verificación exitosa accediendo.',spinner: 'bubbles',duration: 1200,
+      });
+      const error = await this.loadingController.create({
+      message: 'Verifique su información porfavor...',spinner: 'bubbles',duration: 1700,
+      });
+    espereporfavor.present();
+
      var data = {
       codigo_qr_acceso:this.dataempieza
      }
@@ -68,11 +86,23 @@ export class LoginPage implements OnInit {
       this.quieroaccederporfavordigamelarespuestadelaconsulta=res;
       if(res.length=='0'){
         console.log('El usuario no existe');
+        espereporfavor.dismiss();
+        error.present();
         }
       if (res.length>0){
-        LoginPage.variableglobalintentodelogin=this.dataempieza
+        LoginPage.variableglobalintentodelogin=this.dataempieza;
+        this.globalpermisos.usuariologeado=this.dataempieza;
         console.log('el usuario fue registrado previamente');
         this.router.navigate(['/home', this.quieroaccederporfavordigamelarespuestadelaconsulta['0']]);
+        this.myapp.distribuirlotraidodellogin();
+        espereporfavor.dismiss();
+        // exitoso.present();
+        
+      }
+      else
+      {
+        espereporfavor.dismiss();
+        verifiqueconexion.present();
       }
 
     });

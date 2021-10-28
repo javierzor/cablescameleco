@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { LoginPage } from './login/login.page';
 import { JsonService } from './json.service';
+import { NavController,LoadingController, AlertController } from '@ionic/angular';
+import { GlobalpermisosService } from './globalpermisos.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -30,11 +33,13 @@ export class AppComponent {
   static distribucionglobaldepermisos: any;
   permisos:  Array<any> = [];
   permisosconsultados:  Array<any> = [];
-  traidodellogin: any;
+  traidodelloginporelservicio: any;
   userinfo: any;
   jsonempiezaencompomenteppal: any;
 
   constructor(
+    public globalpermisos: GlobalpermisosService,
+    public loadingController: LoadingController,
     private json: JsonService,
     private router: Router,
   ) 
@@ -47,11 +52,15 @@ export class AppComponent {
     this.router.navigate(['/login']);
   }
 
-distribuirlotraidodellogin()
+  async distribuirlotraidodellogin()
 { 
-  this.traidodellogin=LoginPage.variableglobalintentodelogin;
+  const espereporfavor = await this.loadingController.create({
+    message: 'Porvafor espere...',spinner: 'bubbles',duration: 1000,
+    });
+  espereporfavor.present();
+  this.traidodelloginporelservicio=this.globalpermisos.usuariologeado;
   var data = {
-    codigo_qr_acceso:this.traidodellogin
+    codigo_qr_acceso:this.traidodelloginporelservicio
    }
   this.json.empieza(data).subscribe((res: any ) =>{
     console.log('respuesta de Json empieza en Componente Ppal:', res);
@@ -67,6 +76,8 @@ distribuirlotraidodellogin()
           this.userinfo = res['detalles'];
           this.permisos = res['suspermisos'];
 
+          //reseteando variable para reutilziacion
+          this.permisosconsultados = [];
           //mapeando la matriz
           if(this.permisos){
             for (var i=0; i<this.permisos.length; i++) { 
@@ -75,9 +86,6 @@ distribuirlotraidodellogin()
                   }
                   if(this.permisos[i][0].id_permiso=='2'){
                   this.permisosconsultados['permisonumero2']='si';
-                  }
-                  if(this.permisos[i][0].id_permiso=='3'){
-                  this.permisosconsultados['permisonumero3']='si';
                   }
                   if(this.permisos[i][0].id_permiso=='3'){
                   this.permisosconsultados['permisonumero3']='si';
@@ -106,6 +114,9 @@ distribuirlotraidodellogin()
                   if(this.permisos[i][0].id_permiso=='11'){
                   this.permisosconsultados['permisonumero11']='si';
                   }
+                  if(this.permisos[i][0].id_permiso=='11'){
+                  this.permisosconsultados['permisonumero11']='si';
+                  }
                   if(this.permisos[i][0].id_permiso=='12'){
                   this.permisosconsultados['permisonumero12']='si';
                   }
@@ -116,8 +127,8 @@ distribuirlotraidodellogin()
                   this.permisosconsultados['permisonumero14']='si';
                   }
                 }
-                console.log('permisos',this.permisosconsultados);
-                AppComponent.distribucionglobaldepermisos=this.permisosconsultados;
+                this.globalpermisos.mispermisosglobalesenservice=this.permisosconsultados;
+                console.log('permisos',this.globalpermisos.mispermisosglobalesenservice);
           }
         }); //cierra la consulta delos permisos
       }
