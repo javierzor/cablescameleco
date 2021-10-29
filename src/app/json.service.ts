@@ -16,6 +16,13 @@ export class JsonService {
     
     ) { }
 
+    variasfunciones(data: any)
+  {
+  var url = 'http://cables.cameleco.com/api/variasfunciones';
+  return this.http.post(url,data,
+  {headers:new HttpHeaders({"Content-Type":'application/json'})});
+  }
+
     rol(data: any)
   {
   var url = 'http://cables.cameleco.com/api/rol';

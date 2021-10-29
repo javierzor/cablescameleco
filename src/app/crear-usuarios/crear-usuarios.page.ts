@@ -23,6 +23,16 @@ export class CrearUsuariosPage implements OnInit {
   puedenavegaraqui:any;
   seccionactiva: string;
   usuariologeado: any;
+  rolestraidos: any;
+  codigo_empleado: any;
+  nombre: any;
+  identificacion: any;
+  dependencia: any;
+  checkactivo:any;
+  activo: any;
+  id_rol: any;
+  respuestadeguardarusuario: any;
+  todoslosusuarios: any;
   constructor(
     private location: Location,
     private router: Router,
@@ -39,9 +49,72 @@ export class CrearUsuariosPage implements OnInit {
   )
 
 {      
-  
+  var data = {
+    nombre_solicitud: 'todoslosroles'
+  }
+  this.json.variasfunciones(data).subscribe((res: any ) =>{
+    console.log('respuesta a la solicitud variasfunciones,  todoslosroles', res);
+    this.rolestraidos=res;
+    })
+this.consultausuarios();
+
+} //cierre del dom
+
+
+  async consultausuarios(){
+  const espereporfavor = await this.loadingController.create({
+    message: 'Reconsultando usuarios',spinner: 'bubbles',duration: 5000,
+    });
+    espereporfavor.present();
+  var todoslosusuarios = {
+    nombre_solicitud: 'todoslosusuarios'
+    }
+    this.json.variasfunciones(todoslosusuarios).subscribe((res: any ) =>{
+    console.log('respuesta a la solicitud variasfunciones,  todoslosusuarios', res);
+    this.todoslosusuarios=res;
+    espereporfavor.dismiss();
+    })
+}
+OnChangeOFcodigo(event){ console.log('OnChange:',event.target.value);
+  this.codigo_empleado=event.target.value;
+}
+
+OnChangeOFidentificacion(event){ console.log('OnChange:',event.target.value);
+  this.identificacion=event.target.value;
+}
+
+OnChangeOFnombre(event){ console.log('OnChange:',event.target.value);
+  this.nombre=event.target.value;
+}
+
+OnChangeOFdependencia(event){ console.log('OnChange:',event.target.value);
+  this.dependencia=event.target.value;
+}
+
+OnChangeOFactivo(event){ console.log('OnChange:',event.detail.checked);
+  this.checkactivo=event.detail.checked;
+  if(this.checkactivo==true){
+    this.activo='1';
+  }
+  if(this.checkactivo==false){
+    this.activo='0';
+  }
+}
+
+OnChangeOFrol(event){ console.log('OnChange:',event.target.value);
+  this.id_rol=event.target.value;
 
 }
+
+
+iraeditar(aquitodoslosusuarios, i){console.log('se editara al usuario', aquitodoslosusuarios);
+
+}
+
+borrar(aquitodoslosusuarios, i){console.log('se borrara al usuario', aquitodoslosusuarios);
+
+}
+
 
 
 ionViewDidEnter(){
@@ -62,6 +135,11 @@ ionViewDidEnter(){
     console.log('this.puedenavegaraqui:',this.puedenavegaraqui);
   }
 }
+
+}
+
+cancelar(){
+  this.router.navigate(['/home']);
 }
 
 reingresar(){
@@ -73,6 +151,26 @@ reingresar(){
 
 
  async ngOnInit() {
+}
+
+guardar(){
+ 
+  var guardarusuario = {
+    nombre_solicitud: 'guardarusuario',
+    codigo_empleado:this.codigo_empleado,
+    identificacion:this.identificacion,
+    nombre:this.nombre,
+    dependencia:this.dependencia,
+    activo:this.activo,
+    id_rol:this.id_rol
+
+  };   console.log('intentando enviar data:',guardarusuario);
+  this.json.variasfunciones(guardarusuario).subscribe((res: any ) =>{
+    console.log('respuesta a la solicitud variasfunciones,  todoslosroles', res);
+    this.respuestadeguardarusuario=res;
+    this.consultausuarios();
+    })
+
 }
 
 

@@ -38,6 +38,162 @@
         <ion-text color="danger" >Bienvenido.</ion-text>
       </ion-col>
     </ion-row>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-text color="danger" >Ingreso de nuevos usuarios.</ion-text>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="ion-align-items-center" class="ion-no-padding" no-padding>
+      <ion-col size="2" class="ion-no-padding" no-padding>
+        <ion-text style="font-size:small" color="danger" >Codigo Empleado</ion-text>
+      </ion-col>
+      <ion-col size="2" class="ion-no-padding" no-padding>
+        <ion-text style="font-size:small" color="danger" >Identificación</ion-text>
+      </ion-col>
+      <ion-col size="2" class="ion-no-padding" no-padding>
+        <ion-text style="font-size:small" color="danger" >Nombre</ion-text>
+      </ion-col>
+      <ion-col size="2" class="ion-no-padding" no-padding>
+        <ion-text style="font-size:small" color="danger" >Dependencia</ion-text>
+      </ion-col>
+      <ion-col size="2" class="ion-no-padding" no-padding>
+        <ion-text style="font-size:small" color="danger" >Activo</ion-text>
+      </ion-col>
+      <ion-col size="2" class="ion-no-padding" no-padding>
+        <ion-text style="font-size:small" color="danger" >Asignar rol</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="2"  class="ion-no-padding" no-padding>
+        <ion-card class="ion-no-padding" no-padding>
+        <ion-input (ionChange)="OnChangeOFcodigo($event)"></ion-input>
+      </ion-card>
+      </ion-col>
+      <ion-col size="2"  class="ion-no-padding" no-padding>
+        <ion-card class="ion-no-padding" no-padding>
+          <ion-input (ionChange)="OnChangeOFidentificacion($event)"></ion-input>
+        </ion-card>
+      </ion-col>
+      <ion-col size="2"  class="ion-no-padding" no-padding>
+        <ion-card class="ion-no-padding" no-padding>
+          <ion-input (ionChange)="OnChangeOFnombre($event)"></ion-input>
+        </ion-card>
+      </ion-col>
+      <ion-col size="2"  class="ion-no-padding" no-padding>
+        <ion-card class="ion-no-padding" no-padding>
+          <ion-input (ionChange)="OnChangeOFdependencia($event)"></ion-input>
+        </ion-card>
+      </ion-col>
+      <ion-col size="2"  class="ion-no-padding" no-padding>
+        <ion-checkbox (ionChange)="OnChangeOFactivo($event)" ></ion-checkbox>
+      </ion-col>
+      <ion-col size="2"  class="ion-no-padding" no-padding>
+        <ion-select (ionChange)="OnChangeOFrol($event)">
+          <ion-select-option *ngFor="let rol of this.rolestraidos" value="{{rol.id_rol}}">{{rol.nombre_rol}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="6" class="ion-text-center">
+        <ion-button  (click)="guardar()" color="danger" ><ion-text style="font-weight: 500;">INGRESAR</ion-text>
+        </ion-button>
+      </ion-col>
+      <ion-col size="6" class="ion-text-center">
+        <ion-button  (click)="cancelar()" color="danger" ><ion-text style="font-weight: 500;">CANCELAR</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+
+
+<!-- abajo empieza el listado de usuarios -->
+
+<ion-row class="ion-align-items-center">
+  <ion-col size="12" class="ion-text-center">
+    <ion-text color="danger" >A continuación se listan los usuarios.</ion-text>
+  </ion-col>
+</ion-row>
+
+
+<ion-row class="ion-align-items-center" class="ion-no-padding" no-padding>
+  <ion-col size="2" class="ion-no-padding" no-padding>
+    <ion-text style="font-size:small" color="danger" >Codigo Empleado</ion-text>
+  </ion-col>
+  <ion-col size="2" class="ion-no-padding" no-padding>
+    <ion-text style="font-size:small" color="danger" >Identificación</ion-text>
+  </ion-col>
+  <ion-col size="2" class="ion-no-padding" no-padding>
+    <ion-text style="font-size:small" color="danger" >Nombre</ion-text>
+  </ion-col>
+  <ion-col size="2" class="ion-no-padding" no-padding>
+    <ion-text style="font-size:small" color="danger" >Dependencia</ion-text>
+  </ion-col>
+  <ion-col size="2" class="ion-no-padding" no-padding>
+    <ion-text style="font-size:small" color="danger" >Activo</ion-text>
+  </ion-col>
+  <ion-col size="1.5" class="ion-no-padding" no-padding>
+    <ion-text style="font-size:small" color="danger" >Id rol</ion-text>
+  </ion-col>
+  <ion-col size="0.5" class="ion-no-padding" no-padding>
+    <ion-text style="font-size:small" color="danger" >E</ion-text>
+  </ion-col>
+</ion-row>
+
+<ion-row *ngFor="let aquitodoslosusuarios of this.todoslosusuarios let i= index" class="ion-align-items-center">
+  <ion-col size="2"  class="ion-no-padding" no-padding>
+    <ion-card class="ion-no-padding" no-padding>
+    <ion-input readonly="true" value="{{aquitodoslosusuarios.codigo_empleado}}" ></ion-input>
+  </ion-card>
+  </ion-col>
+  <ion-col size="2"  class="ion-no-padding" no-padding>
+    <ion-card class="ion-no-padding" no-padding>
+      <ion-input readonly="true" value="{{aquitodoslosusuarios.identificacion}}" ></ion-input>
+    </ion-card>
+  </ion-col>
+  <ion-col size="2"  class="ion-no-padding" no-padding>
+    <ion-card class="ion-no-padding" no-padding>
+      <ion-input readonly="true" value="{{aquitodoslosusuarios.nombre}}" ></ion-input>
+    </ion-card>
+  </ion-col>
+  <ion-col size="2"  class="ion-no-padding" no-padding>
+    <ion-card class="ion-no-padding" no-padding>
+      <ion-input readonly="true" value="{{aquitodoslosusuarios.dependencia}}" ></ion-input>
+    </ion-card>
+  </ion-col>
+  <ion-col size="2"  class="ion-no-padding" no-padding>
+    <ion-checkbox readonly="true" checked *ngIf="aquitodoslosusuarios.activo=='1'" disabled></ion-checkbox>
+    <ion-checkbox readonly="true"  *ngIf="aquitodoslosusuarios.activo=='0'" disabled></ion-checkbox>
+  </ion-col>
+  <ion-col size="1.5"  class="ion-no-padding" no-padding>
+    <ion-input readonly="true" value="{{aquitodoslosusuarios.id_rol}}" ></ion-input>
+  </ion-col>
+  <ion-col size="0.5"  class="ion-no-padding" no-padding>
+        <ion-row class="ion-no-padding" no-padding>
+          <ion-col size="12" class="ion-no-padding" no-padding> 
+            <a style="cursor: pointer;" (click)="iraeditar(aquitodoslosusuarios, i)">
+            <ion-icon color="medium" name="create-outline"></ion-icon> 
+          </a>
+          </ion-col>
+        </ion-row>
+        <ion-row size="12" class="ion-no-padding" no-padding>
+          <ion-col class="ion-no-padding" no-padding>  
+            <a style="cursor: pointer;" (click)="borrar(aquitodoslosusuarios, i)">
+              <ion-icon color="danger" name="close-outline"></ion-icon> 
+            </a>          </ion-col>
+        </ion-row>
+  </ion-col>
+</ion-row>
+
+
+
+
   </ion-grid>
 
   
