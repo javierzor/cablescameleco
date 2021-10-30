@@ -12,6 +12,7 @@ import { Location } from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { GlobalpermisosService } from '../globalpermisos.service';
+import { ModalrolesPage } from '../modalroles/modalroles.page';
 
 @Component({
   selector: 'app-crear-usuarios',
@@ -153,8 +154,11 @@ reingresar(){
  async ngOnInit() {
 }
 
-guardar(){
- 
+  async guardar(){
+  const verifique = await this.loadingController.create({
+    message: 'Verifique la información ingresada',spinner: 'bubbles',duration: 1200,
+    });
+
   var guardarusuario = {
     nombre_solicitud: 'guardarusuario',
     codigo_empleado:this.codigo_empleado,
@@ -166,12 +170,57 @@ guardar(){
 
   };   console.log('intentando enviar data:',guardarusuario);
   this.json.variasfunciones(guardarusuario).subscribe((res: any ) =>{
-    console.log('respuesta a la solicitud variasfunciones,  todoslosroles', res);
+    console.log('respuesta a la solicitud variasfunciones,  guardarusuario', res);
     this.respuestadeguardarusuario=res;
     this.consultausuarios();
-    })
+    if(this.respuestadeguardarusuario.id>0){
+      console.log('Guardado');
+    }
+    }  //cierrran las lecturas de res
+    ,  //separador de lecturas
+    err => {
+      verifique.present();
+    } //cierran las lecturas de err
+  ); //cierra la suscripcion
 
 }
+
+  async borrarusuario(aquitodoslosusuarios){ console.log('se intentara borrar al usuario:',aquitodoslosusuarios);
+
+  const borrado = await this.loadingController.create({
+    message: 'Usuario borrado',spinner: 'bubbles',duration: 1700,
+    });
+  var borrardata = {
+    nombre_solicitud: 'borrarusuario',
+    id:aquitodoslosusuarios.id
+  };   console.log('intentando enviar data:',borrardata);
+  this.json.variasfunciones(borrardata).subscribe((res: any ) =>{
+    console.log('respuesta a la solicitud variasfunciones,  borrarusuario', res);
+    this.consultausuarios();
+    if(res){
+      console.log('borrado');
+      borrado.present();
+    }
+    }  //cierrran las lecturas de res
+    ,  //separador de lecturas
+    err => {
+    } //cierran las lecturas de err
+  ); //cierra la suscripcion
+
+  }
+
+  async presentModal() {
+    const modal = await this.modalCtrl.create({
+      component: ModalrolesPage,
+      componentProps: {
+        'nombre': 'Aitor',
+        'apellidos': 'Sánchez',
+        'locale': 'es_ES'
+      }
+    });
+    return await modal.present();
+  }
+
 
 
 

@@ -89,7 +89,7 @@ export class LoginPage implements OnInit {
         espereporfavor.dismiss();
         error.present();
         }
-      if (res.length>0){
+      if (res.length>0&&res[0].activo>0){
         LoginPage.variableglobalintentodelogin=this.dataempieza;
         this.globalpermisos.usuariologeado=this.dataempieza;
         console.log('el usuario fue registrado previamente');

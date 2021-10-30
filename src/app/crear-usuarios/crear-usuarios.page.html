@@ -63,14 +63,14 @@
         <ion-text style="font-size:small" color="danger" >Activo</ion-text>
       </ion-col>
       <ion-col size="2" class="ion-no-padding" no-padding>
-        <ion-text style="font-size:small" color="danger" >Asignar rol</ion-text>
+        <ion-text style="font-size:small" color="danger" >Asignar rol *</ion-text>
       </ion-col>
     </ion-row>
 
     <ion-row class="ion-align-items-center">
       <ion-col size="2"  class="ion-no-padding" no-padding>
         <ion-card class="ion-no-padding" no-padding>
-        <ion-input (ionChange)="OnChangeOFcodigo($event)"></ion-input>
+        <ion-input placeholder="Obligatorio" (ionChange)="OnChangeOFcodigo($event)"></ion-input>
       </ion-card>
       </ion-col>
       <ion-col size="2"  class="ion-no-padding" no-padding>
@@ -92,7 +92,7 @@
         <ion-checkbox (ionChange)="OnChangeOFactivo($event)" ></ion-checkbox>
       </ion-col>
       <ion-col size="2"  class="ion-no-padding" no-padding>
-        <ion-select (ionChange)="OnChangeOFrol($event)">
+        <ion-select placeholder="Oligatorio" (ionChange)="OnChangeOFrol($event)">
           <ion-select-option *ngFor="let rol of this.rolestraidos" value="{{rol.id_rol}}">{{rol.nombre_rol}}</ion-select-option>
         </ion-select>
       </ion-col>
@@ -184,9 +184,10 @@
         </ion-row>
         <ion-row size="12" class="ion-no-padding" no-padding>
           <ion-col class="ion-no-padding" no-padding>  
-            <a style="cursor: pointer;" (click)="borrar(aquitodoslosusuarios, i)">
+            <a style="cursor: pointer;" (click)="borrarusuario(aquitodoslosusuarios)">
               <ion-icon color="danger" name="close-outline"></ion-icon> 
-            </a>          </ion-col>
+            </a>          
+          </ion-col>
         </ion-row>
   </ion-col>
 </ion-row>

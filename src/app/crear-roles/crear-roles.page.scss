@@ -1,0 +1,14 @@
+.my-custom-class .modal-wrapper {
+
+    height: 20%;
+    top: 80%;
+    position: absolute; 
+    display: block;  
+ }
+ 
+ 
+ .my-custom-class {
+     --background: rgba(34, 34, 34, 0.521);
+     --width: 10%;
+     --max-width: 10%;
+   }

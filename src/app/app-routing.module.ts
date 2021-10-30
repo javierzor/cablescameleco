@@ -74,6 +74,10 @@ const routes: Routes = [
   {
     path: 'novedades-supervisor',
     loadChildren: () => import('./novedades-supervisor/novedades-supervisor.module').then( m => m.NovedadesSupervisorPageModule)
+  },
+  {
+    path: 'modalroles',
+    loadChildren: () => import('./modalroles/modalroles.module').then( m => m.ModalrolesPageModule)
   }
 
 
