@@ -78,6 +78,14 @@ const routes: Routes = [
   {
     path: 'modalroles',
     loadChildren: () => import('./modalroles/modalroles.module').then( m => m.ModalrolesPageModule)
+  },
+  {
+    path: 'ingreso-material-detalles',
+    loadChildren: () => import('./ingreso-material-detalles/ingreso-material-detalles.module').then( m => m.IngresoMaterialDetallesPageModule)
+  },
+  {
+    path: 'modalqr',
+    loadChildren: () => import('./modalqr/modalqr.module').then( m => m.ModalqrPageModule)
   }
 
 

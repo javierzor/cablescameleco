@@ -1,0 +1,53 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button  (click)="dismiss()" color="danger" ><ion-text style="font-weight: 500;">cerrar</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <h2>Ingreso de material</h2>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-card>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="6" class="ion-text-center">
+        <h3 color="danger" style="color:red;">CAMELECO</h3><br>
+        <ion-icon style="font-size:256px;" name="qr-code-outline"></ion-icon>
+      </ion-col>
+      <ion-col size="6" class="ion-text-left">
+        <p>Carrete N:</p>
+        <p>Referencia:{{this.traidopormodalparams.referencia}}</p>
+        <p>codigo:{{this.traidopormodalparams.producto}}</p>
+        <p>nombre:{{this.traidopormodalparams.descripcion}}</p>
+        <p>Numero d/nota d/entrada:{{this.traidopormodalparams.numerodenotadeentrada}}</p>
+        <p>mts en carrete inicio:{{this.traidopormodalparams.metrosencarrete}}</p>
+        <p>Operario ingreso:</p>
+        <p>Fecha Hora:</p>
+
+      </ion-col>
+    </ion-row>
+   </ion-card>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button  (click)="imprimir()" color="danger" ><ion-text style="font-weight: 500;">Imprimir</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+
+</ion-content>

@@ -23,6 +23,9 @@ export class IngresoMaterialPage implements OnInit  {
   puedenavegaraqui:any;
   seccionactiva: string;
   usuariologeado: any;
+  filterTerm: string;
+  productosenvista: any;
+
   constructor(
     private location: Location,
     private router: Router,
@@ -40,6 +43,14 @@ export class IngresoMaterialPage implements OnInit  {
 
 {      
   
+  var obtenerproductos = {
+    nombre_solicitud: 'obtenerproductos',
+  };  
+  this.json.variasfunciones(obtenerproductos).subscribe((res: any ) =>{
+    console.log('respuesta a la solicitud variasfunciones,  obtenerproductos', res);
+    this.productosenvista=res;
+    } ) //cierrran las lecturas de res
+
 
 }
 
@@ -62,6 +73,11 @@ ionViewDidEnter(){
     console.log('this.puedenavegaraqui:',this.puedenavegaraqui);
   }
 }
+}
+
+iradetalles(producto){
+  console.log('iendo a detalles con:',producto);
+  this.router.navigate(['/ingreso-material-detalles', producto]);
 }
 
 reingresar(){

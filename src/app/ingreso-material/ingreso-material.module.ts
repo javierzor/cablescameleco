@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { IngresoMaterialPageRoutingModule } from './ingreso-material-routing.module';
 
 import { IngresoMaterialPage } from './ingreso-material.page';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
+    Ng2SearchPipeModule,
     CommonModule,
     FormsModule,
     IonicModule,
