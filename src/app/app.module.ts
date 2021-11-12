@@ -11,16 +11,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common'
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    
     // Ng2SearchPipeModule,
     HttpClientModule,
     FormsModule,
     BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
+    BarcodeScanner,
     DatePipe,
     JsonService,
     FormBuilder,

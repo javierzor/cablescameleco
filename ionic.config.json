@@ -1,5 +1,7 @@
 {
   "name": "cablescameleco",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

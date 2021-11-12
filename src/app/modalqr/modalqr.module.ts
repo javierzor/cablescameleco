@@ -7,9 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { ModalqrPageRoutingModule } from './modalqr-routing.module';
 
 import { ModalqrPage } from './modalqr.page';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @NgModule({
   imports: [
+    NgxQRCodeModule,
     CommonModule,
     FormsModule,
     IonicModule,

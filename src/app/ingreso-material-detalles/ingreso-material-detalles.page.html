@@ -7,11 +7,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="this.seccionactiva=='no'">
+    <ion-grid>
+        <ion-row class="ion-align-items-center">
+            <ion-col size="12" class="ion-text-center">
+                <ion-button  (click)="reingresar()" color="danger" ><ion-text style="font-weight: 500;"><ion-icon name="arrow-back-outline"></ion-icon>Volver</ion-text>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>
+
+<ion-content *ngIf="this.seccionactiva!='no'">
 
 
   
-  <ion-grid>
+  <ion-grid (ionChange)="activarboton()">
 
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
@@ -42,7 +54,7 @@
         <ion-col size="4">
         <ion-item >
           <ion-label position="floating">Carrete/Rollo:</ion-label><br>
-          <ion-select (IonChange)="ONCHANGEcarreteorrollo($event)" interface="popover">
+          <ion-select (ionChange)="ONCHANGEcarreteorrollo($event)" interface="popover">
             <ion-select-option value="Carrete">Carrete</ion-select-option>
             <ion-select-option value="Rollo">Rollo</ion-select-option>
           </ion-select>
@@ -65,12 +77,47 @@
 
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
-        <ion-button  (click)="modalimprimirqr()" color="danger" ><ion-text style="font-weight: 500;"><ion-icon style="font-size: small;" name="qr-code-outline"></ion-icon>Imprimir QR</ion-text>
+        <ion-button *ngIf="this.desactivarboton!='si'"  (click)="guardardataymodalimprimirqr()" color="danger" ><ion-text style="font-weight: 500;"><ion-icon style="font-size: small;" name="qr-code-outline"></ion-icon>Imprimir QR</ion-text>
+        </ion-button>
+        <ion-button *ngIf="this.desactivarboton=='si'" disabled (click)="guardardataymodalimprimirqr()" color="danger" ><ion-text style="font-weight: 500;"><ion-icon style="font-size: small;" name="qr-code-outline"></ion-icon>Imprimir QR</ion-text>
         </ion-button>
       </ion-col>
     </ion-row>
 
   </ion-card>
+
+  <ion-row>
+
+  <div class="ion-padding">
+    <ion-input type="text" placeholder="My QR data" [(ngModel)]="qrData">
+    </ion-input>
+
+
+    <button ion-button full icon-left (click)="createCode()">
+        <ion-icon name="barcode"></ion-icon>Create
+    </button>
+    <button ion-button full icon-left (click)="scanCode()">
+        <ion-icon name="qr-scanner"></ion-icon>Scan Code
+    </button>
+
+    <ion-card *ngIf="createdCode">
+        <ngx-qrcode [value]="createdCode">
+        </ngx-qrcode>
+
+        <ion-card-content>
+            Value: {{ createdCode }}
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="scannedCode">
+        <ion-card-content>
+            Result from scan: {{ scannedCode }}
+        </ion-card-content>
+    </ion-card>
+</div>
+
+</ion-row>
+
 
 
 </ion-grid>

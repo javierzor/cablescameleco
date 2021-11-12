@@ -6,5 +6,11 @@ import { Injectable } from '@angular/core';
 export class GlobalpermisosService {
   public usuariologeado: any;
   public mispermisosglobalesenservice: any;
-  constructor() { }
+  public nombre_usuario: any;
+  public id_usuario: any;
+  public nombre: any;
+
+  constructor() {
+    
+   }
 }

@@ -31,4 +31,11 @@ export class ModalqrPage implements OnInit {
       'dismissed': true
     });
   }
+
+  
+  
+  imprimir(){
+    
+  }
+  
 }

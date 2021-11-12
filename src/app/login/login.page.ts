@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { GlobalpermisosService } from '../globalpermisos.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -92,6 +93,8 @@ export class LoginPage implements OnInit {
       if (res.length>0&&res[0].activo>0){
         LoginPage.variableglobalintentodelogin=this.dataempieza;
         this.globalpermisos.usuariologeado=this.dataempieza;
+        this.globalpermisos.id_usuario=this.quieroaccederporfavordigamelarespuestadelaconsulta['0'].id;
+        this.globalpermisos.nombre=this.quieroaccederporfavordigamelarespuestadelaconsulta['0'].nombre;
         console.log('el usuario fue registrado previamente');
         this.router.navigate(['/home', this.quieroaccederporfavordigamelarespuestadelaconsulta['0']]);
         this.myapp.distribuirlotraidodellogin();
