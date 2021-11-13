@@ -12,6 +12,7 @@ import { Location } from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { GlobalpermisosService } from '../globalpermisos.service';
+import { ModalconsultaPage } from '../modalconsulta/modalconsulta.page';
 
 @Component({
   selector: 'app-consulta',
@@ -23,6 +24,16 @@ export class ConsultaPage implements OnInit {
   puedenavegaraqui:any;
   seccionactiva: string;
   usuariologeado: any;
+  referencia: any;
+  codigo: any;
+  nombre: any;
+  sebuscaraporelcodigo: string;
+  nombreinvisible: any;
+  referenciainvisible: any;
+  sebuscaraporelreferencia: string;
+  sebuscaraporelnombre: string;
+  respuestabusqueda: any;
+  respuestabusquedaingresomaterialdeunproducto: any;
   constructor(
     private location: Location,
     private router: Router,
@@ -31,12 +42,18 @@ export class ConsultaPage implements OnInit {
     public navCtrl: NavController,
     public loading: LoadingController,
     private route: ActivatedRoute,
-    public modalCtrl: ModalController,
+    public modalController: ModalController,
     public datepipe: DatePipe,
     public menuCtrl: MenuController,
     public myapp: AppComponent,
     public globalpermisos: GlobalpermisosService,
-  ) { }
+  ) 
+  
+  {
+    this.codigo='';
+    this.nombre='';
+    this.referencia='';
+   }
 
   ngOnInit() {
   }
@@ -68,4 +85,96 @@ export class ConsultaPage implements OnInit {
     this.puedenavegaraqui='';
   }
 
-}
+
+  
+  async ONCHANGEreferencia(event){ console.log('OnChange valor',event.target.value);
+    this.referencia=event.target.value;
+    if(this.referencia){
+      this.codigo='';
+      this.nombre='';
+    }
+
+  }
+
+  async  ONCHANGEcodigo(event){ console.log('OnChange valor',event.target.value);
+    this.codigo=event.target.value;
+    if(this.codigo){
+      this.nombre='';
+      this.referencia='';
+    }
+
+    }
+
+    async ONCHANGEnombre(event){ console.log('OnChange valor',event.target.value);
+    this.nombre=event.target.value;
+    if(this.nombre){
+      this.codigo='';
+      this.referencia='';
+    }
+    }
+
+    
+    buscarporreferencia(){
+      console.log('buscando por referencia');
+      var dataconsultar = {
+      nombre_solicitud:'buscarconsulta',
+      referencia:this.referencia
+      }
+      this.json.variasfunciones(dataconsultar).subscribe((res: any ) =>{
+        console.log('respuesta a la solicitud variasfunciones,  buscarconsulta', res);
+        this.respuestabusqueda=res;
+        } ) //cierrran las lecturas de res
+
+
+    }
+    buscarporcodigo(){
+      console.log('buscando por codigo');
+      var dataconsultar = {
+        nombre_solicitud:'buscarconsulta',
+        producto:this.codigo
+        }
+        this.json.variasfunciones(dataconsultar).subscribe((res: any ) =>{
+          console.log('respuesta a la solicitud variasfunciones,  buscarconsulta', res);
+          this.respuestabusqueda=res;
+          } ) //cierrran las lecturas de res
+      
+    }
+    buscarpornombre(){
+      console.log('buscando por nombre');
+      var dataconsultar = {
+        nombre_solicitud:'buscarconsulta',
+        descripcion:this.nombre
+        }
+        this.json.variasfunciones(dataconsultar).subscribe((res: any ) =>{
+          console.log('respuesta a la solicitud variasfunciones,  buscarconsulta', res);
+          this.respuestabusqueda=res;
+          } ) //cierrran las lecturas de res
+    }
+
+    async consultaringresomaterial(producto){
+      console.log('consultar productos de ', producto);
+
+      var dataconsultaringresomaterial = {
+        nombre_solicitud:'obteneringresomaterialdeunproducto',
+        producto:producto.producto
+        }
+        this.json.variasfunciones(dataconsultaringresomaterial).subscribe(async (res: any ) =>{
+          console.log('respuesta a la solicitud variasfunciones,  buscarconsulta', res);
+          this.respuestabusquedaingresomaterialdeunproducto=res;
+
+            const modal = await this.modalController.create({
+              component: ModalconsultaPage,
+              componentProps: {
+                cssClass: 'my-custom-class',
+                'dataparaelmodal': this.respuestabusquedaingresomaterialdeunproducto,
+              }
+            });
+            console.log('enviando estos datos al modal qr',this.respuestabusquedaingresomaterialdeunproducto);
+            return await modal.present();
+          
+
+          } ); //cierrran las lecturas de res
+    
+      }
+
+  }

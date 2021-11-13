@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lista de Carretes / Rollos disponibles.</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-button  (click)="dismiss()" color="danger" ><ion-text style="font-weight: 500;">cerrar</ion-text>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12">
+          <ion-list class="ion-align-items-center">
+              <!-- <ion-item > -->
+                <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" class="ion-align-items-center ion-no-padding" no-padding>
+                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text style="font-size:small; color:white">Código</ion-text>
+                  </ion-col>
+                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text style="font-size:small; color:white">Carrete/Rollo</ion-text>
+                  </ion-col>
+                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text style="font-size:small; color:white">Metros</ion-text>
+                  </ion-col>
+                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text style="font-size:small; color:white">Bodega</ion-text>
+                  </ion-col>
+
+                  
+                </ion-row>
+              <!-- </ion-item> -->
+            </ion-list>
+    </ion-col>
+</ion-row>
+
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12">
+          <ion-list class="ion-align-items-center">
+              <!-- <ion-item > -->
+                <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" *ngFor="let producto of traidopormodalparams" class="ion-align-items-center ion-no-padding" no-padding>
+                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text *ngIf="producto.id>0&&producto.id<10" color="danger" style="color:danger">0000000{{producto.id}}</ion-text>
+                    <ion-text *ngIf="producto.id>10&&producto.id<100" color="danger" style="color:danger">000000{{producto.id}}</ion-text>
+                    <ion-text *ngIf="producto.id>100&&producto.id<1000" color="danger" style="color:danger">00000{{producto.id}}</ion-text>
+                    <ion-text *ngIf="producto.id>1000&&producto.id<10000" color="danger" style="color:danger">0000{{producto.id}}</ion-text>
+                    <ion-text *ngIf="producto.id>10000&&producto.id<100000" color="danger" style="color:danger">000{{producto.id}}</ion-text>
+
+                  </ion-col>
+                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text color="danger" style="color:danger">{{producto.carreteorrollo}}</ion-text>
+                  </ion-col>
+                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text color="danger" style="color:danger">{{producto.metrosencarrete}}</ion-text>
+                  </ion-col>
+                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text *ngIf="producto.bodega" color="danger" style="color:danger">{{producto.bodega}}</ion-text>
+                  </ion-col>
+
+                  
+                </ion-row>
+              <!-- </ion-item> -->
+            </ion-list>
+    </ion-col>
+</ion-row>
+
+
+
+</ion-content>

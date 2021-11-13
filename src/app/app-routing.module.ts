@@ -86,7 +86,19 @@ const routes: Routes = [
   {
     path: 'modalqr',
     loadChildren: () => import('./modalqr/modalqr.module').then( m => m.ModalqrPageModule)
+  },  {
+    path: 'modalconsulta',
+    loadChildren: () => import('./modalconsulta/modalconsulta.module').then( m => m.ModalconsultaPageModule)
+  },
+  {
+    path: 'modalbloqingresomaterial',
+    loadChildren: () => import('./modalbloqingresomaterial/modalbloqingresomaterial.module').then( m => m.ModalbloqingresomaterialPageModule)
+  },
+  {
+    path: 'modalsolicitudfracionamiento',
+    loadChildren: () => import('./modalsolicitudfracionamiento/modalsolicitudfracionamiento.module').then( m => m.ModalsolicitudfracionamientoPageModule)
   }
+
 
 
 ];

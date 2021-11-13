@@ -91,6 +91,7 @@ export class IngresoMaterialDetallesPage implements OnInit {
   async guardardataymodalimprimirqr(){
 //RECOLECCION DE DATOS NECESARIOS.
 this.fecha_autogenerada = new Date ();
+ let fecha_autogenerada_arreglada =this.datepipe.transform(this.fecha_autogenerada, 'yyyy-MM-dd');
 this.user_nombre=this.globalpermisos.nombre;
 this.user_id=this.globalpermisos.id_usuario;
 
@@ -104,7 +105,7 @@ var guardarcaretedb = {
   carreteorrollo:this.carreteorrollo,
   numerodenotadeentrada:this.numerodenotadeentrada,
   metrosencarrete:this.metrosencarrete,
-  fecha_autogenerada:this.fecha_autogenerada,
+  fecha_autogenerada:fecha_autogenerada_arreglada,
   nombre_user:this.user_nombre,
   id_user:this.user_id,
   createdCode:'sinqr'

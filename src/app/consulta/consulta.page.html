@@ -55,33 +55,66 @@
   </ion-row>
 
   <ion-row class="ion-align-items-center">
-    <ion-col size="3" class="ion-text-center">
-      <ion-item>
-        <ion-label position="floating">Referencia:</ion-label>
-        <ion-input></ion-input>
-      </ion-item>      
-    </ion-col>
+      <ion-col size="3" class="ion-text-center">
+        <ion-item>
+          <ion-label position="floating">Referencia:</ion-label>
+          <ion-input value="{{this.referencia}}" (ionChange)="ONCHANGEreferencia($event)"></ion-input>
+        </ion-item>      
+      </ion-col>
 
-    <ion-col size="3" class="ion-text-center">
-      <ion-item>
-        <ion-label position="floating">Codigo:</ion-label>
-        <ion-input></ion-input>
-      </ion-item>      
-    </ion-col>
+      <ion-col size="3" class="ion-text-center">
+        <ion-item>
+          <ion-label position="floating">Codigo:</ion-label>
+          <ion-input value="{{this.codigo}}" (ionChange)="ONCHANGEcodigo($event)"></ion-input>
+        </ion-item>      
+      </ion-col>
 
-  <ion-col size="6" class="ion-text-center">
-    <ion-item>
-      <ion-label position="floating">Nombre:</ion-label>
-      <ion-input></ion-input>
-    </ion-item>      
-  </ion-col>
-</ion-row>
+      <ion-col size="6" class="ion-text-center">
+        <ion-item>
+        <ion-label position="floating">Nombre:</ion-label>
+        <ion-input value="{{this.nombre}}" (ionChange)="ONCHANGEnombre($event)"></ion-input>
+        </ion-item>      
+      </ion-col>
+  </ion-row>
 
   <ion-row class="ion-align-items-center">
     <ion-col size="12" class="ion-text-center">
-      <ion-button color="danger" >Buscar</ion-button>
+      <ion-button *ngIf="this.referencia&&this.codigo==''&&this.nombre==''" (click)="buscarporreferencia()" color="danger" >Buscar</ion-button>
+      <ion-button *ngIf="this.codigo&&this.referencia==''&&this.nombre==''" (click)="buscarporcodigo()" color="danger" >Buscar</ion-button>
+      <ion-button *ngIf="this.nombre&&this.codigo==''&&this.referencia==''" (click)="buscarpornombre()" color="danger" >Buscar</ion-button>
+
+      <ion-button disabled *ngIf="this.referencia==''&&this.codigo==''&&this.nombre==''" color="danger" >Buscar</ion-button>
+
     </ion-col>
   </ion-row>
+
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12">
+          <ion-list class="ion-align-items-center">
+              <!-- <ion-item > -->
+                <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" *ngFor="let producto of respuestabusqueda" class="ion-align-items-center ion-no-padding" no-padding>
+                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text color="danger" style="color:danger">{{producto.referencia}}</ion-text>
+                  </ion-col>
+                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text color="danger" style="color:danger">{{producto.producto}}</ion-text>
+                  </ion-col>
+                  <ion-col size="4" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text color="danger" style="color:danger">{{producto.descripcion}}</ion-text>
+                  </ion-col>
+                  <ion-col size="2" class="ion-align-items-right ion-no-padding" no-padding>
+                    <ion-button (click)="consultaringresomaterial(producto)" size="small">
+                    <ion-icon style="font-size: x-large; border-radius: 5px; color:white;" name="clipboard-outline" item-right></ion-icon><ion-text style="font-size:small; color:white;">Consultar</ion-text>
+                  </ion-button>
+                  </ion-col>
+                  
+                </ion-row>
+              <!-- </ion-item> -->
+            </ion-list>
+    </ion-col>
+</ion-row>
+
 
   </ion-grid>
 

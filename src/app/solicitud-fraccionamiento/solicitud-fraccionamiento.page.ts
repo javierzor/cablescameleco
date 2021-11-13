@@ -12,6 +12,7 @@ import { Location } from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { GlobalpermisosService } from '../globalpermisos.service';
+import { ModalsolicitudfracionamientoPage } from '../modalsolicitudfracionamiento/modalsolicitudfracionamiento.page';
 
 @Component({
   selector: 'app-solicitud-fraccionamiento',
@@ -23,6 +24,9 @@ export class SolicitudFraccionamientoPage implements OnInit {
   puedenavegaraqui:any;
   seccionactiva: string;
   usuariologeado: any;
+  ingresodematerialnobloqueados: any;
+  filterTerm: string;
+
   constructor(
     private location: Location,
     private router: Router,
@@ -31,17 +35,33 @@ export class SolicitudFraccionamientoPage implements OnInit {
     public navCtrl: NavController,
     public loading: LoadingController,
     private route: ActivatedRoute,
-    public modalCtrl: ModalController,
+    public modalController: ModalController,
     public datepipe: DatePipe,
     public menuCtrl: MenuController,
     public myapp: AppComponent,
     public globalpermisos: GlobalpermisosService,
   )
 
-{      
+  { 
+    var dataconsultaringresosdematerialnobloqueados = {
+      nombre_solicitud:'obteneringresomaterialnobloqueados'
+    };
+    this.json.variasfunciones(dataconsultaringresosdematerialnobloqueados).subscribe((res: any ) =>{
+      this.ingresodematerialnobloqueados=res;
+      console.log('ingresos de material No bloqueados:',this.ingresodematerialnobloqueados);
+    });
   
+  }
   
-}
+  actualizarlista(){
+    var dataconsultaringresosdematerialnobloqueados = {
+      nombre_solicitud:'obteneringresomaterialnobloqueados'
+    };
+    this.json.variasfunciones(dataconsultaringresosdematerialnobloqueados).subscribe((res: any ) =>{
+      this.ingresodematerialnobloqueados=res;
+      console.log('ingresos de material No bloqueados:',this.ingresodematerialnobloqueados);
+    });
+  }
 
 
 ionViewDidEnter(){
@@ -75,5 +95,23 @@ reingresar(){
  async ngOnInit() {
 }
 
+  async solicitar(producto){
+
+  const modal = await this.modalController.create({
+    component: ModalsolicitudfracionamientoPage,
+    componentProps: {
+      cssClass: 'my-custom-class',
+      'dataparaelmodal': producto,
+    }
+  });
+
+  modal.onDidDismiss().then((data) => {
+    this.actualizarlista();
+});
+  console.log('enviando estos datos al modal qr',producto);
+  return await modal.present();
+
+
+}
 
 }
