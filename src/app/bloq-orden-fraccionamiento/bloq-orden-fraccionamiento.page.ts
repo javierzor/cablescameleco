@@ -12,6 +12,7 @@ import { Location } from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { GlobalpermisosService } from '../globalpermisos.service';
+import { ModalbloqordenfracionamientoPage } from '../modalbloqordenfracionamiento/modalbloqordenfracionamiento.page';
 
 @Component({
   selector: 'app-bloq-orden-fraccionamiento',
@@ -23,6 +24,7 @@ export class BloqOrdenFraccionamientoPage implements OnInit {
   puedenavegaraqui:any;
   seccionactiva: string;
   usuariologeado: any;
+  respuestaobtenerordenesdefraccionamientopendientesynobloqueados: any;
   constructor(
     private location: Location,
     private router: Router,
@@ -31,7 +33,7 @@ export class BloqOrdenFraccionamientoPage implements OnInit {
     public navCtrl: NavController,
     public loading: LoadingController,
     private route: ActivatedRoute,
-    public modalCtrl: ModalController,
+    public modalController: ModalController,
     public datepipe: DatePipe,
     public menuCtrl: MenuController,
     public myapp: AppComponent,
@@ -40,7 +42,34 @@ export class BloqOrdenFraccionamientoPage implements OnInit {
 
 {      
   
+  var dataobtenerordenesdefraccionamientopendientesofraccionados = {
+    nombre_solicitud:'obtenerordenesdefraccionamientopendientesofraccionados',
+    }
+    this.json.variasfunciones(dataobtenerordenesdefraccionamientopendientesofraccionados).subscribe(async (res: any ) =>{
+      console.log('respuesta a la solicitud variasfunciones,  obtenerordenesdefraccionamientopendientesofraccionados', res);
+      this.respuestaobtenerordenesdefraccionamientopendientesynobloqueados=res;
 
+    });
+
+
+}
+
+  async actualizarlista(){
+  const actualizando = await this.loadingController.create({
+    message: 'Actualizando...',spinner: 'bubbles',duration: 10000,
+    });
+    actualizando.present();
+  var dataobtenerordenesdefraccionamientopendientesofraccionados = {
+    nombre_solicitud:'obtenerordenesdefraccionamientopendientesofraccionados',
+    }
+    this.json.variasfunciones(dataobtenerordenesdefraccionamientopendientesofraccionados).subscribe(async (res: any ) =>{
+      console.log('respuesta a la solicitud variasfunciones,  obtenerordenesdefraccionamientopendientesofraccionados', res);
+      this.respuestaobtenerordenesdefraccionamientopendientesynobloqueados=res;
+      if(res){
+        actualizando.dismiss();
+      }
+      
+    }); 
 }
 
 
@@ -73,6 +102,23 @@ reingresar(){
 
 
  async ngOnInit() {
+}
+
+  async bloquear(ordenabloquear){
+  console.log('se bloqueara esta orden',ordenabloquear);
+          const modal = await this.modalController.create({
+          component: ModalbloqordenfracionamientoPage,
+          componentProps: {
+            cssClass: 'my-custom-class',
+            'dataparaelmodal': ordenabloquear,
+          }
+        });
+
+        modal.onDidDismiss().then((data) => {
+          this.actualizarlista();
+      });
+        console.log('enviando estos datos al modal qr',ordenabloquear);
+        return await modal.present();
 }
 
 

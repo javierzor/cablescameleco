@@ -33,11 +33,80 @@
 
 
   <ion-grid *ngIf="this.puedenavegaraqui=='si'">
-    <ion-row class="ion-align-items-center">
-      <ion-col size="12" class="ion-text-center">
-        <ion-text color="danger" >Bienvenido.</ion-text>
-      </ion-col>
+
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title style="text-align: center;">
+            <ion-text color="danger" >Ejecutar orden de fraccionamiento.</ion-text><br>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-card-subtitle style="text-align: center;">
+          <ion-text color="danger" >Pendientes por fraccionar:</ion-text>
+        </ion-card-subtitle>
+        </ion-card-content>
+       </ion-card>
+
+    
+        <ion-row style="border-radius: 5px; background-color: #151515;" class="ion-align-items-center">
+            <ion-col size="1.5" class="ion-text-center">
+               <ion-text style="font-size:9px;" color="danger" ><strong>Referencia</strong></ion-text>
+            </ion-col>
+            <ion-col size="1.5" class="ion-text-center">
+               <ion-text style="font-size:9px;" color="danger" ><strong>Codigo</strong></ion-text>
+            </ion-col>
+            <ion-col size="3" class="ion-text-center">
+               <ion-text style="font-size:9px;" color="danger" ><strong>Nombre</strong></ion-text>
+            </ion-col>
+            <ion-col size="1.5" class="ion-text-center">
+                <ion-text style="font-size:9px;" color="danger" ><strong>Documento<br>de Referencia</strong></ion-text>
+            </ion-col>
+            <ion-col size="1.5" class="ion-text-center">
+                <ion-text style="font-size:9px;" color="danger" ><strong>metros de<br>fraccionamiento</strong></ion-text>
+            </ion-col>
+            <ion-col size="1.5" class="ion-text-center">
+                <ion-text style="font-size:9px;" color="danger" ><strong>Observaciones</strong></ion-text>
+            </ion-col>
+            <ion-col size="1.5" class="ion-text-center">
+                <ion-text style="font-size:9px;" color="danger" ><strong>Accion</strong></ion-text>
+            </ion-col>
+      </ion-row>
+    
+    <ion-row  class="ion-align-items-center" *ngFor="let ordenafraccionar of respuestaobtenerordenesdefraccionamientopendientesynobloqueados">
+        <ion-col size="1.5" class="ion-text-center">
+            <ion-text color="danger" >{{ordenafraccionar.referencia}}</ion-text>
+        </ion-col>
+        <ion-col size="1.5" class="ion-text-center">
+          <ion-text *ngIf="ordenafraccionar.id_inutilizado>0&&ordenafraccionar.id_inutilizado<10" color="danger" style="color:danger">0000000{{ordenafraccionar.id_inutilizado}}</ion-text>
+          <ion-text *ngIf="ordenafraccionar.id_inutilizado>10&&ordenafraccionar.id_inutilizado<100" color="danger" style="color:danger">000000{{ordenafraccionar.id_inutilizado}}</ion-text>
+          <ion-text *ngIf="ordenafraccionar.id_inutilizado>100&&ordenafraccionar.id_inutilizado<1000" color="danger" style="color:danger">00000{{ordenafraccionar.id_inutilizado}}</ion-text>
+          <ion-text *ngIf="ordenafraccionar.id_inutilizado>1000&&ordenafraccionar.id_inutilizado<10000" color="danger" style="color:danger">0000{{ordenafraccionar.id_inutilizado}}</ion-text>
+          <ion-text *ngIf="ordenafraccionar.id_inutilizado>10000&&ordenafraccionar.id_inutilizado<100000" color="danger" style="color:danger">000{{ordenafraccionar.id_inutilizado}}</ion-text>
+        </ion-col>
+        <ion-col size="3" class="ion-text-center">
+           <ion-text color="danger" >{{ordenafraccionar.descripcion}}</ion-text>
+        </ion-col>
+        <ion-col size="1.5" class="ion-text-center">
+           <ion-text color="danger" >{{ordenafraccionar.documento}}</ion-text>
+        </ion-col>
+        <ion-col size="1.5" class="ion-text-center">
+           <ion-text color="danger" >{{ordenafraccionar.metrosafraccionar}}</ion-text>
+        </ion-col>
+        <ion-col size="1.5" class="ion-text-center">
+           <ion-text color="danger" >{{ordenafraccionar.observacion}}</ion-text>
+        </ion-col>
+        <ion-col size="1.5" class="ion-text-center">
+           <ion-button (click)="faccionar(ordenafraccionar)" size="small" color="danger">
+                <ion-icon style="color:white;" name="push-outline"></ion-icon><ion-text style="font-size: 8px; color:white;">Ejecutar<br>orden</ion-text>
+           </ion-button>
+        </ion-col>
     </ion-row>
+    
+    
+    
+    
+
   </ion-grid>
 
   

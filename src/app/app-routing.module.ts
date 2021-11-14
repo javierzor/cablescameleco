@@ -97,6 +97,22 @@ const routes: Routes = [
   {
     path: 'modalsolicitudfracionamiento',
     loadChildren: () => import('./modalsolicitudfracionamiento/modalsolicitudfracionamiento.module').then( m => m.ModalsolicitudfracionamientoPageModule)
+  },
+  {
+    path: 'modalbloqordenfracionamiento',
+    loadChildren: () => import('./modalbloqordenfracionamiento/modalbloqordenfracionamiento.module').then( m => m.ModalbloqordenfracionamientoPageModule)
+  },
+  {
+    path: 'modalfraccionamientoqr',
+    loadChildren: () => import('./modalfraccionamientoqr/modalfraccionamientoqr.module').then( m => m.ModalfraccionamientoqrPageModule)
+  },
+  {
+    path: 'modalentregas',
+    loadChildren: () => import('./modalentregas/modalentregas.module').then( m => m.ModalentregasPageModule)
+  },
+  {
+    path: 'modalsobremodalentregas',
+    loadChildren: () => import('./modalsobremodalentregas/modalsobremodalentregas.module').then( m => m.ModalsobremodalentregasPageModule)
   }
 
 

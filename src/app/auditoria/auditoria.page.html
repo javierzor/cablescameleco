@@ -38,6 +38,224 @@
         <ion-text color="danger" >Bienvenido.</ion-text>
       </ion-col>
     </ion-row>
+
+    <ion-segment (ionChange)="segmentChanged($event)"  
+    value="ordenesdefraccionamiento" 
+    color="danger" 
+    scrollable="true"
+    mode="ios"
+    [(ngModel)]="segmentModel" 
+    (ionChange)="segmentChanged($event)"
+    >
+      <ion-segment-button value="ordenesdefraccionamiento">
+        <ion-label>Ordenes de<br>fraccionamiento</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="fraccionamientosrealizados">
+        <ion-label>Fraccionamientos<br> realizados</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="fraccionamientossuspendidos">
+        <ion-label>Fraccionamientos<br>suspendidos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="fraccionamientosacarrete">
+        <ion-label>Fraccionamientos<br> a carrete</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+
+    <ion-card *ngIf="this.segmentModel=='ordenesdefraccionamiento'">
+      <ion-card-header>
+        <ion-card-subtitle>Listado de ordenes de fraccionamiento</ion-card-subtitle>
+        <ion-card-title>Pendientes para fraccionar</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+
+        <ion-row class="ion-align-items-center">
+          <ion-col size="12">
+                <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+    
+              <ion-row style="text-align: center;">
+                <ion-col size="1" style="font-size:small;"><ion-text>Hora<br>orden</ion-text></ion-col>
+                <ion-col size="1.5" style="font-size:small;"><ion-text>Numero <br>de orden</ion-text></ion-col>
+                <ion-col size="4.5" style="font-size:small;"><ion-text>Nombre</ion-text></ion-col>
+                <ion-col size="1" style="font-size:small;"><ion-text>Factura</ion-text></ion-col>
+                <ion-col size="1.5" style="font-size:small;"><ion-text>Metros</ion-text></ion-col>
+                <ion-col size="2.5" style="font-size:small;"><ion-text>operario</ion-text></ion-col>
+              </ion-row>
+
+                <ion-list style="text-align: center;" class="ion-align-items-center">
+                    <!-- <ion-item > -->
+                      <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" *ngFor="let producto of respuestaauditoria1 | filter:filterTerm" class="ion-align-items-center ion-no-padding" no-padding>
+                        <ion-col size="1" class="ion-align-items-center ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.fecha_orden}}<br>{{producto.hora_orden}}</ion-text>
+                        </ion-col>
+                        <ion-col size="1.5" class="ion-align-items-center ion-no-padding" no-padding>
+
+                          <ion-text *ngIf="producto.id_inutilizado>0&&producto.id_inutilizado<10" color="danger" style="color:danger">0000000{{producto.id_inutilizado}}</ion-text>
+                          <ion-text *ngIf="producto.id_inutilizado>10&&producto.id_inutilizado<100" color="danger" style="color:danger">000000{{producto.id_inutilizado}}</ion-text>
+                          <ion-text *ngIf="producto.id_inutilizado>100&&producto.id_inutilizado<1000" color="danger" style="color:danger">00000{{producto.id_inutilizado}}</ion-text>
+                          <ion-text *ngIf="producto.id_inutilizado>1000&&producto.id_inutilizado<10000" color="danger" style="color:danger">0000{{producto.id_inutilizado}}</ion-text>
+                          <ion-text *ngIf="producto.id_inutilizado>10000&&producto.id_inutilizado<100000" color="danger" style="color:danger">000{{producto.id_inutilizado}}</ion-text>
+      
+                        </ion-col>
+                        <ion-col size="4.5" class="ion-align-items-center ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.descripcion}}</ion-text>
+                        </ion-col>
+                        <ion-col size="1.5" class="ion-align-items-right ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.documento}}</ion-text>
+                        </ion-col>
+                        <ion-col size="1" class="ion-align-items-right ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.metrosafraccionar}}</ion-text>
+                        </ion-col>
+                        <ion-col size="2.5" class="ion-align-items-right ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.nombre_ordenador}}</ion-text>
+                        </ion-col>
+                        
+                      </ion-row>
+                    <!-- </ion-item> -->
+                  </ion-list>
+          </ion-col>
+      </ion-row>
+
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="this.segmentModel=='fraccionamientosrealizados'">
+      <ion-card-header>
+        <ion-card-subtitle>Listado de ordenes de fraccionamiento</ion-card-subtitle>
+        <ion-card-title>Fraccionamientos Realizados</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+
+        <ion-row class="ion-align-items-center">
+          <ion-col size="12">
+                <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+    
+              <ion-row style="text-align: center;">
+                <ion-col size="1" style="font-size:small;"><ion-text>Hora<br>orden</ion-text></ion-col>
+                <ion-col size="1" style="font-size:small;"><ion-text>Numero <br>de orden</ion-text></ion-col>
+                <ion-col size="3.5" style="font-size:small;"><ion-text>Nombre</ion-text></ion-col>
+                <ion-col size="1" style="font-size:small;"><ion-text>Factura</ion-text></ion-col>
+                <ion-col size="1" style="font-size:small;"><ion-text>Metros</ion-text></ion-col>
+                <ion-col size="2.5" style="font-size:small;"><ion-text>operario</ion-text></ion-col>
+                <ion-col size="2" style="font-size:small;"><ion-text>ordenado<br>por</ion-text></ion-col>
+
+              </ion-row>
+
+                <ion-list style="text-align: center;" class="ion-align-items-center">
+                    <!-- <ion-item > -->
+                      <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" *ngFor="let producto of respuestaauditoria2 | filter:filterTerm" class="ion-align-items-center ion-no-padding" no-padding>
+                        <ion-col size="1" class="ion-align-items-center ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.fecha_orden}}<br>{{producto.hora_orden}}</ion-text>
+                        </ion-col>
+                        <ion-col size="1" class="ion-align-items-center ion-no-padding" no-padding>
+
+                          <ion-text *ngIf="producto.id_inutilizado>0&&producto.id_inutilizado<10" color="danger" style="color:danger">0000000{{producto.id_inutilizado}}</ion-text>
+                          <ion-text *ngIf="producto.id_inutilizado>10&&producto.id_inutilizado<100" color="danger" style="color:danger">000000{{producto.id_inutilizado}}</ion-text>
+                          <ion-text *ngIf="producto.id_inutilizado>100&&producto.id_inutilizado<1000" color="danger" style="color:danger">00000{{producto.id_inutilizado}}</ion-text>
+                          <ion-text *ngIf="producto.id_inutilizado>1000&&producto.id_inutilizado<10000" color="danger" style="color:danger">0000{{producto.id_inutilizado}}</ion-text>
+                          <ion-text *ngIf="producto.id_inutilizado>10000&&producto.id_inutilizado<100000" color="danger" style="color:danger">000{{producto.id_inutilizado}}</ion-text>
+      
+                        </ion-col>
+                        <ion-col size="3.5" class="ion-align-items-center ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.descripcion}}</ion-text>
+                        </ion-col>
+                        <ion-col size="1" class="ion-align-items-right ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.documento}}</ion-text>
+                        </ion-col>
+                        <ion-col size="1" class="ion-align-items-right ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.metrosafraccionar}}</ion-text>
+                        </ion-col>
+                        <ion-col size="2.5" class="ion-align-items-right ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.operario_fraccionado}}</ion-text>
+                        </ion-col>
+                        <ion-col size="2" class="ion-align-items-right ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.nombre_ordenador}}</ion-text>
+                        </ion-col>
+                        
+                      </ion-row>
+                    <!-- </ion-item> -->
+                  </ion-list>
+          </ion-col>
+      </ion-row>
+
+
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-card *ngIf="this.segmentModel=='fraccionamientossuspendidos'">
+      <ion-card-header>
+        <ion-card-subtitle>Listado de ordenes de fraccionamiento</ion-card-subtitle>
+        <ion-card-title>Fraccionamientos suspendidos</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+
+        <ion-row class="ion-align-items-center">
+          <ion-col size="12">
+                <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+    
+              <ion-row style="text-align: center;">
+                <ion-col size="1" style="font-size:small;"><ion-text>Hora<br>orden</ion-text></ion-col>
+                <ion-col size="1" style="font-size:small;"><ion-text>Numero <br>de orden</ion-text></ion-col>
+                <ion-col size="3" style="font-size:small;"><ion-text>Nombre</ion-text></ion-col>
+                <ion-col size="1" style="font-size:small;"><ion-text>Factura</ion-text></ion-col>
+                <ion-col size="1" style="font-size:small;"><ion-text>Metros</ion-text></ion-col>
+                <ion-col size="1.5" style="font-size:small;"><ion-text>operario</ion-text></ion-col>
+                <ion-col size="1.5" style="font-size:small;"><ion-text>ordenado<br>por</ion-text></ion-col>
+                <ion-col size="2" style="font-size:small;"><ion-text>suspendido<br>por</ion-text></ion-col>
+
+              </ion-row>
+
+                <ion-list style="text-align: center;" class="ion-align-items-center">
+                    <!-- <ion-item > -->
+                      <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" *ngFor="let producto of respuestaauditoria3 | filter:filterTerm" class="ion-align-items-center ion-no-padding" no-padding>
+                        <ion-col size="1" class="ion-align-items-center ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.fecha_orden}}<br>{{producto.hora_orden}}</ion-text>
+                        </ion-col>
+                        <ion-col size="1" class="ion-align-items-center ion-no-padding" no-padding>
+
+                          <ion-text *ngIf="producto.id_inutilizado>0&&producto.id_inutilizado<10" color="danger" style="color:danger">0000000{{producto.id_inutilizado}}</ion-text>
+                          <ion-text *ngIf="producto.id_inutilizado>10&&producto.id_inutilizado<100" color="danger" style="color:danger">000000{{producto.id_inutilizado}}</ion-text>
+                          <ion-text *ngIf="producto.id_inutilizado>100&&producto.id_inutilizado<1000" color="danger" style="color:danger">00000{{producto.id_inutilizado}}</ion-text>
+                          <ion-text *ngIf="producto.id_inutilizado>1000&&producto.id_inutilizado<10000" color="danger" style="color:danger">0000{{producto.id_inutilizado}}</ion-text>
+                          <ion-text *ngIf="producto.id_inutilizado>10000&&producto.id_inutilizado<100000" color="danger" style="color:danger">000{{producto.id_inutilizado}}</ion-text>
+      
+                        </ion-col>
+                        <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.descripcion}}</ion-text>
+                        </ion-col>
+                        <ion-col size="1" class="ion-align-items-right ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.documento}}</ion-text>
+                        </ion-col>
+                        <ion-col size="1" class="ion-align-items-right ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.metrosafraccionar}}</ion-text>
+                        </ion-col>
+                        <ion-col size="1.5" class="ion-align-items-right ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.operario_fraccionado}}</ion-text>
+                        </ion-col>
+                        <ion-col size="1.5" class="ion-align-items-right ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.nombre_ordenador}}</ion-text>
+                        </ion-col>
+                        <ion-col size="2" class="ion-align-items-right ion-no-padding" no-padding>
+                          <ion-text color="danger" style="color:danger">{{producto.user_nombre_bloqueador}}</ion-text>
+                        </ion-col>
+                        
+                      </ion-row>
+                    <!-- </ion-item> -->
+                  </ion-list>
+          </ion-col>
+      </ion-row>
+
+
+      </ion-card-content>
+    </ion-card>
+
+
+
   </ion-grid>
 
   

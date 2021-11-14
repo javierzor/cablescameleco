@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Suspención de materiales ingresados.</ion-title>
+    <ion-title>Suspención de Ordenes de Fraccionamiento.</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,15 +17,12 @@
     <ion-col style="text-align: center;" size="12">
                 <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                    <ion-text style="font-size:small; color:white">nº Carrete</ion-text>
-                  </ion-col>
-                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
                     <ion-text style="font-size:small; color:white">Referencia</ion-text>
                   </ion-col>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                    <ion-text style="font-size:small; color:white">Codigo</ion-text>
+                    <ion-text style="font-size:small; color:white">Código</ion-text>
                   </ion-col>
-                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                  <ion-col size="6" class="ion-align-items-center ion-no-padding" no-padding>
                     <ion-text style="font-size:small; color:white">Nombre</ion-text>
                   </ion-col>     
                 </ion-row>
@@ -39,20 +36,17 @@
               <!-- <ion-item > -->
                 <ion-row style="border-bottom: 1px solid #151515 !important;"  class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                    <ion-text *ngIf="traidopormodalparams.id>0&&traidopormodalparams.id<10" color="danger" style="color:danger">0000000{{traidopormodalparams.id}}</ion-text>
-                    <ion-text *ngIf="traidopormodalparams.id>10&&traidopormodalparams.id<100" color="danger" style="color:danger">000000{{traidopormodalparams.id}}</ion-text>
-                    <ion-text *ngIf="traidopormodalparams.id>100&&traidopormodalparams.id<1000" color="danger" style="color:danger">00000{{traidopormodalparams.id}}</ion-text>
-                    <ion-text *ngIf="traidopormodalparams.id>1000&&traidopormodalparams.id<10000" color="danger" style="color:danger">0000{{traidopormodalparams.id}}</ion-text>
-                    <ion-text *ngIf="traidopormodalparams.id>10000&&traidopormodalparams.id<100000" color="danger" style="color:danger">000{{traidopormodalparams.id}}</ion-text>
-
-                  </ion-col>
-                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
                     <ion-text color="danger" style="color:danger">{{traidopormodalparams.referencia}}</ion-text>
                   </ion-col>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                    <ion-text color="danger" style="color:danger">{{traidopormodalparams.producto}}</ion-text>
+                    <ion-text *ngIf="traidopormodalparams.id_inutilizado>0&&traidopormodalparams.id_inutilizado<10" color="danger" style="color:danger">0000000{{traidopormodalparams.id_inutilizado}}</ion-text>
+                    <ion-text *ngIf="traidopormodalparams.id_inutilizado>10&&traidopormodalparams.id_inutilizado<100" color="danger" style="color:danger">000000{{traidopormodalparams.id_inutilizado}}</ion-text>
+                    <ion-text *ngIf="traidopormodalparams.id_inutilizado>100&&traidopormodalparams.id_inutilizado<1000" color="danger" style="color:danger">00000{{traidopormodalparams.id_inutilizado}}</ion-text>
+                    <ion-text *ngIf="traidopormodalparams.id_inutilizado>1000&&traidopormodalparams.id_inutilizado<10000" color="danger" style="color:danger">0000{{traidopormodalparams.id_inutilizado}}</ion-text>
+                    <ion-text *ngIf="traidopormodalparams.id_inutilizado>10000&&traidopormodalparams.id_inutilizado<100000" color="danger" style="color:danger">000{{traidopormodalparams.id_inutilizado}}</ion-text>
+
                   </ion-col>
-                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                  <ion-col size="6" class="ion-align-items-center ion-no-padding" no-padding>
                     <ion-text color="danger" style="color:danger">{{traidopormodalparams.descripcion}}</ion-text>
                   </ion-col>
 
@@ -68,18 +62,15 @@
 <ion-row class="ion-align-items-center">
   <ion-col style="text-align: center;" size="12">
               <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" class="ion-align-items-center ion-no-padding" no-padding>
-                <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                <ion-col size="4" class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-text style="font-size:small; color:white">Documento de<br>referencia</ion-text>
                 </ion-col>
-                <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-text style="font-size:small; color:white">metros en <br>carrete/tramo</ion-text>
+                <ion-col size="4" class="ion-align-items-center ion-no-padding" no-padding>
+                  <ion-text style="font-size:small; color:white">metros de <br>fraccionamiento</ion-text>
                 </ion-col>
-                <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-text style="font-size:small; color:white">carrete/tramo</ion-text>
-                </ion-col>
-                <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                <ion-col size="4" class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-text style="font-size:small; color:white">Observaciones</ion-text>
-                </ion-col>     
+                </ion-col>
               </ion-row>
   </ion-col>
 </ion-row>
@@ -89,17 +80,14 @@
         <ion-list class="ion-align-items-center">
             <!-- <ion-item > -->
               <ion-row style=" border-top: 1px solid #151515 !important;"  class="ion-align-items-center ion-no-padding" no-padding>
-                <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-text color="danger" style="color:danger">{{traidopormodalparams.numerodenotadeentrada}}</ion-text>
+                <ion-col size="4" class="ion-align-items-center ion-no-padding" no-padding>
+                  <ion-text color="danger" style="color:danger">{{traidopormodalparams.documento}}</ion-text>
 
                 </ion-col>
-                <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                <ion-col size="4" class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-text color="danger" style="color:danger">{{traidopormodalparams.metrosencarrete}}</ion-text>
                 </ion-col>
-                <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-text color="danger" style="color:danger">{{traidopormodalparams.carreteorrollo}}</ion-text>
-                </ion-col>
-                <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                <ion-col size="4" class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-textarea (ionChange)="ONCHANGEobservacion($event)" style="border-radius: 5px; background-color:#101010" color="danger"></ion-textarea>
                 </ion-col>
 
@@ -112,7 +100,7 @@
 
   <ion-row class="ion-align-items-center">
     <ion-col size="12" class="ion-text-center">
-      <ion-text>¿Esta seguro que desea bloquear este ingreso de material?</ion-text>
+      <ion-text>¿Esta seguro que desea bloquear esta orden de fraccionamiento?</ion-text>
     </ion-col>
   </ion-row>
 

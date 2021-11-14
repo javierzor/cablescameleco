@@ -33,11 +33,74 @@
 
 
   <ion-grid *ngIf="this.puedenavegaraqui=='si'">
+
+
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
-        <ion-text color="danger" >Bienvenido.</ion-text>
       </ion-col>
     </ion-row>
+
+<ion-card>
+
+  <ion-card-header>
+    <ion-card-title style="text-align: center;" class="ion-align-items-center">
+      <ion-text color="danger" >Suspención de ordenes de fraccionamiento.</ion-text>
+    </ion-card-title>
+    <ion-card-subtitle style="text-align: center;" class="ion-align-items-center">
+      <ion-text color="danger" >Pendientes por fraccionar:</ion-text>
+    </ion-card-subtitle>
+
+  </ion-card-header>
+  <ion-card-content>
+
+    <ion-row style="border-radius: 5px; background-color: #151515;" class="ion-align-items-center">
+      <ion-col size="2" class="ion-text-center">
+        <ion-text color="danger" ><strong>Hora de<br> Orden</strong></ion-text>
+      </ion-col>
+
+      <ion-col size="6" class="ion-text-center">
+        <ion-text color="danger" ><strong>Nombre</strong></ion-text>
+      </ion-col>
+
+    <ion-col size="2" class="ion-text-center">
+      <ion-text color="danger" ><strong>Factura</strong></ion-text>
+    </ion-col>
+    <ion-col size="2" class="ion-text-center">
+      <ion-text color="danger" ><strong>Bloquear<br>orden</strong></ion-text>
+    </ion-col>
+  </ion-row>
+
+<ion-row  class="ion-align-items-center" *ngFor="let ordenabloquear of respuestaobtenerordenesdefraccionamientopendientesynobloqueados">
+    <ion-col size="2" class="ion-text-center">
+      <ion-text color="danger" >{{ordenabloquear.hora_orden}}</ion-text>
+    </ion-col>
+
+    <ion-col size="6" class="ion-text-center">
+      <ion-text color="danger" >{{ordenabloquear.descripcion}}</ion-text>
+    </ion-col>
+
+  <ion-col size="2" class="ion-text-center">
+    <ion-text color="danger" >{{ordenabloquear.documento}}</ion-text>
+  </ion-col>
+  <ion-col size="2" class="ion-text-center">
+    <ion-button (click)="bloquear(ordenabloquear)" size="small" color="danger">
+       <ion-icon style="color:white;" name="lock-closed-outline"></ion-icon><ion-text style="font-size: 8px; color:white;">Bloquear<br>orden</ion-text>
+    </ion-button>
+  </ion-col>
+</ion-row>
+
+  </ion-card-content>
+
+
+
+</ion-card>
+
+
+
+
+
+
+
   </ion-grid>
 
   

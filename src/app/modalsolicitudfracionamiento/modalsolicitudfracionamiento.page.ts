@@ -81,6 +81,8 @@ export class ModalsolicitudfracionamientoPage implements OnInit {
     this.yaapretoaceptar='si';
     this.fecha_orden = new Date ();
     let fecha_orden_arreglada =this.datepipe.transform(this.fecha_orden, 'yyyy-MM-dd');
+    let hora_orden_arreglada =this.datepipe.transform(this.fecha_orden, 'hh:mm');
+
     this.user_nombre=this.globalpermisos.nombre;
     this.user_id=this.globalpermisos.id_usuario;
 
@@ -101,6 +103,7 @@ export class ModalsolicitudfracionamientoPage implements OnInit {
       numerodenotadeentrada: this.traidopormodalparams.numerodenotadeentrada,
       producto:this.traidopormodalparams.producto,
       referencia:this.traidopormodalparams.referencia,
+      hora_orden: hora_orden_arreglada
       
     }
     this.json.variasfunciones(datasolicitudfraccionamiento).subscribe((res: any ) =>{

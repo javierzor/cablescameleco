@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Confirme su selección:</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-text style="font-size: small;">Porfavor confirme que desea enviar la siguiente información:</ion-text>
+
+  <ion-grid *ngIf="traidopormodalparams.tipodemodal=='entregar'">
+    <ion-row class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-text>¿Esta seguro de entregar?</ion-text><br>
+      <ion-button  (click)="aceptarentregar()" color="danger" ><ion-text style="font-weight: 500;">Aceptar</ion-text>
+      </ion-button>
+      <ion-button  (click)="dismiss()" color="danger" ><ion-text style="font-weight: 500;">Cancelar</ion-text>
+      </ion-button>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="traidopormodalparams.tipodemodal=='novedad'">
+    <ion-select interface="popover" (ionChange)="ONCHANGEtipo_novedad($event)" style="background-color: #151515;">
+      <ion-select-option value="Novedad 1">Novedad 1</ion-select-option>
+      <ion-select-option value="Novedad 2">Novedad 2</ion-select-option>
+      <ion-select-option value="Novedad 3">Novedad 3</ion-select-option>
+    </ion-select>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+      <ion-button disabled *ngIf="this.tipo_novedad==null||this.tipo_novedad==undefined||this.tipo_novedad==''"  (click)="aceptarentregarnovedad()" color="danger" ><ion-text style="font-weight: 500;">Aceptar</ion-text>
+      </ion-button>
+      <ion-button *ngIf="this.tipo_novedad!=null&&this.tipo_novedad!=undefined&&this.tipo_novedad!=''"  (click)="aceptarentregarnovedad()" color="danger" ><ion-text style="font-weight: 500;">Aceptar</ion-text>
+      </ion-button>
+      <ion-button  (click)="dismiss()" color="danger" ><ion-text style="font-weight: 500;">Cancelar</ion-text>
+      </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  
+
+</ion-content>

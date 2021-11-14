@@ -23,6 +23,10 @@ export class DeCarreteAOtroPage implements OnInit {
   puedenavegaraqui:any;
   seccionactiva: string;
   usuariologeado: any;
+  dataempieza: any;
+  quieroaccederporfavordigamelarespuestadelaconsulta: any;
+  escanearonview: string;
+  carreteochipa: any;
   constructor(
     private location: Location,
     private router: Router,
@@ -75,6 +79,61 @@ reingresar(){
  async ngOnInit() {
 }
 
+ONCHANGEcodigo(event){
+this.dataempieza=event.target.value;
+}
+
+ONCHANGEcarreteochipa(event){
+  this.carreteochipa=event.target.value;
+  }
+
+  async continuar(){
+  const verifiqueconexion = await this.loadingController.create({
+    message: 'Porfavor verifique su conexion..',spinner: 'bubbles',duration: 1400,
+    });
+  const espereporfavor = await this.loadingController.create({
+    message: 'Verificando, espere porfavor...',spinner: 'bubbles',duration: 25000,
+    });
+    const exitoso = await this.loadingController.create({
+    message: 'Verificación exitosa accediendo.',spinner: 'bubbles',duration: 1200,
+    });
+    const error = await this.loadingController.create({
+    message: 'Verifique su información porfavor...',spinner: 'bubbles',duration: 1700,
+    });
+  espereporfavor.present();
+
+  var data = {
+    codigo_qr_acceso:this.dataempieza
+   }
+   this.json.empieza(data).subscribe((res: any ) =>{
+    console.log('respuesta de Json empieza:', res);
+    this.quieroaccederporfavordigamelarespuestadelaconsulta=res;
+    if(res.length=='0'){
+      console.log('El usuario no existe');
+      espereporfavor.dismiss();
+      error.present();
+      }
+
+      if (res.length>0&&res[0].activo>0){
+        console.log('el usuario fue registrado previamente');
+        this.escanearonview='no';
+        espereporfavor.dismiss();
+        // exitoso.present();
+        
+      }
+      else
+      {
+        espereporfavor.dismiss();
+        verifiqueconexion.present();
+      }
+
+    });
+
+  }
+
+  continuarcarrete(){
+    
+  }
 
 
 }

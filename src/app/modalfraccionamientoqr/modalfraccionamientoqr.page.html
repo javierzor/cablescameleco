@@ -1,0 +1,54 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button  (click)="dismiss()" color="danger" ><ion-text style="font-weight: 500;">cerrar</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <h2>Ingreso de material</h2>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-card>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="6" class="ion-text-center">
+        <h3 color="danger" style="color:red;">CAMELECO</h3><br>
+        <ngx-qrcode [value]="traidopormodalparams.numero_fraccionado">
+        </ngx-qrcode>
+        <!-- <ion-icon style="font-size:256px;" name="qr-code-outline"></ion-icon> -->
+      </ion-col>
+      <ion-col size="6" class="ion-text-left">
+        <p><strong>Orden de fracc. N:</strong>{{this.traidopormodalparams.numero_fraccionado}}</p>
+        <p><strong>Documento:</strong>{{this.traidopormodalparams.documento}}</p>
+        <p><strong>codigo:</strong>{{this.traidopormodalparams.producto}}</p>
+        <p><strong>nombre:</strong>{{this.traidopormodalparams.descripcion}}</p>
+        <p><strong>Metros:</strong>{{this.traidopormodalparams.metrosafraccionar}}</p>
+        <p><strong>Operario:</strong>{{this.traidopormodalparams.operario_fraccionado}}</p>
+        <p><strong>Fecha , Hora:</strong>{{this.traidopormodalparams.fecha_orden}} , {{this.traidopormodalparams.hora_orden}}</p>
+
+      </ion-col>
+    </ion-row>
+   </ion-card>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button  (click)="imprimir()" color="danger" ><ion-text style="font-weight: 500;">Imprimir</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+
+</ion-content>

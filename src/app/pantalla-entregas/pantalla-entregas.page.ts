@@ -23,6 +23,7 @@ export class PantallaEntregasPage implements OnInit {
   puedenavegaraqui:any;
   seccionactiva: string;
   usuariologeado: any;
+  respuestapantallaentregas: any;
   constructor(
     private location: Location,
     private router: Router,
@@ -40,6 +41,15 @@ export class PantallaEntregasPage implements OnInit {
 
 {      
   
+
+  var datapantallaentregas = {
+    nombre_solicitud:'pantallaentregas'
+   }
+
+   this.json.variasfunciones(datapantallaentregas).subscribe((res: any ) =>{
+     console.log('respuesta de pantallaentregas',res);
+    this.respuestapantallaentregas=res;
+  });
 
 }
 

@@ -12,6 +12,7 @@ import { Location } from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { GlobalpermisosService } from '../globalpermisos.service';
+import { ModalentregasPage } from '../modalentregas/modalentregas.page';
 
 @Component({
   selector: 'app-entregas',
@@ -23,6 +24,11 @@ export class EntregasPage implements OnInit {
   puedenavegaraqui:any;
   seccionactiva: string;
   usuariologeado: any;
+  dataempieza: any;
+  quieroaccederporfavordigamelarespuestadelaconsulta: any;
+  escanearonview: string;
+  carreteochipa: any;
+  respuestaentregarcarreteochipaconsultarcodigo: any;
   constructor(
     private location: Location,
     private router: Router,
@@ -31,7 +37,7 @@ export class EntregasPage implements OnInit {
     public navCtrl: NavController,
     public loading: LoadingController,
     private route: ActivatedRoute,
-    public modalCtrl: ModalController,
+    public modalController: ModalController,
     public datepipe: DatePipe,
     public menuCtrl: MenuController,
     public myapp: AppComponent,
@@ -74,6 +80,99 @@ reingresar(){
 
  async ngOnInit() {
 }
+
+
+ONCHANGEcodigo(event){
+  this.dataempieza=event.target.value;
+  }
+  
+  ONCHANGEcarreteochipa(event){
+    this.carreteochipa=event.target.value;
+    }
+  
+    async continuar(){
+    const verifiqueconexion = await this.loadingController.create({
+      message: 'Porfavor verifique su conexion..',spinner: 'bubbles',duration: 1400,
+      });
+    const espereporfavor = await this.loadingController.create({
+      message: 'Verificando, espere porfavor...',spinner: 'bubbles',duration: 25000,
+      });
+      const exitoso = await this.loadingController.create({
+      message: 'Verificación exitosa accediendo.',spinner: 'bubbles',duration: 1200,
+      });
+      const error = await this.loadingController.create({
+      message: 'Verifique su información porfavor...',spinner: 'bubbles',duration: 1700,
+      });
+    espereporfavor.present();
+  
+    var data = {
+      codigo_qr_acceso:this.dataempieza
+     }
+     this.json.empieza(data).subscribe((res: any ) =>{
+      console.log('respuesta de Json empieza:', res);
+      this.quieroaccederporfavordigamelarespuestadelaconsulta=res;
+      if(res.length=='0'){
+        console.log('El usuario no existe');
+        espereporfavor.dismiss();
+        error.present();
+        }
+  
+        if (res.length>0&&res[0].activo>0){
+          console.log('el usuario fue registrado previamente');
+          this.escanearonview='no';
+          espereporfavor.dismiss();
+          // exitoso.present();
+          
+        }
+        else
+        {
+          espereporfavor.dismiss();
+          verifiqueconexion.present();
+        }
+  
+      });
+  
+    }
+  
+    async continuarcarrete(){
+
+      const verifique = await this.loadingController.create({
+        message: 'Porfavor verifique su QR o el codigo que ingreso',spinner: 'bubbles',duration: 1200,
+        });
+
+      var dataentregarcarreteochipaconsultarcodigo = {
+        nombre_solicitud:'entregarcarreteochipaconsultarcodigo',
+        numero_fraccionado:this.carreteochipa
+      }
+      this.json.variasfunciones(dataentregarcarreteochipaconsultarcodigo).subscribe(async (res: any ) =>{
+        this.respuestaentregarcarreteochipaconsultarcodigo=res[0];
+        if(res[0].numero_fraccionado>0){
+          
+                //empieza el modal
+                const modal = await this.modalController.create({
+                  component: ModalentregasPage,
+                  componentProps: {
+                    cssClass: 'my-custom-class',
+                    'dataparaelmodal': this.respuestaentregarcarreteochipaconsultarcodigo,
+                  }
+                });
+                
+                modal.onDidDismiss().then((data) => {
+                });
+                console.log('enviando estos datos al modal qr',this.respuestaentregarcarreteochipaconsultarcodigo);
+                return await modal.present();
+                //termina el modal
+
+        }
+
+        else {
+          verifique.present();
+        }
+      }
+      
+      );
+
+    }
 
 
 

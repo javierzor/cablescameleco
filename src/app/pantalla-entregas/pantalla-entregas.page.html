@@ -35,9 +35,42 @@
   <ion-grid *ngIf="this.puedenavegaraqui=='si'">
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
-        <ion-text color="danger" >Bienvenido.</ion-text>
+        <ion-text color="danger" >Pantalla entregas</ion-text>
       </ion-col>
     </ion-row>
+
+    <ion-row style="border-radius: 6px; background-color:#151515;" class="ion-align-items-center">
+      <ion-col size="2.5" class="ion-text-center">
+        <ion-text color="danger" >Documento</ion-text>
+      </ion-col>
+      <ion-col size="4.5" class="ion-text-center">
+        <ion-text color="danger" >Nombre</ion-text>
+      </ion-col>
+      <ion-col size="2.5" class="ion-text-center">
+        <ion-text color="danger" >Cantidad</ion-text>
+      </ion-col>
+      <ion-col size="2.5" class="ion-text-center">
+        <ion-text color="danger" >Estado</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let pantallaentregas of respuestapantallaentregas"  class="ion-align-items-center">
+      <ion-col size="2.5" class="ion-text-center">
+        <ion-text color="danger" >{{pantallaentregas.documento}}</ion-text>
+      </ion-col>
+      <ion-col size="4.5" class="ion-text-center">
+        <ion-text color="danger" >{{pantallaentregas.descripcion}}</ion-text>
+      </ion-col>
+      <ion-col size="2.5" class="ion-text-center">
+        <ion-text color="danger" >{{pantallaentregas.metrosafraccionar}}</ion-text>
+      </ion-col>
+      <ion-col size="2.5" class="ion-text-center">
+        <ion-text *ngIf="pantallaentregas.estado=='Entregado'" color="danger" >Entregado</ion-text>
+        <ion-text *ngIf="pantallaentregas.fraccionado=='si'&&pantallaentregas.estado!='Entregado'&&pantallaentregas.estado!='Novedad'" color="danger" >Fraccionado</ion-text>
+        <ion-text *ngIf="pantallaentregas.estado=='Novedad'" color="danger" >Novedad</ion-text>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>
 
   

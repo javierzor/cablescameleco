@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Entregas, Validación de la información</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row class="ion-align-items-center">
+
+  <ion-col size="12" class="ion-text-center">
+    <ion-button  (click)="dismiss()" color="danger" ><ion-text style="font-weight: 500;">Cancelar</ion-text>
+    </ion-button>
+  </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="2" class="ion-text-center">
+      <ion-text>Referencia</ion-text>
+    </ion-col>
+    <ion-col size="2" class="ion-text-center">
+      <ion-text>Código</ion-text>
+    </ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <ion-text>Nombre</ion-text>
+    </ion-col>
+    <ion-col size="2" class="ion-text-center">
+      <ion-text>Documento<br>Referencia</ion-text>
+    </ion-col>
+    <ion-col size="2" class="ion-text-center">
+      <ion-text>Metros</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="2" class="ion-text-center">
+      <ion-text style="color:red;">{{traidopormodalparams.referencia}}</ion-text>
+    </ion-col>
+    <ion-col size="2" class="ion-text-center">
+      <ion-text style="color:red;">{{traidopormodalparams.referencia}}</ion-text>
+    </ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <ion-text style="color:red;">{{traidopormodalparams.descripcion}}</ion-text>
+    </ion-col>
+    <ion-col size="2" class="ion-text-center">
+      <ion-text style="color:red;">{{traidopormodalparams.documento}}</ion-text>
+    </ion-col>
+    <ion-col size="2" class="ion-text-center">
+      <ion-text style="color:red;">{{traidopormodalparams.metrosafraccionar}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-text style="font-size: small;">verifique la información y seleccione entregar o novedad segun su requerimiento.</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="2" class="ion-text-center">
+      
+    </ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <ion-button  (click)="entregarboton()" color="danger" ><ion-text style="font-weight: 500;">Entregar</ion-text>
+      </ion-button>
+    </ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <ion-button  (click)="novedadboton()" color="danger" ><ion-text style="font-weight: 500;">Novedad</ion-text>
+      </ion-button>
+    </ion-col>
+    <ion-col size="2" class="ion-text-center">
+      
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>
