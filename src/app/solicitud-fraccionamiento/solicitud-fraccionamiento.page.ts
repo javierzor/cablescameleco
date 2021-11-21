@@ -52,6 +52,10 @@ export class SolicitudFraccionamientoPage implements OnInit {
     });
   
   }
+
+  temporalvercariable(){
+    console.log('event',this.filterTerm);
+  }
   
   actualizarlista(){
     var dataconsultaringresosdematerialnobloqueados = {

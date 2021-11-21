@@ -74,11 +74,20 @@ export class ModalsolicitudfracionamientoPage implements OnInit {
 
 
   async aceptar(){
+    this.yaapretoaceptar='si';
+
+  }
+
+  noconfirmar(){
+    this.activarbotonaceptar='si';
+    this.yaapretoaceptar='no';
+  }
+
+  async confirmar(){
     const exitoso = await this.loadingController.create({
       message: 'Solicitud de Fraccionamiento ordenada exitosamente.',spinner: 'bubbles',duration: 2000,
       });
 
-    this.yaapretoaceptar='si';
     this.fecha_orden = new Date ();
     let fecha_orden_arreglada =this.datepipe.transform(this.fecha_orden, 'yyyy-MM-dd');
     let hora_orden_arreglada =this.datepipe.transform(this.fecha_orden, 'hh:mm');
@@ -116,5 +125,6 @@ export class ModalsolicitudfracionamientoPage implements OnInit {
       }
       });
   }
+
 
 }

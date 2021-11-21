@@ -29,11 +29,16 @@
       <ion-col size="12" class="ion-text-center">
         <ion-button  (click)="volver()" color="danger" ><ion-text style="font-weight: 500;"><ion-icon name="arrow-back-outline"></ion-icon>Volver</ion-text>
         </ion-button>
+        <br>
+        <ion-text color="danger" style="text-align: center;">Ingreso de carretes / rollos</ion-text>
       </ion-col>
     </ion-row>
 
+
+
+
   <ion-card>
-    <ion-card-header style="text-align: center;">Ingreso de carretes / rollos</ion-card-header>
+    <!-- <ion-card-header style="text-align: center;">Ingreso de carretes / rollos</ion-card-header> -->
     <ion-card-content>
       <ion-row>
         <ion-col size="4">
@@ -52,13 +57,32 @@
       
       <ion-row>
         <ion-col size="4">
-        <ion-item >
+
+          <ion-list>
+            <ion-radio-group  (ionChange)="ONCHANGEcarreteorrollo($event)">
+              <ion-list-header>
+                <ion-label><strong>Carrete/Rollo:</strong></ion-label>
+              </ion-list-header>
+          
+              <ion-item>
+                <ion-label>Carrete</ion-label>
+                <ion-radio slot="start" value="Carrete"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Rollo</ion-label>
+                <ion-radio slot="start" value="Rollo"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+        <!-- <ion-item >
           <ion-label position="floating">Carrete/Rollo:</ion-label><br>
           <ion-select (ionChange)="ONCHANGEcarreteorrollo($event)" interface="popover">
             <ion-select-option value="Carrete">Carrete</ion-select-option>
             <ion-select-option value="Rollo">Rollo</ion-select-option>
           </ion-select>
-        </ion-item>
+        </ion-item> -->
       </ion-col>
       <ion-col size="4">
         <ion-item>

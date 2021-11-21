@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common'
 import { Location } from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
+import { GlobalpermisosService } from '../globalpermisos.service';
 
 @Component({
   selector: 'app-home',
@@ -22,8 +23,11 @@ export class HomePage implements OnInit {
   userinfo: any;
   nombre_rol: [];
   rol_descripcion: any;
+  public user_nombre: any;
+
 
   constructor(
+    public globalpermisos: GlobalpermisosService,
     private location: Location,
     private router: Router,
     private json: JsonService,
@@ -37,7 +41,7 @@ export class HomePage implements OnInit {
   )
   
    {
-
+    console.log('nombre de usuario', this.user_nombre);
     this.route.params.subscribe(params => {
       this.userinfo = params; 
       console.log('userinfo route params this.userinfo=', this.userinfo);
@@ -56,6 +60,10 @@ export class HomePage implements OnInit {
    }
 
    ionViewWillEnter() {
+    this.user_nombre=this.globalpermisos.nombre;
+
+
+
      if(!this.userinfo.id_rol){
        console.log('el usuario tiene un rol')
       this.menuCtrl.enable(false);

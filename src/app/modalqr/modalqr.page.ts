@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 
@@ -11,6 +12,7 @@ export class ModalqrPage implements OnInit {
   traidopormodalparams: any;
 
   constructor(
+    private router: Router,
     public modalController: ModalController,
     navParams: NavParams
 
@@ -25,6 +27,7 @@ export class ModalqrPage implements OnInit {
 
 
   dismiss() {
+    this.router.navigate(['/ingreso-material']);
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
     this.modalController.dismiss({

@@ -177,4 +177,8 @@ export class ConsultaPage implements OnInit {
     
       }
 
+      cerrar(){
+        this.respuestabusqueda=undefined;
+      }
+
   }

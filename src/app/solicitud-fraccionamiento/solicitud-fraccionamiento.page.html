@@ -41,7 +41,7 @@
 
     <ion-row class="ion-align-items-center">
       <ion-col size="12">
-            <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+            <ion-searchbar placeholder="Buscar..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
 
             <ion-row class="ion-align-items-center">
               <ion-col size="2" class="ion-text-center">
@@ -66,8 +66,8 @@
 
 
             <ion-list class="ion-align-items-center">
-                <!-- <ion-item > -->
-                  <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" *ngFor="let producto of ingresodematerialnobloqueados | filter:filterTerm" class="ion-align-items-center ion-no-padding" no-padding>
+                  <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" *ngFor="let producto of ingresodematerialnobloqueados | filter:filterTerm; let i = index" class="ion-align-items-center ion-no-padding" no-padding>
+                    
                     <ion-col style="text-align: center;" size="2" class="ion-align-items-center ion-no-padding" no-padding>
                       <ion-text color="danger" style="color:danger">{{producto.referencia}}</ion-text>
                     </ion-col>
@@ -84,12 +84,15 @@
 
                     <ion-col style="text-align: center;" size="1.5" class="ion-align-items-right ion-no-padding" no-padding>
                       <ion-button (click)="solicitar(producto)" size="small">
-                      <ion-icon style="font-size: x-large; border-radius: 5px; color:white;" name="cut-outline" item-right></ion-icon><ion-text style="font-size: 9px; color:white;">Solicitar</ion-text>
+                      <ion-icon style="font-size: x-large; border-radius: 5px; color:white;" name="cut-outline" item-right></ion-icon><ion-text style="font-size: 9px; color:white;">Fraccionar</ion-text>
                     </ion-button>
                     </ion-col>
                     
                   </ion-row>
-                <!-- </ion-item> -->
+
+                  <ion-row>
+                  </ion-row>
+
               </ion-list>
       </ion-col>
   </ion-row>

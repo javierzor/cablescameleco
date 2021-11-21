@@ -15,7 +15,8 @@
 
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
-        <h2>Ingreso de material</h2>
+        <!-- comentado para que no salga en la impresion
+        <h2>Ingreso de material</h2> -->
       </ion-col>
     </ion-row>
 
@@ -23,7 +24,7 @@
     <ion-card>
     <ion-row class="ion-align-items-center">
       <ion-col size="6" class="ion-text-center">
-        <h3 color="danger" style="color:red;">CAMELECO</h3><br>
+        <h3 color="danger" style="font-family:PeaceSans; color:red;">CAMELECO</h3><br>
         <ngx-qrcode [value]="traidopormodalparams.createdCode">
         </ngx-qrcode>
         <!-- <ion-icon style="font-size:256px;" name="qr-code-outline"></ion-icon> -->
@@ -31,10 +32,10 @@
       <ion-col size="6" class="ion-text-left">
         <p><strong>Carrete N:</strong>{{this.traidopormodalparams.createdCode}}</p>
         <p><strong>Referencia:</strong>{{this.traidopormodalparams.referencia}}</p>
-        <p><strong>codigo:</strong>{{this.traidopormodalparams.producto}}</p>
-        <p><strong>nombre:</strong>{{this.traidopormodalparams.descripcion}}</p>
-        <p><strong>Numero d/nota d/entrada:</strong>{{this.traidopormodalparams.numerodenotadeentrada}}</p>
-        <p><strong>mts en carrete inicio:</strong>{{this.traidopormodalparams.metrosencarrete}}</p>
+        <p><strong>Codigo:</strong>{{this.traidopormodalparams.producto}}</p>
+        <p><strong>Nombre:</strong>{{this.traidopormodalparams.descripcion}}</p>
+        <p><strong>Numero d/nota d/Entrada:</strong>{{this.traidopormodalparams.numerodenotadeentrada}}</p>
+        <p><strong>Mts en carrete inicio:</strong>{{this.traidopormodalparams.metrosencarrete}}</p>
         <p><strong>Operario ingreso:</strong>{{this.traidopormodalparams.nombre_user}}</p>
         <p><strong>Fecha Hora:</strong>{{this.traidopormodalparams.fecha_autogenerada}}</p>
 

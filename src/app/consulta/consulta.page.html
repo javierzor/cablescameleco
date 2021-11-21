@@ -58,21 +58,21 @@
       <ion-col size="3" class="ion-text-center">
         <ion-item>
           <ion-label position="floating">Referencia:</ion-label>
-          <ion-input value="{{this.referencia}}" (ionChange)="ONCHANGEreferencia($event)"></ion-input>
+          <ion-input style="border: solid 1px #ff011030;" (keyup.enter)="buscarporreferencia()" value="{{this.referencia}}" (ionChange)="ONCHANGEreferencia($event)"></ion-input>
         </ion-item>      
       </ion-col>
 
       <ion-col size="3" class="ion-text-center">
         <ion-item>
           <ion-label position="floating">Codigo:</ion-label>
-          <ion-input value="{{this.codigo}}" (ionChange)="ONCHANGEcodigo($event)"></ion-input>
+          <ion-input style="border: solid 1px #ff011030;" (keyup.enter)="buscarporcodigo()" value="{{this.codigo}}" (ionChange)="ONCHANGEcodigo($event)"></ion-input>
         </ion-item>      
       </ion-col>
 
       <ion-col size="6" class="ion-text-center">
         <ion-item>
         <ion-label position="floating">Nombre:</ion-label>
-        <ion-input value="{{this.nombre}}" (ionChange)="ONCHANGEnombre($event)"></ion-input>
+        <ion-input style="border: solid 1px #ff011030;" (keyup.enter)="buscarpornombre()" value="{{this.nombre}}" (ionChange)="ONCHANGEnombre($event)"></ion-input>
         </ion-item>      
       </ion-col>
   </ion-row>
@@ -113,6 +113,15 @@
               <!-- </ion-item> -->
             </ion-list>
     </ion-col>
+</ion-row>
+
+
+<ion-row style="justify-content: center;align-items: center;" *ngIf="this.respuestabusqueda!=undefined&&this.respuestabusqueda!=null&&this.respuestabusqueda''" class="ion-align-items-center">
+
+
+    <ion-button (click)="cerrar()" >Cerrar
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-button>
 </ion-row>
 
 

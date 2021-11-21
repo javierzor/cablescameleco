@@ -9,6 +9,13 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+//  fuente logo
+@font-face {   
+  font-family: 'PeaceSans';
+  src: url('./assets/fonts/peace_sans.otf');
+}
+// fuente logo
+
  ion-title {
     text-align: center;
     padding: 0 78px 0;
@@ -19,7 +26,7 @@
     height: 100%;
     font-weight:900;
     font-family:serif;
-    color:white;
+    color:#303030;
     font-style:inherit;
     font-variant:small-caps;
     font-size: 24px;

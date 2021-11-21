@@ -42,49 +42,30 @@
     </ion-row>
 
 
-    <ion-row *ngIf="this.escanearonview!='no'" class="ion-align-items-center">
-    <ion-col size="4" class="ion-text-center">
-    </ion-col>
-    <ion-col size="3" class="ion-text-center">
+    <ion-row style="justify-content: center;align-items: center;" *ngIf="this.escanearonview!='no'" class="ion-align-items-center">
+
       <ion-card color="danger" >
         <ion-item >
-          <ion-label  style="color:#ffffff" position="floating">Codigo operario entregas:</ion-label>
+          <ion-label position="floating">Codigo operario entregas:</ion-label>
           <ion-input type="tel-local" (ionChange)="ONCHANGEcodigo($event)" color="danger" ></ion-input>
         </ion-item>
       </ion-card>
-    </ion-col>
-    <ion-col size="1" class="ion-text-center">
-      <ion-card color="danger" >
         <ion-button (click)="continuar()" >
           <ion-icon name="qr-code-outline"></ion-icon>
         </ion-button>
-      </ion-card>
-    </ion-col>
-    <ion-col size="4" class="ion-text-center">
-    </ion-col>
     </ion-row>
 
 
-    <ion-row *ngIf="this.escanearonview=='no'" class="ion-align-items-center">
-      <ion-col size="4" class="ion-text-center">
-      </ion-col>
-      <ion-col size="3" class="ion-text-center">
+    <ion-row style="justify-content: center;align-items: center;" *ngIf="this.escanearonview=='no'" class="ion-align-items-center">
         <ion-card color="danger" >
           <ion-item >
-            <ion-label  style="color:#ffffff" position="floating">Codigo de Carrete/Chipa a entregar</ion-label>
+            <ion-label position="floating">Codigo de Carrete/Chipa a entregar</ion-label>
             <ion-input type="tel-local" (ionChange)="ONCHANGEcarreteochipa($event)" color="danger" ></ion-input>
           </ion-item>
         </ion-card>
-      </ion-col>
-      <ion-col size="1" class="ion-text-center">
-        <ion-card color="danger" >
           <ion-button (click)="continuarcarrete()" >
             <ion-icon name="qr-code-outline"></ion-icon>
           </ion-button>
-        </ion-card>
-      </ion-col>
-      <ion-col size="4" class="ion-text-center">
-      </ion-col>
       </ion-row>
 
 

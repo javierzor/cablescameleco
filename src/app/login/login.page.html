@@ -1,19 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Inicio de sesion</ion-title>
+    <ion-item lines="none" style="position: absolute; top:1%; left:1%">
+      <h1 style="font-family:PeaceSans; color:#ff0110; line-height:0%; ">CAMELECO <br>
+        
+        <h6 style="color:#303030; font-size: small;">
+          www.cameleco.com
+        </h6>
+      
+      </h1>
+    </ion-item>
+    <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+
+
+
 <ion-grid class="todocentrado">
+
+  <ion-row style="justify-content: center; justify-content: center;">
+<ion-text><h1 color="danger">Inicio de sesión</h1></ion-text>
+  </ion-row>
+
     <ion-row>
 
         <ion-col size="9">
           <ion-card color="danger" >
             <ion-item >
-              <ion-label  style="color:#ffffff" position="floating">Ingrese Codigo:</ion-label>
-              <ion-input type="tel-local" (ionChange)="preparardataparaintentodeLogin($event)" color="danger" ></ion-input>
+              <ion-label position="floating">Codigo de empleado:</ion-label>
+              <ion-input (keyup.enter)="intentoLogin()" type="tel-local" (ionChange)="preparardataparaintentodeLogin($event)" color="danger" ></ion-input>
             </ion-item>
           </ion-card>
         </ion-col>
