@@ -113,6 +113,10 @@ const routes: Routes = [
   {
     path: 'modalsobremodalentregas',
     loadChildren: () => import('./modalsobremodalentregas/modalsobremodalentregas.module').then( m => m.ModalsobremodalentregasPageModule)
+  },
+  {
+    path: 'modalnovedadessupervisor',
+    loadChildren: () => import('./modalnovedadessupervisor/modalnovedadessupervisor.module').then( m => m.ModalnovedadessupervisorPageModule)
   }
 
 

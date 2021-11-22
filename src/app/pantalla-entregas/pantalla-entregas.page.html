@@ -9,7 +9,7 @@
 
 <ion-content>
 
-  <ion-grid *ngIf="this.seccionactiva=='no'">
+  <!-- <ion-grid *ngIf="this.seccionactiva=='no'">
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
         <ion-text  (click)="reingresar()" color="danger" >Sección expirada debe reingresar.</ion-text>
@@ -29,17 +29,28 @@
         <ion-text color="danger" >No tiene permisos para navegar en esta sección.</ion-text>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 
 
-  <ion-grid *ngIf="this.puedenavegaraqui=='si'">
+  <!-- <ion-grid *ngIf="this.puedenavegaraqui=='si'"> -->
+    <ion-grid>
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
-        <ion-text color="danger" >Pantalla entregas</ion-text>
+
+        <ion-item lines="none">
+          <h1 style="font-family:PeaceSans; color:#ff0110; line-height:0%; ">CAMELECO <br>
+            
+            <h6 style="color:#303030; font-size: small;">
+              www.cameleco.com
+            </h6>
+          
+          </h1>
+        </ion-item>
+
       </ion-col>
     </ion-row>
 
-    <ion-row style="border-radius: 6px; background-color:#151515;" class="ion-align-items-center">
+    <ion-row style="border-radius: 6px; background-color:#303030;" class="ion-align-items-center">
       <ion-col size="2.5" class="ion-text-center">
         <ion-text color="danger" >Documento</ion-text>
       </ion-col>

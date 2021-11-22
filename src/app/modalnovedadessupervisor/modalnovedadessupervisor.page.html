@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Atención a la novedad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button  (click)="dismiss()" color="danger" ><ion-text style="font-weight: 500;"><ion-icon style="color:black;" name="arrow-back-outline"></ion-icon>Volver</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row style="border-bottom: 1px solid #303030; border-top: 1px solid #303030; text-align: center; " no-padding class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-col size="3.5" style="border-left: 1px solid #303030;  border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+            <ion-text>Referencia</ion-text>
+        </ion-col>
+        <ion-col size="3.5" style=" border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+            <ion-text>Código</ion-text>
+        </ion-col>
+        <ion-col size="5" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+            <ion-text>Nombre</ion-text>
+        </ion-col>
+    </ion-row>
+
+    <ion-row  style="border-bottom: 1px solid #303030; border-top: 1px solid #303030; background-color:#d4d4d4; text-align: center; " no-padding class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-col size="3.5" style="border-left: 1px solid #303030;  border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+          <ion-text color="danger">{{this.traidopormodalparams.referencia}}</ion-text>
+        </ion-col>
+        <ion-col size="3.5" style=" border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+          <ion-text *ngIf="this.traidopormodalparams.id_inutilizado>0&&this.traidopormodalparams.id_inutilizado<10" color="danger" style="color:danger">0000000{{this.traidopormodalparams.id_inutilizado}}</ion-text>
+          <ion-text *ngIf="this.traidopormodalparams.id_inutilizado>10&&this.traidopormodalparams.id_inutilizado<100" color="danger" style="color:danger">000000{{this.traidopormodalparams.id_inutilizado}}</ion-text>
+          <ion-text *ngIf="this.traidopormodalparams.id_inutilizado>100&&this.traidopormodalparams.id_inutilizado<1000" color="danger" style="color:danger">00000{{this.traidopormodalparams.id_inutilizado}}</ion-text>
+          <ion-text *ngIf="this.traidopormodalparams.id_inutilizado>1000&&this.traidopormodalparams.id_inutilizado<10000" color="danger" style="color:danger">0000{{this.traidopormodalparams.id_inutilizado}}</ion-text>
+          <ion-text *ngIf="this.traidopormodalparams.id_inutilizado>10000&&this.traidopormodalparams.id_inutilizado<100000" color="danger" style="color:danger">000{{this.traidopormodalparams.id_inutilizado}}</ion-text>
+
+          <ion-text></ion-text>
+        </ion-col>
+        <ion-col size="5" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+          <ion-text color="danger">{{this.traidopormodalparams.descripcion}}</ion-text>
+        </ion-col>
+    </ion-row>
+
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <br>
+        <br>
+      </ion-col>
+    </ion-row>
+
+
+  <ion-row style="border-bottom: 1px solid #303030; border-top: 1px solid #303030; text-align: center; " no-padding class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+      <ion-col size="4" style="border-left: 1px solid #303030;  border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text>Documento de<br>referencia</ion-text>
+      </ion-col>
+      <ion-col size="4" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text>Metros</ion-text>
+      </ion-col>
+      <ion-col size="4" style="border-left: 1px solid #303030;  border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text>Tipo<br>Novedad</ion-text>
+      </ion-col>
+  </ion-row>
+
+
+  <ion-row  style="border-bottom: 1px solid #303030; border-top: 1px solid #303030; background-color:#d4d4d4; text-align: center; " no-padding class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+      <ion-col size="4" style="border-left: 1px solid #303030;  border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+          <ion-text color="danger">{{this.traidopormodalparams.referencia}}</ion-text>
+      </ion-col>
+      <ion-col size="4" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+         <ion-text color="danger">{{this.traidopormodalparams.metrosafraccionar}}</ion-text>
+      </ion-col>
+      <ion-col size="4" style="border-left: 1px solid #303030;  border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+         <ion-text color="danger">{{this.traidopormodalparams.tipo_novedad}}</ion-text>
+      </ion-col>
+  </ion-row>
+
+
+  <ion-row *ngIf="apretovolverafracciona=='si'&&apretoparaentregar=='no'" class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-text>¿Confirma que desea volver a fraccionar? </ion-text><br>
+      <ion-button  (click)="confirmarvolverafracciona()" color="danger" ><ion-text style="font-weight: 500;"><ion-icon style="color:green;" name="checkmark-done-outline"></ion-icon>&nbsp;Confirmar</ion-text>
+      </ion-button>&nbsp;&nbsp;
+      <ion-button  (click)="noconfirmarvolverafracciona()" color="danger" ><ion-text style="font-weight: 500;"><ion-icon style="color:black;" name="close-outline"></ion-icon>Cancelar</ion-text>
+      </ion-button>
+
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="apretovolverafracciona=='no'&&apretoparaentregar=='si'" class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-text>¿Confirma la entrega? </ion-text><br>
+      <ion-button  (click)="confirmarparaentrega()" color="danger" ><ion-icon style="color:green;" name="checkmark-done-outline"></ion-icon><ion-text style="font-weight: 500;">Confirmar</ion-text>
+      </ion-button>&nbsp;&nbsp;
+      <ion-button  (click)="noconfirmarparaentrega()" color="danger" ><ion-text style="font-weight: 500;"><ion-icon style="color:black;" name="close-outline"></ion-icon>&nbsp;Cancelar</ion-text>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+
+
+  <ion-row *ngIf="apretovolverafracciona=='no'&&apretoparaentregar=='no'" class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-button  (click)="paraentrega()" color="danger" ><ion-icon style="color:green;" name="send-outline"></ion-icon><ion-text style="font-weight: 500;">Para entrega</ion-text>
+      </ion-button>&nbsp;&nbsp;
+      <ion-button  (click)="volverafracciona()" color="danger" ><ion-text style="font-weight: 500;"><ion-icon style="color:orange;" name="reload-outline"></ion-icon>&nbsp;Volver a fracciona</ion-text>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+
+  </ion-grid>
+
+</ion-content>

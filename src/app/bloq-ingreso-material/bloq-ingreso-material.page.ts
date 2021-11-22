@@ -26,6 +26,7 @@ export class BloqIngresoMaterialPage implements OnInit {
   usuariologeado: any;
   ingresodematerialnobloqueados: any;
   filterTerm: string;
+  apretoelbotonbuscar: any;
 
   constructor(
     private location: Location,
@@ -43,6 +44,8 @@ export class BloqIngresoMaterialPage implements OnInit {
   )
 
 { 
+  this.apretoelbotonbuscar='no';
+
   var dataconsultaringresosdematerialnobloqueados = {
     nombre_solicitud:'obteneringresomaterialnobloqueados'
   };
@@ -50,6 +53,11 @@ export class BloqIngresoMaterialPage implements OnInit {
     this.ingresodematerialnobloqueados=res;
     console.log('ingresos de material No bloqueados:',this.ingresodematerialnobloqueados);
   });
+
+}
+
+CHANGEterminosdefiltro(event){
+  this.filterTerm=event.target.value
 
 }
 
@@ -93,6 +101,16 @@ reingresar(){
 
 
  async ngOnInit() {
+}
+
+CLICKapretoelbotonbuscar(){
+  this.apretoelbotonbuscar='si';
+}
+
+CLICKapretoelbotonvolver(){
+  this.filterTerm='';
+  this.apretoelbotonbuscar='no';
+
 }
 
 

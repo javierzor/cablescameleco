@@ -12,6 +12,7 @@ export class ModalbloqingresomaterialPage implements OnInit {
 
   traidopormodalparams: any;
   observacion: any;
+  apretoelbotonaceptar: any;
 
   constructor(
     public modalController: ModalController,
@@ -20,6 +21,7 @@ export class ModalbloqingresomaterialPage implements OnInit {
 
   ) 
   {
+    this.apretoelbotonaceptar='no'
     this.traidopormodalparams=navParams.get('dataparaelmodal');
     console.log('recibido por modalparams', this.traidopormodalparams);
    }
@@ -40,7 +42,11 @@ export class ModalbloqingresomaterialPage implements OnInit {
     this.observacion=event.target.value;
   }
 
-  aceptar(){
+  noconfirmar(){
+    this.apretoelbotonaceptar='no';
+  }
+
+  confirmar(){
     var databloquearingresodematerial = {
       nombre_solicitud:'bloquearingresodematerial',
       id:this.traidopormodalparams.id,
@@ -55,5 +61,11 @@ export class ModalbloqingresomaterialPage implements OnInit {
       }
       });
   }
+
+
+aceptar(){
+this.apretoelbotonaceptar='si';
+}
+
 
 }

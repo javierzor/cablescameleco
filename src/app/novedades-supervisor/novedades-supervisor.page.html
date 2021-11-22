@@ -38,6 +38,62 @@
         <ion-text color="danger" >Bienvenido.</ion-text>
       </ion-col>
     </ion-row>
+
+    <ion-row style="border-bottom: 1px solid #303030; border-top: 1px solid #303030; text-align: center; font-size: 9px;" no-padding class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+      <ion-col size="1.5" style="border-left: 1px solid #303030;  border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+         <ion-text>Referencia</ion-text>
+      </ion-col>
+      <ion-col size="1.5" style=" border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text>Código</ion-text>
+      </ion-col>
+      <ion-col size="4" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text>Nombre</ion-text>
+      </ion-col>
+      <ion-col size="1.8" style="border-left: 1px solid #303030;  border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text>Documento de<br>referencia</ion-text>
+      </ion-col>
+      <ion-col size="1" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text>Metros</ion-text>
+      </ion-col>
+      <ion-col size="1.4" style="border-left: 1px solid #303030;  border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text>Tipo<br>Novedad</ion-text>
+      </ion-col>
+      <ion-col size="0.8" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text></ion-text>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row *ngFor="let novedades of this.respuestavernovedadesdesupervisor;" style="border-bottom: 1px solid #303030; border-top: 1px solid #303030; background-color:#d4d4d4; text-align: center; font-size: 9px;" no-padding class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+      <ion-col size="1.5" style="border-left: 1px solid #303030;  border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+         <ion-text color="danger">{{novedades.referencia}}</ion-text>
+      </ion-col>
+      <ion-col size="1.5" style=" border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text *ngIf="novedades.id_inutilizado>0&&novedades.id_inutilizado<10" color="danger" style="color:danger">0000000{{novedades.id_inutilizado}}</ion-text>
+        <ion-text *ngIf="novedades.id_inutilizado>10&&novedades.id_inutilizado<100" color="danger" style="color:danger">000000{{novedades.id_inutilizado}}</ion-text>
+        <ion-text *ngIf="novedades.id_inutilizado>100&&novedades.id_inutilizado<1000" color="danger" style="color:danger">00000{{novedades.id_inutilizado}}</ion-text>
+        <ion-text *ngIf="novedades.id_inutilizado>1000&&novedades.id_inutilizado<10000" color="danger" style="color:danger">0000{{novedades.id_inutilizado}}</ion-text>
+        <ion-text *ngIf="novedades.id_inutilizado>10000&&novedades.id_inutilizado<100000" color="danger" style="color:danger">000{{novedades.id_inutilizado}}</ion-text>
+
+        <ion-text></ion-text>
+      </ion-col>
+      <ion-col size="4" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text color="danger">{{novedades.descripcion}}</ion-text>
+      </ion-col>
+      <ion-col size="1.8" style="border-left: 1px solid #303030;  border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text color="danger">{{novedades.referencia}}</ion-text>
+      </ion-col>
+      <ion-col size="1" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text color="danger">{{novedades.metrosafraccionar}}</ion-text>
+      </ion-col>
+      <ion-col size="1.4" style="border-left: 1px solid #303030;  border-right: 1px solid #303030;" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-text color="danger">{{novedades.tipo_novedad}}</ion-text>
+      </ion-col>
+      <ion-col size="0.8" class="ion-no-border ion-no-margin ion-no-padding ion-align-items-center">
+        <ion-button (click)="atender(novedades)" size="small"><ion-icon style="font-size: small; color:green;" name="open-outline"></ion-icon></ion-button>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>
 
   

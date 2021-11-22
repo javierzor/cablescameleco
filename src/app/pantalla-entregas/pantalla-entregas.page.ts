@@ -57,6 +57,7 @@ export class PantallaEntregasPage implements OnInit {
 ionViewDidEnter(){
   this.usuariologeado=this.globalpermisos.usuariologeado;
   if(this.usuariologeado==undefined||this.usuariologeado==null){
+    this.menuCtrl.enable(false);
     this.seccionactiva='no';
   }
   this.globalpermisos.mispermisosglobalesenservice;

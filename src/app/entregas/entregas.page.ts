@@ -154,10 +154,14 @@ ONCHANGEcodigo(event){
                   componentProps: {
                     cssClass: 'my-custom-class',
                     'dataparaelmodal': this.respuestaentregarcarreteochipaconsultarcodigo,
-                  }
+                  },
+                  id: 'primermodal'
                 });
                 
                 modal.onDidDismiss().then((data) => {
+
+                  console.log('data', data['data']);
+
                 });
                 console.log('enviando estos datos al modal qr',this.respuestaentregarcarreteochipaconsultarcodigo);
                 return await modal.present();

@@ -33,6 +33,14 @@ export class ModalentregasPage implements OnInit {
     });
   }
 
+    dismissyactualiza() {
+    // using the injected ModalController this page
+    // can "dismiss" itself and optionally pass back data
+    this.modalController.dismiss({
+      'dismissed': 'actualizalalista'
+    });
+  }
+
   entregarboton(){
     this.traidopormodalparams.tipodemodal='entregar';
     this.abrirmodalsobremodalentregas();
@@ -50,10 +58,17 @@ export class ModalentregasPage implements OnInit {
         componentProps: {
           cssClass: 'my-custom-class',
           'dataparaelmodal': this.traidopormodalparams,
-        }
+        },
+        id: 'segundomodal'
       });
       
       modal.onDidDismiss().then((data) => {
+console.log('data', data['data']);
+if(data['data'].dismissed=='cierraelmodalanteriortambien'){
+  console.log('se cerro el modal pero se guardo en la DB, SE CERRARA TAMBIEN ESTE MODAL tambien');
+  this.modalController.dismiss(undefined, undefined, 'primermodal');
+
+      }
       });
       console.log('enviando estos datos al modal qr',this.traidopormodalparams);
       return await modal.present();

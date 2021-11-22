@@ -12,6 +12,7 @@ import { Location } from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { GlobalpermisosService } from '../globalpermisos.service';
+import { ModalnovedadessupervisorPage } from '../modalnovedadessupervisor/modalnovedadessupervisor.page';
 
 @Component({
   selector: 'app-novedades-supervisor',
@@ -23,7 +24,9 @@ export class NovedadesSupervisorPage implements OnInit {
   puedenavegaraqui:any;
   seccionactiva: string;
   usuariologeado: any;
+  respuestavernovedadesdesupervisor: any;
   constructor(
+    public modalController: ModalController,
     private location: Location,
     private router: Router,
     private json: JsonService,
@@ -39,8 +42,26 @@ export class NovedadesSupervisorPage implements OnInit {
   )
 
 {      
-  
+  var datavernovedadesdesupervisor = {
+    nombre_solicitud:'vernovedadesdesupervisor'
+    }
+    this.json.variasfunciones(datavernovedadesdesupervisor).subscribe(async (res: any ) =>{
+      console.log('respuesta a la solicitud vernovedadesdesupervisor', res);
+      this.respuestavernovedadesdesupervisor=res;
+     
+    });
 
+}
+
+actualizarlista(){
+  var datavernovedadesdesupervisor = {
+    nombre_solicitud:'vernovedadesdesupervisor'
+    }
+    this.json.variasfunciones(datavernovedadesdesupervisor).subscribe(async (res: any ) =>{
+      console.log('respuesta a la solicitud vernovedadesdesupervisor', res);
+      this.respuestavernovedadesdesupervisor=res;
+     
+    });
 }
 
 
@@ -74,6 +95,29 @@ reingresar(){
 
  async ngOnInit() {
 }
+
+async atender(novedades){
+  console.log('consultar productos de ', novedades);
+
+        const modal = await this.modalController.create({
+          component: ModalnovedadessupervisorPage,
+          componentProps: {
+            cssClass: 'my-custom-class',
+            'dataparaelmodal': novedades,
+          }
+        });
+
+        modal.onDidDismiss().then((data) => {
+          this.actualizarlista();
+          if(data['data'].dismissed=='acualiza'){
+            this.actualizarlista();
+          }
+      });
+        console.log('enviando estos datos al modal qr',novedades);
+        return await modal.present();
+                
+
+  }
 
 
 

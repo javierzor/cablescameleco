@@ -15,18 +15,18 @@
 
   <ion-row class="ion-align-items-center">
     <ion-col style="text-align: center;" size="12">
-                <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" class="ion-align-items-center ion-no-padding" no-padding>
+                <ion-row style=" border-top: 1px solid #151515 !important;" class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                    <ion-text style="font-size:small; color:white">nº Carrete</ion-text>
+                    <ion-text style="font-size:small; color:#303030">nº Carrete</ion-text>
                   </ion-col>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                    <ion-text style="font-size:small; color:white">Referencia</ion-text>
+                    <ion-text style="font-size:small; color:#303030">Referencia</ion-text>
                   </ion-col>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                    <ion-text style="font-size:small; color:white">Codigo</ion-text>
+                    <ion-text style="font-size:small; color:#303030">Codigo</ion-text>
                   </ion-col>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                    <ion-text style="font-size:small; color:white">Nombre</ion-text>
+                    <ion-text style="font-size:small; color:#303030">Nombre</ion-text>
                   </ion-col>     
                 </ion-row>
     </ion-col>
@@ -67,18 +67,18 @@
 
 <ion-row class="ion-align-items-center">
   <ion-col style="text-align: center;" size="12">
-              <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" class="ion-align-items-center ion-no-padding" no-padding>
+              <ion-row style="border-top: 1px solid #151515 !important;" class="ion-align-items-center ion-no-padding" no-padding>
                 <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-text style="font-size:small; color:white">Documento de<br>referencia</ion-text>
+                  <ion-text style="font-size:small; color:#303030">Documento de<br>referencia</ion-text>
                 </ion-col>
                 <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-text style="font-size:small; color:white">metros en <br>carrete/tramo</ion-text>
+                  <ion-text style="font-size:small; color:#303030">metros en <br>carrete/tramo</ion-text>
                 </ion-col>
                 <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-text style="font-size:small; color:white">carrete/tramo</ion-text>
+                  <ion-text style="font-size:small; color:#303030">carrete/tramo</ion-text>
                 </ion-col>
                 <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-text style="font-size:small; color:white">Observaciones</ion-text>
+                  <ion-text style="font-size:small; color:#303030">Observaciones</ion-text>
                 </ion-col>     
               </ion-row>
   </ion-col>
@@ -87,8 +87,7 @@
 <ion-row class="ion-align-items-center">
   <ion-col style="text-align: center;" size="12">
         <ion-list class="ion-align-items-center">
-            <!-- <ion-item > -->
-              <ion-row style=" border-top: 1px solid #151515 !important;"  class="ion-align-items-center ion-no-padding" no-padding>
+              <ion-row style=" border-bottom: 1px solid #151515 !important;"  class="ion-align-items-center ion-no-padding" no-padding>
                 <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-text color="danger" style="color:danger">{{traidopormodalparams.numerodenotadeentrada}}</ion-text>
 
@@ -100,23 +99,33 @@
                   <ion-text color="danger" style="color:danger">{{traidopormodalparams.carreteorrollo}}</ion-text>
                 </ion-col>
                 <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-textarea (ionChange)="ONCHANGEobservacion($event)" style="border-radius: 5px; background-color:#101010" color="danger"></ion-textarea>
+                  <ion-card>
+                  <ion-textarea (keyup.enter)="aceptar()" [disabled]="this.apretoelbotonaceptar=='si'" (ionChange)="ONCHANGEobservacion($event)" style="border-radius: 5px; background-color:#d4d4d4" color="danger"></ion-textarea>
+                  </ion-card>
                 </ion-col>
-
-                
               </ion-row>
-            <!-- </ion-item> -->
           </ion-list>
   </ion-col>
 </ion-row>
 
-  <ion-row class="ion-align-items-center">
+<ion-row *ngIf="this.apretoelbotonaceptar=='si'" class="ion-align-items-center">
+  <ion-col size="12" class="ion-text-center">
+    <ion-text>Confirme la información ingresada:</ion-text><br>
+    <ion-button (click)="confirmar()"><ion-icon style="color:green" name="checkmark-done-outline"></ion-icon>Confirmar</ion-button>
+    <ion-button (click)="noconfirmar()"><ion-icon style="color:orange" name="create-outline"></ion-icon>Modificar</ion-button>
+    <ion-button (click)="dismiss()"><ion-icon style="color:black" name="close-outline"></ion-icon>Cancelar</ion-button>
+
+  </ion-col>
+</ion-row>
+
+
+  <ion-row *ngIf="this.apretoelbotonaceptar=='no'" class="ion-align-items-center">
     <ion-col size="12" class="ion-text-center">
-      <ion-text>¿Esta seguro que desea bloquear este ingreso de material?</ion-text>
+      <ion-text>Ingrese la información solicitada y precione aceptar para continuar.</ion-text>
     </ion-col>
   </ion-row>
 
-  <ion-row class="ion-align-items-center">
+  <ion-row *ngIf="this.apretoelbotonaceptar=='no'" class="ion-align-items-center">
     <ion-col size="2" class="ion-text-center">
       
     </ion-col>

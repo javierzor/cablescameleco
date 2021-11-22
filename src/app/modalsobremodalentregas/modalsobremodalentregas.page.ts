@@ -33,10 +33,20 @@ export class ModalsobremodalentregasPage implements OnInit {
   }
 
   dismiss() {
+
+  
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
     this.modalController.dismiss({
       'dismissed': true
+    });
+  }
+
+  dismissyacualiza() {
+    // using the injected ModalController this page
+    // can "dismiss" itself and optionally pass back data
+    this.modalController.dismiss({
+      'dismissed': 'cierraelmodalanteriortambien'
     });
   }
 
@@ -54,7 +64,7 @@ export class ModalsobremodalentregasPage implements OnInit {
         this.respuestaentregarorden=res;
         if(res>0){
           // this.router.navigate(['/entregas']);
-          location.reload();
+          this.dismissyacualiza()
         }
   
       });
@@ -71,7 +81,8 @@ export class ModalsobremodalentregasPage implements OnInit {
         this.respuestanovedadorden=res;
         if(res>0){
           // this.router.navigate(['/entregas']);
-          location.reload();
+          // this.router.navigate(['/entregas']);
+          this.dismissyacualiza()
 
         }
       });

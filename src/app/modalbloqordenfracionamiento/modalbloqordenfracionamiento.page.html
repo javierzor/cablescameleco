@@ -15,15 +15,15 @@
 
   <ion-row class="ion-align-items-center">
     <ion-col style="text-align: center;" size="12">
-                <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" class="ion-align-items-center ion-no-padding" no-padding>
+                <ion-row style="border-top: 1px solid #151515 !important;" class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                    <ion-text style="font-size:small; color:white">Referencia</ion-text>
+                    <ion-text style="font-size:small; color:#303030">Referencia</ion-text>
                   </ion-col>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                    <ion-text style="font-size:small; color:white">Código</ion-text>
+                    <ion-text style="font-size:small; color:#303030">Código</ion-text>
                   </ion-col>
                   <ion-col size="6" class="ion-align-items-center ion-no-padding" no-padding>
-                    <ion-text style="font-size:small; color:white">Nombre</ion-text>
+                    <ion-text style="font-size:small; color:#303030">Nombre</ion-text>
                   </ion-col>     
                 </ion-row>
     </ion-col>
@@ -34,7 +34,7 @@
     <ion-col style="text-align: center;" size="12">
           <ion-list class="ion-align-items-center">
               <!-- <ion-item > -->
-                <ion-row style="border-bottom: 1px solid #151515 !important;"  class="ion-align-items-center ion-no-padding" no-padding>
+                <ion-row  class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
                     <ion-text color="danger" style="color:danger">{{traidopormodalparams.referencia}}</ion-text>
                   </ion-col>
@@ -61,15 +61,15 @@
 
 <ion-row class="ion-align-items-center">
   <ion-col style="text-align: center;" size="12">
-              <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" class="ion-align-items-center ion-no-padding" no-padding>
+              <ion-row style="border-top: 1px solid #151515 !important;" class="ion-align-items-center ion-no-padding" no-padding>
                 <ion-col size="4" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-text style="font-size:small; color:white">Documento de<br>referencia</ion-text>
+                  <ion-text style="font-size:small; color:#303030">Documento de<br>referencia</ion-text>
                 </ion-col>
                 <ion-col size="4" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-text style="font-size:small; color:white">metros de <br>fraccionamiento</ion-text>
+                  <ion-text style="font-size:small; color:#303030">metros de <br>fraccionamiento</ion-text>
                 </ion-col>
                 <ion-col size="4" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-text style="font-size:small; color:white">Observaciones</ion-text>
+                  <ion-text style="font-size:small; color:#303030">Observaciones</ion-text>
                 </ion-col>
               </ion-row>
   </ion-col>
@@ -79,7 +79,7 @@
   <ion-col style="text-align: center;" size="12">
         <ion-list class="ion-align-items-center">
             <!-- <ion-item > -->
-              <ion-row style=" border-top: 1px solid #151515 !important;"  class="ion-align-items-center ion-no-padding" no-padding>
+              <ion-row  class="ion-align-items-center ion-no-padding" no-padding>
                 <ion-col size="4" class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-text color="danger" style="color:danger">{{traidopormodalparams.documento}}</ion-text>
 
@@ -88,7 +88,9 @@
                   <ion-text color="danger" style="color:danger">{{traidopormodalparams.metrosencarrete}}</ion-text>
                 </ion-col>
                 <ion-col size="4" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-textarea (ionChange)="ONCHANGEobservacion($event)" style="border-radius: 5px; background-color:#101010" color="danger"></ion-textarea>
+                  <ion-card>
+                  <ion-textarea [disabled]="apretobotonaceptar=='si'" (ionChange)="ONCHANGEobservacion($event)" style="border-radius: 5px; background-color:#c4c4c4" color="danger"></ion-textarea>
+                  </ion-card>
                 </ion-col>
 
                 
@@ -100,20 +102,34 @@
 
   <ion-row class="ion-align-items-center">
     <ion-col size="12" class="ion-text-center">
-      <ion-text>¿Esta seguro que desea bloquear esta orden de fraccionamiento?</ion-text>
+      <ion-text *ngIf="this.apretobotonaceptar=='no'">Ingrese los campos solicitados y precione aceptar para continuar.</ion-text>
     </ion-col>
   </ion-row>
+
+  <ion-row *ngIf="this.apretobotonaceptar=='si'" class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-card>
+        <ion-text>Verifique la información ingresada y precione confirmar.</ion-text><br>
+          <ion-button (click)="confirmar()"><ion-icon style="color:green" name="checkmark-done-outline"></ion-icon>Confirmar</ion-button>
+          <ion-button (click)="noconfirmar()"><ion-icon style="color:orange" name="create-outline"></ion-icon>Modificar</ion-button>
+          <ion-button (click)="dismiss()"><ion-icon style="color:black" name="close-outline"></ion-icon>Cancelar</ion-button>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+  
 
   <ion-row class="ion-align-items-center">
     <ion-col size="2" class="ion-text-center">
       
     </ion-col>
     <ion-col size="4" class="ion-text-center">
-      <ion-button  (click)="aceptar()" color="danger" ><ion-text style="font-weight: 500;">Aceptar</ion-text>
+      <ion-button *ngIf="this.apretobotonaceptar=='no'" (click)="aceptar()" color="danger" ><ion-text style="font-weight: 500;">Aceptar</ion-text>
       </ion-button>
     </ion-col>
     <ion-col size="4" class="ion-text-center">
-      <ion-button  (click)="dismiss()" color="danger" ><ion-text style="font-weight: 500;">Cancelar</ion-text>
+      <ion-button *ngIf="this.apretobotonaceptar=='no'" (click)="dismiss()" color="danger" ><ion-text style="font-weight: 500;">Cancelar</ion-text>
       </ion-button>
     </ion-col>
     <ion-col size="2" class="ion-text-center">

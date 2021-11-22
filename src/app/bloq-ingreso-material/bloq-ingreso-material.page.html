@@ -39,35 +39,77 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="ion-align-items-center">
+ <ion-row class="ion-align-items-center">
       <ion-col size="12">
-            <ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+
+
+        <ion-row  *ngIf="this.apretoelbotonbuscar=='no'" class="ion-align-items-center">
+          <ion-col size="2" class="ion-text-center">
+            <label>Nº Carrete</label><br>
+            <ion-input (keyup.enter)="CLICKapretoelbotonbuscar()" (ionChange)="CHANGEterminosdefiltro($event)" placeholder="nº Carrete" style="background-color: #e4e4e4;"></ion-input>
+          </ion-col>
+    
+          <ion-col size="2.5" class="ion-text-center">
+            <label>Codigo</label><br>
+            <ion-input (keyup.enter)="CLICKapretoelbotonbuscar()" (ionChange)="CHANGEterminosdefiltro($event)" placeholder="Codigo" style="background-color: #e4e4e4;"></ion-input>
+          </ion-col>
+    
+        <ion-col size="2.5" class="ion-text-center">
+          <label>Referencia</label><br>
+          <ion-input (keyup.enter)="CLICKapretoelbotonbuscar()" (ionChange)="CHANGEterminosdefiltro($event)" placeholder="Referencia" style="background-color: #e4e4e4;"></ion-input>
+        </ion-col>
+        <ion-col size="3.5" class="ion-text-center">
+          <label>Nombre</label><br>
+          <ion-input (keyup.enter)="CLICKapretoelbotonbuscar()" (ionChange)="CHANGEterminosdefiltro($event)" placeholder="Nombre" style="background-color: #e4e4e4;"></ion-input>
+        </ion-col>
+  
+        <!-- <ion-col size="2" class="ion-text-center">
+          <ion-text style="color:#303030;">Fecha Ingreso</ion-text>
+        </ion-col> -->
+  
+      <ion-col size="1.5" class="ion-text-center">
+        <ion-button (click)="CLICKapretoelbotonbuscar()">Buscar</ion-button>
+      </ion-col>
+      </ion-row>
+
+            <ion-row  *ngIf="this.apretoelbotonbuscar=='si'" class="ion-align-items-center">
+              <ion-col size="9">
+                <ion-searchbar *ngIf="this.apretoelbotonbuscar=='ocultarsiempre'" placeholder="Buscar..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+              </ion-col>
+              <ion-col size="3">
+                <ion-button (click)="CLICKapretoelbotonvolver()">Volver</ion-button>
+              </ion-col>
+            </ion-row>
+
+            <section *ngIf="this.apretoelbotonbuscar=='si'" >
 
             <ion-row class="ion-align-items-center">
               <ion-col size="2" class="ion-text-center">
-                <ion-text style="color:white;">Nº Carrete</ion-text>
+                <ion-text style="color:#303030;">Nº Carrete</ion-text>
               </ion-col>
         
-              <ion-col size="1.5" class="ion-text-center">
-                <ion-text style="color:white;">Código</ion-text>
+              <ion-col size="2.5" class="ion-text-center">
+                <ion-text style="color:#303030;">Código</ion-text>
               </ion-col>
         
-            <ion-col size="1.5" class="ion-text-center">
-              <ion-text style="color:white;">Referencia</ion-text>
+            <ion-col size="2.5" class="ion-text-center">
+              <ion-text style="color:#303030;">Referencia</ion-text>
             </ion-col>
             <ion-col size="3.5" class="ion-text-center">
-              <ion-text style="color:white;">Nombre</ion-text>
+              <ion-text style="color:#303030;">Nombre</ion-text>
             </ion-col>
       
-            <ion-col size="2" class="ion-text-center">
-              <ion-text style="color:white;">Fecha Ingreso</ion-text>
-            </ion-col>
+            <!-- <ion-col size="2" class="ion-text-center">
+              <ion-text style="color:#303030;">Fecha Ingreso</ion-text>
+            </ion-col> -->
       
           <ion-col size="1.5" class="ion-text-center">
-            <ion-text style="color:white;">Accion</ion-text>
+            <ion-text style="color:#303030;">Accion</ion-text>
           </ion-col>
           </ion-row>
 
+
+          
 
             <ion-list class="ion-align-items-center">
                 <!-- <ion-item > -->
@@ -79,28 +121,31 @@
                       <ion-text *ngIf="producto.id>1000&&producto.id<10000" color="danger" style="color:danger">0000{{producto.id}}</ion-text>
                       <ion-text *ngIf="producto.id>10000&&producto.id<100000" color="danger" style="color:danger">000{{producto.id}}</ion-text>
                     </ion-col>
-                    <ion-col style="text-align: center;" size="1.5" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-col style="text-align: center;" size="2.5" class="ion-align-items-center ion-no-padding" no-padding>
                       <ion-text color="danger" style="color:danger">{{producto.producto}}</ion-text>
                     </ion-col>
-                    <ion-col style="text-align: center;" size="1.5" class="ion-align-items-center ion-no-padding" no-padding>
-                      <ion-text color="danger" style="color:danger">{{producto.referencia}}</ion-text>
+                    <ion-col style="text-align: center;" size="2.5" class="ion-align-items-center ion-no-padding" no-padding>
+                      <ion-text color="danger" style="color:danger">{{producto.numerodenotadeentrada}}</ion-text>
                     </ion-col>
                     <ion-col style="text-align: center;" size="3.5" class="ion-align-items-center ion-no-padding" no-padding>
                       <ion-text color="danger" style="color:danger">{{producto.descripcion}}</ion-text>
                     </ion-col>
-                    <ion-col style="text-align: center;" size="2" class="ion-align-items-center ion-no-padding" no-padding>
-                      <!-- <ion-text color="danger" style="color:danger"></ion-text> -->
+                    <!-- <ion-col style="text-align: center;" size="2" class="ion-align-items-center ion-no-padding" no-padding>
                       <ion-text color="danger" style="color:danger">{{producto.fecha_autogenerada}}</ion-text>
-                    </ion-col>
+                    </ion-col> -->
                     <ion-col style="text-align: center;" size="1.5" class="ion-align-items-right ion-no-padding" no-padding>
                       <ion-button (click)="bloquear(producto)" size="small">
                       <ion-icon style="font-size: x-large; border-radius: 5px; color:white;" name="stop-circle-outline" item-right></ion-icon><ion-text style="font-size: 9px; color:white;">Bloquear</ion-text>
                     </ion-button>
                     </ion-col>
                     
+
                   </ion-row>
                 <!-- </ion-item> -->
               </ion-list>
+
+            </section>
+
       </ion-col>
   </ion-row>
 

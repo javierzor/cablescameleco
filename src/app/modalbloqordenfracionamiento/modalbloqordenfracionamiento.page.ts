@@ -14,6 +14,7 @@ export class ModalbloqordenfracionamientoPage implements OnInit {
   traidopormodalparams: any;
   observacion: any;
   user_nombre_bloqueador: any;
+  apretobotonaceptar: any = 'no';
 
   constructor(
     public globalpermisos: GlobalpermisosService,
@@ -23,6 +24,7 @@ export class ModalbloqordenfracionamientoPage implements OnInit {
 
   ) 
   {
+    this.apretobotonaceptar='no';
     this.traidopormodalparams=navParams.get('dataparaelmodal');
     console.log('recibido por modalparams', this.traidopormodalparams);
    }
@@ -43,7 +45,17 @@ export class ModalbloqordenfracionamientoPage implements OnInit {
     this.observacion=event.target.value;
   }
 
+
   aceptar(){
+    this.apretobotonaceptar='si';
+  }
+
+
+  noconfirmar(){
+    this.apretobotonaceptar='no';
+  }
+
+  confirmar(){
     this.user_nombre_bloqueador=this.globalpermisos.nombre;
     var databloquearordenfraccionamiento = {
       nombre_solicitud:'bloquearordenfraccionamiento',

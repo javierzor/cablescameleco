@@ -14,6 +14,7 @@ export class ModalrolesPage implements OnInit {
   esteroltieneestospermisosactualmente: any;
   permisoaagregar: any;
   id_rol_traido: any;
+  respuestaconocertodoslospermisosparaagregarunoaunrol: any;
   
   constructor(
     public loadingController: LoadingController,
@@ -23,6 +24,18 @@ export class ModalrolesPage implements OnInit {
   ) 
       
   {
+    
+    var dataconocertodoslospermisosparaagregarunoaunrol = {
+      nombre_solicitud: 'conocertodoslospermisosparaagregarunoaunrol',
+      }
+    this.json.variasfunciones(dataconocertodoslospermisosparaagregarunoaunrol).subscribe((res: any ) =>{
+      this.respuestaconocertodoslospermisosparaagregarunoaunrol=res;
+      console.log('conocertodoslospermisosparaagregarunoaunrol', this.respuestaconocertodoslospermisosparaagregarunoaunrol);
+    });
+
+
+
+
   this.traidopormodalparams=navParams.get('dataparaelmodal');
   console.log('recibido por modalparams', this.traidopormodalparams);
   this.id_rol_traido=this.traidopormodalparams.id_rol;
