@@ -33,17 +33,53 @@
 
 
   <ion-grid *ngIf="this.puedenavegaraqui=='si'">
-    <ion-row class="ion-align-items-center">
+
+    <section *ngIf="this.step=='1'">
+    <ion-row style="align-content: center; align-items: center; align-self: center;" class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
-        <ion-text color="danger" >Bienvenido.</ion-text>
-        <ion-text color="danger" >Ingreso de productos</ion-text>
-        <ion-item>
-          <ion-input (ionChange)="onFileChange($event)" type="file"></ion-input>
-          <ion-button (click)="Upload()" >Subir</ion-button>
-        </ion-item>
+        <ion-text color="danger" >Bienvenido.</ion-text><br>
+        <ion-text color="danger" >Ingreso de productos</ion-text><br>
+        <ion-text style="font-size: small;" >Seleccione un archivo formato (Excel)</ion-text>
+          <!-- <ion-input (ionChange)="onFileChange($event)" multiple="false" type="file"></ion-input> -->
+          <input style="align-content: center; align-items: center; align-self: center;" type="file" (change)="onFileChange($event)" multiple="false" />
+          <ion-button style="align-content: center; align-items: center; align-self: center;" (click)="guardar()" >Subir</ion-button>
       </ion-col>
     </ion-row>
+  </section>
+
+    <section *ngIf="this.step=='2'">
+      <ion-row style="align-content: center; align-items: center; align-self: center;" class="ion-align-items-center">
+        <ion-col size="4"  class="ion-text-center">
+          <ion-text style="color:red" color="red">Referencia</ion-text>
+        </ion-col>
+        <ion-col size="4"  class="ion-text-center">
+          <ion-text style="color:red" color="red">Codigo</ion-text>
+        </ion-col>
+        <ion-col size="4"  class="ion-text-center">
+          <ion-text style="color:red" color="red">Nombre</ion-text>
+        </ion-col>
+      </ion-row>
+    <ion-row *ngFor="let row of data" style="align-content: center; align-items: center; align-self: center;" class="ion-align-items-center">
+      <ion-col *ngFor="let val of row"  class="ion-text-center">
+        {{val}}
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button (click)="cancelar()" color="danger" ><ion-text style="font-weight: 500;"><ion-icon name="chevron-back-outline"></ion-icon><ion-icon name="close-outline"></ion-icon>CANCELAR</ion-text>
+        </ion-button>
+        <ion-button color="danger" ><ion-text style="font-weight: 500;"><ion-icon style="color:white" name="cloud-upload-outline"></ion-icon> <ion-icon style="color:green" name="checkmark-done-outline"></ion-icon>INGRESAR</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </section>
+
   </ion-grid>
+
+  <!-- <ion-grid>
+    <button ion-button color="secondary" (click)="import()">Import Data</button>
+    <button ion-button color="secondary" (click)="export()">Export Data</button>
+  </ion-grid> -->
 
   
 </ion-content>

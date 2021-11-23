@@ -12,17 +12,18 @@ import {CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common'
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    
     // Ng2SearchPipeModule,
     HttpClientModule,
     FormsModule,
     BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [
+  providers: [    
+    File,
     BarcodeScanner,
     DatePipe,
     JsonService,
