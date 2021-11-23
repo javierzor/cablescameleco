@@ -9,6 +9,7 @@ export class GlobalpermisosService {
   public nombre_usuario: any;
   public id_usuario: any;
   public nombre: any;
+  public bodega: any;
 
   constructor() {
     

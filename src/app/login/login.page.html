@@ -30,7 +30,13 @@
           <ion-card color="danger" >
             <ion-item >
               <ion-label position="floating">Codigo de empleado:</ion-label>
-              <ion-input (keyup.enter)="intentoLogin()" type="tel-local" (ionChange)="preparardataparaintentodeLogin($event)" color="danger" ></ion-input>
+              <ion-input (keyup.enter)="verificarsillenoloscampos()" type="tel-local" (ionChange)="preparardataparaintentodeLogin($event)" color="danger" ></ion-input>
+            </ion-item>
+          </ion-card>
+          <ion-card color="danger" >
+            <ion-item>
+              <ion-label position="floating">Bodega:</ion-label>
+              <ion-input (keyup.enter)="verificarsillenoloscampos()" type="tel-local" (ionChange)="ONCHANGEbodega($event)" color="danger" ></ion-input>
             </ion-item>
           </ion-card>
         </ion-col>
@@ -55,7 +61,7 @@
 
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
-        <ion-button  (click)="intentoLogin()" color="danger" ><ion-text style="font-weight: 500;">INGRESAR</ion-text>
+        <ion-button [disabled]="this.bodega==null||this.bodega==undefined||this.bodega==''" (click)="intentoLogin()" color="danger" ><ion-text style="font-weight: 500;">INGRESAR</ion-text>
         </ion-button>
       </ion-col>
     </ion-row>

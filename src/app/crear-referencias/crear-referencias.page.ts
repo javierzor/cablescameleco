@@ -12,6 +12,7 @@ import { Location } from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { GlobalpermisosService } from '../globalpermisos.service';
+import * as XLSX from 'ts-xlsx';
 
 @Component({
   selector: 'app-crear-referencias',
@@ -23,6 +24,13 @@ export class CrearReferenciasPage implements OnInit {
   puedenavegaraqui:any;
   seccionactiva: string;
   usuariologeado: any;
+  step: any;
+
+  //lector de excel
+
+  //lector
+
+
   constructor(
     private location: Location,
     private router: Router,
@@ -39,7 +47,7 @@ export class CrearReferenciasPage implements OnInit {
   )
 
 {      
-  
+  this.step='1';
 
 }
 

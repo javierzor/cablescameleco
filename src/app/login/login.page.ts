@@ -24,6 +24,7 @@ export class LoginPage implements OnInit {
   intentando_logear: any;
   quieroaccederporfavordigamelarespuestadelaconsulta:any;
   static variableglobalintentodelogin: any;
+  bodega: any;
 
   constructor(
     private location: Location,
@@ -56,6 +57,11 @@ export class LoginPage implements OnInit {
      this.dataempieza=event.target.value;
      console.log('informacion tipeada=',this.dataempieza);
      }
+
+    ONCHANGEbodega(event){
+    this.bodega=event.target.value;
+    console.log('informacion tipeada=',this.bodega);
+    }
    
 
    apretando_boton_login(){
@@ -63,6 +69,17 @@ export class LoginPage implements OnInit {
    }
 
 
+   async verificarsillenoloscampos(){
+     if(this.bodega!=null&&this.bodega!=undefined&&this.bodega!=''){
+       this.intentoLogin();
+     }
+     else{
+      const camposobligatorios = await this.loadingController.create({
+        message: 'Ingrese la bodega para continuar.',spinner: 'bubbles',duration: 1100,
+        });
+        camposobligatorios.present();
+     }
+    }
 
    async intentoLogin(){
     const verifiqueconexion = await this.loadingController.create({
@@ -95,6 +112,7 @@ export class LoginPage implements OnInit {
         this.globalpermisos.usuariologeado=this.dataempieza;
         this.globalpermisos.id_usuario=this.quieroaccederporfavordigamelarespuestadelaconsulta['0'].id;
         this.globalpermisos.nombre=this.quieroaccederporfavordigamelarespuestadelaconsulta['0'].nombre;
+        this.globalpermisos.bodega=this.bodega;
         console.log('el usuario fue registrado previamente');
         this.router.navigate(['/home', this.quieroaccederporfavordigamelarespuestadelaconsulta['0']]);
         this.myapp.distribuirlotraidodellogin();

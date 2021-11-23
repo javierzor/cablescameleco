@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -86,7 +86,8 @@ const routes: Routes = [
   {
     path: 'modalqr',
     loadChildren: () => import('./modalqr/modalqr.module').then( m => m.ModalqrPageModule)
-  },  {
+  },
+  {
     path: 'modalconsulta',
     loadChildren: () => import('./modalconsulta/modalconsulta.module').then( m => m.ModalconsultaPageModule)
   },
