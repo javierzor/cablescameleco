@@ -26,6 +26,10 @@ export class SolicitudFraccionamientoPage implements OnInit {
   usuariologeado: any;
   ingresodematerialnobloqueados: any;
   filterTerm: string;
+  step: any;
+  campo1: any;
+  campo2: any;
+  campo3: any;
 
   constructor(
     private location: Location,
@@ -43,6 +47,7 @@ export class SolicitudFraccionamientoPage implements OnInit {
   )
 
   { 
+    this.step='1';  
     var dataconsultaringresosdematerialnobloqueados = {
       nombre_solicitud:'obteneringresomaterialnobloqueados'
     };
@@ -51,6 +56,33 @@ export class SolicitudFraccionamientoPage implements OnInit {
       console.log('ingresos de material No bloqueados:',this.ingresodematerialnobloqueados);
     });
   
+  }
+
+  async CHANGEcampo1(event){
+    this.campo1=event.target.value;
+    this.campo2='';
+    this.campo3='';
+    this.filterTerm=event.target.value;
+  }
+  async CHANGEcampo2(event){
+    this.campo2=event.target.value;;
+    this.campo1='';
+    this.campo3='';
+    this.filterTerm=event.target.value;
+  }
+  async CHANGEcampo3(event){
+    this.campo3=event.target.value;
+    this.campo1='';
+    this.campo2='';
+    this.filterTerm=event.target.value;
+  }
+  
+  buscar(){
+    this.step='2';
+  }
+  
+  volver(){
+    this.step='1';
   }
 
   temporalvercariable(){
