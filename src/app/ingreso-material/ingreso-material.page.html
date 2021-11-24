@@ -35,14 +35,42 @@
   <ion-grid *ngIf="this.puedenavegaraqui=='si'&&this.seccionactiva!='no'">
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
-        <ion-text color="danger" >Bienvenido.</ion-text>
+        <ion-text color="danger" >Busqueda de referencias.</ion-text>
       </ion-col>
     </ion-row>
 
-    <ion-row class="ion-align-items-center">
-      <ion-col size="12">
-            <ion-searchbar placeholder="Buscar..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+    <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+      <ion-col size="3" class="ion-text-center">
+        <ion-item>
+          <ion-label position="floating">Referencia</ion-label>
+          <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo1}}" (input)="CHANGEcampo1($event)"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="3" class="ion-text-center">
+        <ion-item>
+          <ion-label position="floating">Codigo</ion-label>
+          <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo2}}" (input)="CHANGEcampo2($event)"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6" class="ion-text-center">
+        <ion-item>
+          <ion-label position="floating">Nombre:</ion-label>
+          <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo3}}" (input)="CHANGEcampo3($event)"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+      <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+        <ion-col size="12" class="ion-text-center">
+          <ion-button (click)="buscar()">Buscar</ion-button>
+        </ion-col>
+      </ion-row>
 
+
+    <ion-row *ngIf="this.step=='2'" class="ion-align-items-center">
+
+      <ion-col size="12" class="ion-text-center">
+      <ion-button (click)="volver()"><ion-icon name="arrow-back-outline"></ion-icon>volver</ion-button>
+        
             <ion-list class="ion-align-items-center">
                 <!-- <ion-item > -->
                   <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" *ngFor="let producto of productosenvista | filter:filterTerm" class="ion-align-items-center ion-no-padding" no-padding>

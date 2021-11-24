@@ -40,8 +40,7 @@
     </ion-row>
 
     <ion-segment (ionChange)="segmentChanged($event)"  
-    value="ordenesdefraccionamiento" 
-    color="danger" 
+    value="ordenesdefraccionamiento"
     scrollable="true"
     mode="ios"
     [(ngModel)]="segmentModel" 
@@ -62,17 +61,106 @@
     </ion-segment>
 
 
-    <ion-card *ngIf="this.segmentModel=='ordenesdefraccionamiento'">
+    <ion-card style="background-color:#f2f2f2;" *ngIf="this.segmentModel=='ordenesdefraccionamiento'">
       <ion-card-header>
-        <ion-card-subtitle>Listado de ordenes de fraccionamiento</ion-card-subtitle>
         <ion-card-title>Pendientes para fraccionar</ion-card-title>
       </ion-card-header>
     
       <ion-card-content>
 
-        <ion-row class="ion-align-items-center">
-          <ion-col size="12">
-                <ion-searchbar placeholder="Buscar..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+        <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Referencia</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo1}}" (input)="CHANGEcampo1($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Codigo</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo2}}" (input)="CHANGEcampo2($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Nombre:</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo3}}" (input)="CHANGEcampo3($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p style="font-size: small;">Documento de<br>Referencia:</p>
+              <ion-item>
+                <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo4}}" (input)="CHANGEcampo4($event)"></ion-input>
+              </ion-item>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+          <ion-col size="3" class="ion-text-center">
+            
+              <p style="font-size: small;">Nro orden<br>fraccionamiento</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo5}}" (input)="CHANGEcampo5($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Por operario</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo6}}" (input)="CHANGEcampo6($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Fecha inicio:</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>fecha final:</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo8}}" (input)="CHANGEcampo8($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+          <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+            <ion-col size="12" class="ion-text-center">
+              <ion-button
+              [disabled]="  
+              
+              this.campo1==''
+              &&this.campo2==''
+              &&this.campo3==''
+              &&this.campo4==''
+              &&this.campo5==''
+              &&this.campo6==''
+              &&this.campo7==''
+              &&this.campo8==''
+              
+              "
+               (click)="buscar()">Buscar</ion-button>
+            </ion-col>
+          </ion-row>
+
+        <ion-row *ngIf="this.step=='2'" class="ion-align-items-center">        
+          <ion-col size="12" class="ion-text-center">
+
+            <ion-button (click)="volver()"><ion-icon name="arrow-back-outline"></ion-icon>volver</ion-button>
+                <!-- <ion-searchbar placeholder="Buscar..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar> -->
     
               <ion-row style="text-align: center;">
                 <ion-col size="1" style="font-size:small;"><ion-text>Hora<br>orden</ion-text></ion-col>
@@ -112,7 +200,7 @@
                         </ion-col>
                         
                       </ion-row>
-                    <!-- </ion-item> -->
+                    <!--  -->
                   </ion-list>
           </ion-col>
       </ion-row>
@@ -129,9 +217,98 @@
     
       <ion-card-content>
 
-        <ion-row class="ion-align-items-center">
-          <ion-col size="12">
-                <ion-searchbar placeholder="Buscar..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+        <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Referencia</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo1}}" (input)="CHANGEcampo1($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Codigo</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo2}}" (input)="CHANGEcampo2($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Nombre:</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo3}}" (input)="CHANGEcampo3($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p style="font-size: small;">Documento de<br>Referencia:</p>
+              <ion-item>
+                <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo4}}" (input)="CHANGEcampo4($event)"></ion-input>
+              </ion-item>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+          <ion-col size="3" class="ion-text-center">
+            
+              <p style="font-size: small;">Nro orden<br>fraccionamiento</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo5}}" (input)="CHANGEcampo5($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Por operario</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo6}}" (input)="CHANGEcampo6($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Fecha inicio:</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>fecha final:</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo8}}" (input)="CHANGEcampo8($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+          <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+            <ion-col size="12" class="ion-text-center">
+              <ion-button
+              [disabled]="  
+              
+              this.campo1==''
+              &&this.campo2==''
+              &&this.campo3==''
+              &&this.campo4==''
+              &&this.campo5==''
+              &&this.campo6==''
+              &&this.campo7==''
+              &&this.campo8==''
+              
+              "
+               (click)="buscar()">Buscar</ion-button>
+            </ion-col>
+          </ion-row>
+
+        <ion-row  *ngIf="this.step=='2'" class="ion-align-items-center">
+          <ion-col size="12" class="ion-text-center">
+            <ion-button (click)="volver()"><ion-icon name="arrow-back-outline"></ion-icon>volver</ion-button>
+                <!-- <ion-searchbar placeholder="Buscar..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar> -->
     
               <ion-row style="text-align: center;">
                 <ion-col size="1" style="font-size:small;"><ion-text>Hora<br>orden</ion-text></ion-col>
@@ -176,7 +353,7 @@
                         </ion-col>
                         
                       </ion-row>
-                    <!-- </ion-item> -->
+                    <!--  -->
                   </ion-list>
           </ion-col>
       </ion-row>
@@ -194,9 +371,99 @@
     
       <ion-card-content>
 
-        <ion-row class="ion-align-items-center">
-          <ion-col size="12">
-                <ion-searchbar placeholder="Buscar..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
+
+        <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Referencia</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo1}}" (input)="CHANGEcampo1($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Codigo</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo2}}" (input)="CHANGEcampo2($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Nombre:</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo3}}" (input)="CHANGEcampo3($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p style="font-size: small;">Documento de<br>Referencia:</p>
+              <ion-item>
+                <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo4}}" (input)="CHANGEcampo4($event)"></ion-input>
+              </ion-item>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+          <ion-col size="3" class="ion-text-center">
+            
+              <p style="font-size: small;">Nro orden<br>fraccionamiento</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo5}}" (input)="CHANGEcampo5($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Por operario</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo6}}" (input)="CHANGEcampo6($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>Fecha inicio:</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+          <ion-col size="3" class="ion-text-center">
+            
+              <p>fecha final:</p>
+              <ion-item>
+              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo8}}" (input)="CHANGEcampo8($event)"></ion-input>
+            </ion-item>
+
+          </ion-col>
+        </ion-row>
+          <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+            <ion-col size="12" class="ion-text-center">
+              <ion-button
+              [disabled]="  
+              
+              this.campo1==''
+              &&this.campo2==''
+              &&this.campo3==''
+              &&this.campo4==''
+              &&this.campo5==''
+              &&this.campo6==''
+              &&this.campo7==''
+              &&this.campo8==''
+              
+              "
+               (click)="buscar()">Buscar</ion-button>
+            </ion-col>
+          </ion-row>
+
+        <ion-row *ngIf="this.step=='2'" class="ion-align-items-center">
+          <ion-col size="12" class="ion-text-center">
+            <ion-button (click)="volver()"><ion-icon name="arrow-back-outline"></ion-icon>volver</ion-button>
+                <!-- <ion-searchbar placeholder="Buscar..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar> -->
     
               <ion-row style="text-align: center;">
                 <ion-col size="1" style="font-size:small;"><ion-text>Hora<br>orden</ion-text></ion-col>
@@ -245,7 +512,7 @@
                         </ion-col>
                         
                       </ion-row>
-                    <!-- </ion-item> -->
+                    <!--  -->
                   </ion-list>
           </ion-col>
       </ion-row>

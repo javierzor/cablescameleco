@@ -25,7 +25,10 @@ export class IngresoMaterialPage implements OnInit  {
   usuariologeado: any;
   filterTerm: string;
   productosenvista: any;
-
+  step: any;
+  campo1: any;
+  campo2: any;
+  campo3: any;
   constructor(
     private location: Location,
     private router: Router,
@@ -42,7 +45,8 @@ export class IngresoMaterialPage implements OnInit  {
   )
 
 {      
-  
+
+  this.step='1';  
   var obtenerproductos = {
     nombre_solicitud: 'obtenerproductos',
   };  
@@ -52,6 +56,33 @@ export class IngresoMaterialPage implements OnInit  {
     } ) //cierrran las lecturas de res
 
 
+}
+
+async CHANGEcampo1(event){
+  this.campo1=event.target.value;
+  this.campo2='';
+  this.campo3='';
+  this.filterTerm=event.target.value;
+}
+async CHANGEcampo2(event){
+  this.campo2=event.target.value;;
+  this.campo1='';
+  this.campo3='';
+  this.filterTerm=event.target.value;
+}
+async CHANGEcampo3(event){
+  this.campo3=event.target.value;
+  this.campo1='';
+  this.campo2='';
+  this.filterTerm=event.target.value;
+}
+
+buscar(){
+  this.step='2';
+}
+
+volver(){
+  this.step='1';
 }
 
 

@@ -28,6 +28,15 @@ export class AuditoriaPage implements OnInit {
   respuestaauditoria2: any;
   respuestaauditoria3: any;
   filterTerm: string;
+  step: any;
+  campo1: any;
+  campo2: any;
+  campo3: any;
+  campo4: any;
+  campo5: any;
+  campo6: any;
+  campo7: any;
+  campo8: any;
 
   constructor(
     private location: Location,
@@ -45,10 +54,114 @@ export class AuditoriaPage implements OnInit {
   )
 
 {      
-  
-
+  this.campo1='';
+  this.campo2='';
+  this.campo3='';
+  this.campo4='';
+  this.campo5='';
+  this.campo6='';
+  this.campo7='';
+  this.campo8='';
+  this.step='1';
   this.auditoria1alentrar()
 
+}
+
+CHANGEcampo1(event){
+  this.campo1=event.target.value;
+  this.campo2='';
+  this.campo3='';
+  this.campo4='';
+  this.campo5='';
+  this.campo6='';
+  this.campo7='';
+  this.campo8='';
+  this.filterTerm=event.target.value;
+}
+CHANGEcampo2(event){
+  this.campo1='';
+  this.campo2=event.target.value;
+  this.campo3='';
+  this.campo4='';
+  this.campo5='';
+  this.campo6='';
+  this.campo7='';
+  this.campo8='';
+  this.filterTerm=event.target.value;
+}
+CHANGEcampo3(event){
+  this.campo1='';
+  this.campo2='';
+  this.campo3=event.target.value;
+  this.campo4='';
+  this.campo5='';
+  this.campo6='';
+  this.campo7='';
+  this.campo8='';
+  this.filterTerm=event.target.value;
+}
+CHANGEcampo4(event){
+  this.campo1='';
+  this.campo2='';
+  this.campo3='';
+  this.campo4=event.target.value;
+  this.campo5='';
+  this.campo6='';
+  this.campo7='';
+  this.campo8='';
+  this.filterTerm=event.target.value;
+}
+CHANGEcampo5(event){
+  this.campo1='';
+  this.campo2='';
+  this.campo3='';
+  this.campo4='';
+  this.campo5=event.target.value;
+  this.campo6='';
+  this.campo7='';
+  this.campo8='';
+  this.filterTerm=event.target.value;
+}
+CHANGEcampo6(event){
+  this.campo1='';
+  this.campo2='';
+  this.campo3='';
+  this.campo4='';
+  this.campo5='';
+  this.campo6=event.target.value;
+  this.campo7='';
+  this.campo8='';
+  this.filterTerm=event.target.value;
+}
+CHANGEcampo7(event){
+  this.campo1='';
+  this.campo2='';
+  this.campo3='';
+  this.campo4='';
+  this.campo5='';
+  this.campo6='';
+  this.campo7=event.target.value;
+  this.campo8='';
+  this.filterTerm=event.target.value;
+}
+CHANGEcampo8(event){
+  this.campo1='';
+  this.campo2='';
+  this.campo3='';
+  this.campo4='';
+  this.campo5='';
+  this.campo6='';
+  this.campo7='';
+  this.campo8=event.target.value;
+  this.filterTerm=event.target.value;
+}
+
+buscar(){
+  this.step='2';
+}
+
+volver(){
+  this.step='1';
 }
 
   async auditoria1alentrar(){
@@ -101,6 +214,15 @@ reingresar(){
 
 
   async segmentChanged(event){
+    this.campo1='';
+    this.campo2='';
+    this.campo3='';
+    this.campo4='';
+    this.campo5='';
+    this.campo6='';
+    this.campo7='';
+    this.campo8='';
+    this.step='1';
     const actualizando = await this.loadingController.create({
       message: 'Actualizando...',spinner: 'bubbles',duration: 15000,
       });
@@ -108,7 +230,7 @@ reingresar(){
     console.log(this.segmentModel);
     console.log(event);
     if(this.segmentModel=='ordenesdefraccionamiento'){
-
+      this.step='1';
       var dataauditoria1 = {
         nombre_solicitud:'auditoria1',
         }
