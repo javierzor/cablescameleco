@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cambio de tipo de almacenaje</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-grid>
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-button  (click)="dismiss()" color="danger" ><ion-text style="font-weight: 500;">Volver</ion-text>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+    <ion-col size="3" class="ion-text-center">
+      <ion-text color="danger" style="font-weight: 500;">Referencia: </ion-text><br>
+      <ion-text>{{this.traidopormodalparams.referencia}} </ion-text>
+    </ion-col>
+    <ion-col size="2" class="ion-text-center">
+      <ion-text color="danger" style="font-weight: 500;">Codigo: </ion-text><br>
+            <ion-text>{{this.traidopormodalparams.numero_fraccionado}} </ion-text>
+    </ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <ion-text color="danger" style="font-weight: 500;">Nombre: </ion-text><br>
+            <ion-text>{{this.traidopormodalparams.descripcion}} </ion-text>
+    </ion-col>
+    <ion-col size="3" class="ion-text-center">
+      <ion-text color="danger" style="font-weight: 500;">Documento de<br>referencia:</ion-text><br>
+      <ion-text>{{this.traidopormodalparams.documento}} </ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+    <ion-col size="4" class="ion-text-center">
+    </ion-col>
+    <ion-col size="4" class="ion-text-center">
+      <ion-card>
+          <ion-item>
+              <ion-label position="floating"></ion-label>
+              <ion-input (ionChange)="CHANGEcodigosupervisor($event)" color="danger" >
+              </ion-input>
+          </ion-item>
+      </ion-card>
+    </ion-col>
+    <ion-col size="4" class="ion-text-center">
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-button  (click)="verificarsupervisor()" color="danger" ><ion-text style="font-weight: 500;">Verificar</ion-text>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+    <ion-row *ngIf="this.step=='2'" class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-button  (click)="dismiss()" color="danger" ><ion-text style="font-weight: 500;">Volver</ion-text>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row style="justify-content: center;align-items: center;" *ngIf="this.step=='3'" class="ion-align-items-center">
+    <ion-col size="6" class="ion-text-center">
+        <ion-card>
+              <ion-card-header>
+                Orden Fraccionamiento
+              </ion-card-header>
+              <ion-card-content>
+                <ion-text>Codigo: {{this.traidopormodalparams.codigo_fraccionado}} </ion-text>
+
+
+                <ion-text>Nombre: {{this.traidopormodalparams.descripcion}} </ion-text>
+    
+          <ion-text>Metros:{{this.traidopormodalparams.metrosafraccionar}} </ion-text>
+          <ion-text>Carrete </ion-text>
+
+              </ion-card-content>
+
+        </ion-card>
+    </ion-col>
+    <ion-col size="6" class="ion-text-center">
+        <ion-card>
+            <ion-card-header>
+                Fraccionamiento
+              </ion-card-header>
+              <ion-card-content>
+                <ion-text>Codigo: {{this.traidopormodalparams.codigo_fraccionado}} </ion-text>
+
+
+                <ion-text>Nombre: {{this.traidopormodalparams.descripcion}} </ion-text>
+    
+          <ion-text>Metros:{{this.traidopormodalparams.metrosafraccionar}} </ion-text>
+          <ion-text>Chipa </ion-text>
+
+              </ion-card-content>
+        </ion-card>
+    </ion-col>
+</ion-row>
+
+  <ion-row style="justify-content: center;align-items: center;" *ngIf="this.step=='3'" class="ion-align-items-center">
+    <ion-col size="12" class="ion-text-center">
+      <ion-button  (click)="autorizar()" color="danger" ><ion-text style="font-weight: 500;"><ion-icon style="color:green;" name="checkmark-done-outline"></ion-icon>AUTORIZAR</ion-text>
+      </ion-button>
+    </ion-col>
+</ion-row>
+
+</ion-grid>
+
+
+</ion-content>

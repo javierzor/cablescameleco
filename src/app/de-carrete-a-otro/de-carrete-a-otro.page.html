@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Cambio de tipo de Almacenaje de Carrete Rollo/Chipa/Tramo</ion-title>
+    <ion-title>Cambio de tipo de Almacenaje</ion-title>
     <ion-buttons slot="end">
       <ion-button href="https://cables.cameleco.com/ayuda-de-carrete-a-otro/" target="_blank" style="text-transform: none; margin-right: 15px;">Ayuda 
           <ion-icon  name="information-circle-outline"></ion-icon>
@@ -47,12 +47,12 @@
     </ion-row>
 
 
-    <ion-row style="justify-content: center;align-items: center;" *ngIf="this.escanearonview!='no'" class="ion-align-items-center">
+    <ion-row style="justify-content: center;align-items: center;" *ngIf="this.step=='1'" class="ion-align-items-center">
 
       <ion-card class="ion-text-center">
         <ion-item >
           <ion-label  position="floating">Ingrese Codigo:</ion-label>
-          <ion-input type="tel-local" (ionChange)="ONCHANGEcodigo($event)" color="danger" ></ion-input>
+          <ion-input (keyup.enter)="continuar()" type="tel-local" (ionChange)="ONCHANGEcodigo($event)" color="danger" ></ion-input>
         </ion-item>
       </ion-card>
 
@@ -62,17 +62,33 @@
     </ion-row>
 
 
-    <ion-row style="justify-content: center;align-items: center;" *ngIf="this.escanearonview=='no'" class="ion-align-items-center">
+    <ion-row style="justify-content: center;align-items: center;" *ngIf="this.step=='2'" class="ion-align-items-center">
         <ion-card color="danger" >
           <ion-item >
             <ion-label position="floating">Codigo de Carrete/Chipa:</ion-label>
-            <ion-input type="tel-local" (ionChange)="ONCHANGEcarreteochipa($event)" color="danger" ></ion-input>
+            <ion-input (keyup.enter)="abrirmodalcarrete()" type="tel-local" (ionChange)="ONCHANGEcarreteochipa($event)" color="danger" ></ion-input>
           </ion-item>
         </ion-card>
-          <ion-button (click)="continuarcarrete()" >
+          <ion-button (click)="abrirmodalcarrete()" >
             <ion-icon name="qr-code-outline"></ion-icon>
           </ion-button>
     </ion-row>
+    
+
+<!-- 
+    <ion-row style="justify-content: center;align-items: center;" *ngIf="this.step=='3'" class="ion-align-items-center">
+
+      <ion-card class="ion-text-center">
+        <ion-item >
+          <ion-label  position="floating">Codigo:</ion-label>
+          <ion-input type="tel-local" (ionChange)="ONCHANGEcodigo($event)" color="danger" ></ion-input>
+        </ion-item>
+      </ion-card>
+
+        <ion-button (click)="continuar()" >
+          <ion-icon name="qr-code-outline"></ion-icon>
+        </ion-button>
+    </ion-row> -->
 
 
   </ion-grid>

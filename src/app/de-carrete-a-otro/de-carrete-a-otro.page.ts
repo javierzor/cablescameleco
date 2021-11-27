@@ -12,6 +12,7 @@ import { Location } from "@angular/common";
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { GlobalpermisosService } from '../globalpermisos.service';
+import { ModaldecarreteaotroPage } from '../modaldecarreteaotro/modaldecarreteaotro.page';
 
 @Component({
   selector: 'app-de-carrete-a-otro',
@@ -27,6 +28,9 @@ export class DeCarreteAOtroPage implements OnInit {
   quieroaccederporfavordigamelarespuestadelaconsulta: any;
   escanearonview: string;
   carreteochipa: any;
+  step: any;
+  numero_fraccionado: any;
+  respuestadecarreteachipaconsultarcodigo: any;
   constructor(
     private location: Location,
     private router: Router,
@@ -35,7 +39,7 @@ export class DeCarreteAOtroPage implements OnInit {
     public navCtrl: NavController,
     public loading: LoadingController,
     private route: ActivatedRoute,
-    public modalCtrl: ModalController,
+    public modalController: ModalController,
     public datepipe: DatePipe,
     public menuCtrl: MenuController,
     public myapp: AppComponent,
@@ -44,7 +48,7 @@ export class DeCarreteAOtroPage implements OnInit {
 
 {      
   
-
+  this.step='1';
 }
 
 
@@ -68,6 +72,8 @@ ionViewDidEnter(){
 }
 }
 
+
+
 reingresar(){
   this.router.navigate(['/login']);
   //vaciando variables usadas en esta vista
@@ -84,7 +90,7 @@ this.dataempieza=event.target.value;
 }
 
 ONCHANGEcarreteochipa(event){
-  this.carreteochipa=event.target.value;
+  this.numero_fraccionado=event.target.value;
   }
 
   async continuar(){
@@ -116,7 +122,7 @@ ONCHANGEcarreteochipa(event){
 
       if (res.length>0&&res[0].activo>0){
         console.log('el usuario fue registrado previamente');
-        this.escanearonview='no';
+        this.step='2';
         espereporfavor.dismiss();
         // exitoso.present();
         
@@ -131,9 +137,53 @@ ONCHANGEcarreteochipa(event){
 
   }
 
-  continuarcarrete(){
+ async abrirmodalcarrete(){
+
+    var datadecarreteachipaconsultarcodigo = {
+      nombre_solicitud: 'decarreteachipaconsultarcodigo',
+      numero_fraccionado:this.numero_fraccionado,
+  
+    };
+    this.json.variasfunciones(datadecarreteachipaconsultarcodigo).subscribe(async (res: any ) =>{
+      console.log('respuesta a la solicitud variasfunciones,  decarreteachipaconsultarcodigo', res);
+      this.respuestadecarreteachipaconsultarcodigo=res[0];
+      if(res[0].id_inutilizado>0){
+
+
+        const modal = await this.modalController.create({
+          component: ModaldecarreteaotroPage,
+          componentProps: {
+            cssClass: 'my-custom-class',
+            'dataparaelmodal': this.respuestadecarreteachipaconsultarcodigo,
+          }
+        });
+        
+        modal.onDidDismiss().then((data) => {
+          console.log('data', data['data']);
+          console.log('data dismissed', data['data'].dismissed);
+          if(data['data'].dismissed=='volverastep1'){
+            // this.consultausuarios()
+          }
+        });
+
+        console.log('enviando estos datos al modal qr',this.respuestadecarreteachipaconsultarcodigo);
+        return await modal.present();
+        
+      }
+      
+      else{
+        console.log('verifique')
+      }
+
+
     
-  }
+});
+
+
+}
+
+
+
 
 
 }

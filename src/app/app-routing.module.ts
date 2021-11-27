@@ -121,6 +121,10 @@ const routes: Routes = [
   },  {
     path: 'modaleditarusuario',
     loadChildren: () => import('./modaleditarusuario/modaleditarusuario.module').then( m => m.ModaleditarusuarioPageModule)
+  },
+  {
+    path: 'modaldecarreteaotro',
+    loadChildren: () => import('./modaldecarreteaotro/modaldecarreteaotro.module').then( m => m.ModaldecarreteaotroPageModule)
   }
 
 
