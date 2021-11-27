@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { GlobalpermisosService } from '../globalpermisos.service';
 import { ModalrolesPage } from '../modalroles/modalroles.page';
+import { ModaleditarusuarioPage } from '../modaleditarusuario/modaleditarusuario.page';
 
 @Component({
   selector: 'app-crear-usuarios',
@@ -35,6 +36,7 @@ export class CrearUsuariosPage implements OnInit {
   respuestadeguardarusuario: any;
   todoslosusuarios: any;
   constructor(
+    public modalController: ModalController,
     private location: Location,
     private router: Router,
     private json: JsonService,
@@ -108,7 +110,29 @@ OnChangeOFrol(event){ console.log('OnChange:',event.target.value);
 }
 
 
-iraeditar(aquitodoslosusuarios, i){console.log('se editara al usuario', aquitodoslosusuarios);
+  async iraeditar(aquitodoslosusuarios, i){console.log('se editara al usuario', aquitodoslosusuarios);
+
+const modal = await this.modalController.create({
+  component: ModaleditarusuarioPage,
+  componentProps: {
+    cssClass: 'my-custom-class',
+    'dataparaelmodal': aquitodoslosusuarios,
+  }
+});
+
+modal.onDidDismiss().then((data) => {
+
+  console.log('data', data['data']);
+  console.log('data dismissed', data['data'].dismissed);
+  if(data['data'].dismissed=='actualizalalistadeusuarios'){
+    this.consultausuarios()
+  }
+
+});
+
+
+console.log('enviando estos datos al modal qr',aquitodoslosusuarios);
+return await modal.present();
 
 }
 

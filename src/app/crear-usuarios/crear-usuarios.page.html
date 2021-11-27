@@ -176,25 +176,39 @@
     <ion-checkbox readonly="true" checked *ngIf="aquitodoslosusuarios.activo=='1'" disabled></ion-checkbox>
     <ion-checkbox readonly="true"  *ngIf="aquitodoslosusuarios.activo=='0'" disabled></ion-checkbox>
   </ion-col>
-  <ion-col size="1.5"  class="ion-no-padding" no-padding>
+  <ion-col size="1"  class="ion-no-padding" no-padding>
     <ion-input readonly="true" value="{{aquitodoslosusuarios.id_rol}}" ></ion-input>
   </ion-col>
-  <ion-col size="0.5"  class="ion-no-padding" no-padding>
+
+  <ion-col size="1"  class="ion-no-padding" no-padding>
+    <ion-button (click)="iraeditar(aquitodoslosusuarios, i)">
+      <a style="cursor: pointer;" >
+      <ion-icon color="medium" name="create-outline"></ion-icon> 
+      </a>
+     </ion-button>
+    </ion-col>
+
+
+
+
+  <!-- <ion-col size="0.5"  class="ion-no-padding" no-padding>
         <ion-row class="ion-no-padding" no-padding>
           <ion-col size="12" class="ion-no-padding" no-padding> 
+            <ion-button>
             <a style="cursor: pointer;" (click)="iraeditar(aquitodoslosusuarios, i)">
             <ion-icon color="medium" name="create-outline"></ion-icon> 
-          </a>
+            </a>
+           </ion-button>
           </ion-col>
         </ion-row>
-        <!-- <ion-row size="12" class="ion-no-padding" no-padding>
+        <ion-row size="12" class="ion-no-padding" no-padding>
           <ion-col class="ion-no-padding" no-padding>  
             <a style="cursor: pointer;" (click)="borrarusuario(aquitodoslosusuarios)">
               <ion-icon color="danger" name="close-outline"></ion-icon> 
             </a>          
           </ion-col>
-        </ion-row> -->
-  </ion-col>
+        </ion-row>
+  </ion-col> -->
 </ion-row>
 
 

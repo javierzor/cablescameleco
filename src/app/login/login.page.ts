@@ -82,6 +82,9 @@ export class LoginPage implements OnInit {
     }
 
    async intentoLogin(){
+    const bodeganoexiste = await this.loadingController.create({
+      message: 'La bodega ingresada no existe',spinner: 'bubbles',duration: 1000,
+      });
     const verifiqueconexion = await this.loadingController.create({
       message: 'Porfavor verifique su conexion..',spinner: 'bubbles',duration: 1400,
       });
@@ -97,9 +100,10 @@ export class LoginPage implements OnInit {
     espereporfavor.present();
 
      var data = {
+      id_inutilizado:this.bodega,
       codigo_qr_acceso:this.dataempieza
      }
-    this.json.empieza(data).subscribe((res: any ) =>{
+    this.json.empiezalogin(data).subscribe((res: any ) =>{
       console.log('respuesta de Json empieza:', res);
       this.quieroaccederporfavordigamelarespuestadelaconsulta=res;
       if(res.length=='0'){
@@ -112,7 +116,7 @@ export class LoginPage implements OnInit {
         this.globalpermisos.usuariologeado=this.dataempieza;
         this.globalpermisos.id_usuario=this.quieroaccederporfavordigamelarespuestadelaconsulta['0'].id;
         this.globalpermisos.nombre=this.quieroaccederporfavordigamelarespuestadelaconsulta['0'].nombre;
-        this.globalpermisos.bodega=this.bodega;
+        this.globalpermisos.bodega=this.quieroaccederporfavordigamelarespuestadelaconsulta['0'].nombre_bodega;
         console.log('el usuario fue registrado previamente');
         this.router.navigate(['/home', this.quieroaccederporfavordigamelarespuestadelaconsulta['0']]);
         this.myapp.distribuirlotraidodellogin();
@@ -120,10 +124,18 @@ export class LoginPage implements OnInit {
         // exitoso.present();
         
       }
+      
       else
       {
-        espereporfavor.dismiss();
-        verifiqueconexion.present();
+        if(res[0]=='bodeganoexiste'){
+           espereporfavor.dismiss();
+           bodeganoexiste.present();
+         }
+         else{
+            espereporfavor.dismiss();
+            verifiqueconexion.present();
+         }
+
       }
 
     });

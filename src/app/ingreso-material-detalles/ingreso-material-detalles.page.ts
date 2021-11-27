@@ -25,11 +25,12 @@ export class IngresoMaterialDetallesPage implements OnInit {
   createdCode = null;
   scannedCode = null;
   fecha_autogenerada: Date;
-  user_nombre: any;
-  user_id: any;
   usuariologeado: any;
   seccionactiva: string;
   desactivarboton: string;
+  bodega: any;
+  nombre_user: any;
+  id_user: any;
   //finalizan las variables del qr generador/scanner
 
 
@@ -92,13 +93,16 @@ export class IngresoMaterialDetallesPage implements OnInit {
 //RECOLECCION DE DATOS NECESARIOS.
 this.fecha_autogenerada = new Date ();
  let fecha_autogenerada_arreglada =this.datepipe.transform(this.fecha_autogenerada, 'yyyy-MM-dd');
-this.user_nombre=this.globalpermisos.nombre;
-this.user_id=this.globalpermisos.id_usuario;
+this.nombre_user=this.globalpermisos.nombre;
+this.id_user=this.globalpermisos.id_usuario;
+this.bodega=this.globalpermisos.bodega;
+
 
 //PREPARACION DE VARIABLE QUE VIAJARA.
-var guardarcaretedb = {
+var guardarcaretedbperoenlasiguientepagina = {
   nombre_solicitud:'guardar_ingreso_material',
   tipo_de_qr:'ingreso-material',
+  bodega: this.bodega,
   referencia:this.productoquellega.referencia,
   producto:this.productoquellega.producto,
   descripcion:this.productoquellega.descripcion,
@@ -106,44 +110,51 @@ var guardarcaretedb = {
   numerodenotadeentrada:this.numerodenotadeentrada,
   metrosencarrete:this.metrosencarrete,
   fecha_autogenerada:fecha_autogenerada_arreglada,
-  nombre_user:this.user_nombre,
-  id_user:this.user_id,
+  nombre_user:this.nombre_user,
+  id_user:this.id_user,
+  createdCode:'sinqr'
+}
+
+//PREPARACION DE VARIABLE QUE VIAJARA.
+var guardarcaretedb = {
+  nombre_solicitud:'guardar_ingreso_material',
+  tipo_de_qr:'ingreso-material',
   createdCode:'sinqr'
 }
 
 
-if(this.user_id&&this.carreteorrollo&&this.numerodenotadeentrada&&this.metrosencarrete&&this.carreteorrollo!=''&&this.numerodenotadeentrada!=''&&this.metrosencarrete!=''&&this.user_id!=null&&this.user_id!=undefined)
+if(this.id_user&&this.carreteorrollo&&this.numerodenotadeentrada&&this.metrosencarrete&&this.carreteorrollo!=''&&this.numerodenotadeentrada!=''&&this.metrosencarrete!=''&&this.id_user!=null&&this.id_user!=undefined)
 {
 
   this.json.variasfunciones(guardarcaretedb).subscribe(async (res: any ) =>{
-    console.log('res guardar_ingreso_material', res)
+    console.log('res guardar_ingreso_material solo la generacion de id', res)
 
     if(res.id>0){
 
       if(res.id<10){
-        guardarcaretedb.createdCode = '0000000'+res.id;
+        guardarcaretedbperoenlasiguientepagina.createdCode = '0000000'+res.id;
       }
       if(res.id>10&&res.id<100){
-        guardarcaretedb.createdCode = '000000'+res.id;
+        guardarcaretedbperoenlasiguientepagina.createdCode = '000000'+res.id;
       }
       if(res.id>100&&res.id<1000){
-        guardarcaretedb.createdCode = '00000'+res.id;
+        guardarcaretedbperoenlasiguientepagina.createdCode = '00000'+res.id;
       }
       if(res.id>1000&&res.id<10000){
-        guardarcaretedb.createdCode = '0000'+res.id;
+        guardarcaretedbperoenlasiguientepagina.createdCode = '0000'+res.id;
       }
       if(res.id>10000&&res.id<100000){
-        guardarcaretedb.createdCode = '000'+res.id;
+        guardarcaretedbperoenlasiguientepagina.createdCode = '000'+res.id;
       }
 
       const modal = await this.modalController.create({
         component: ModalqrPage,
         componentProps: {
           cssClass: 'my-custom-class',
-          'dataparaelmodal': guardarcaretedb,
+          'dataparaelmodal': guardarcaretedbperoenlasiguientepagina,
         }
       });
-      console.log('enviando estos datos al modal qr',guardarcaretedb);
+      console.log('enviando estos datos al modal qr ya que alla se guardara',guardarcaretedbperoenlasiguientepagina);
       return await modal.present();
 
     }

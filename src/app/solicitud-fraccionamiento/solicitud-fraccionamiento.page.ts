@@ -46,7 +46,10 @@ export class SolicitudFraccionamientoPage implements OnInit {
     public globalpermisos: GlobalpermisosService,
   )
 
-  { 
+  {  
+    this.campo1='';
+    this.campo2='';
+    this.campo3='';
     this.step='1';  
     var dataconsultaringresosdematerialnobloqueados = {
       nombre_solicitud:'obteneringresomaterialnobloqueados'
@@ -139,6 +142,20 @@ reingresar(){
       cssClass: 'my-custom-class',
       'dataparaelmodal': producto,
     }
+  });
+
+  modal.onDidDismiss().then((data) => {
+
+    console.log('data', data['data']);
+    console.log('data dismissed', data['data'].dismissed);
+    if(data['data'].dismissed=='step1'){
+      this.step='1';
+      this.campo1='';
+      this.campo2='';
+      this.campo3='';
+      this.filterTerm='';
+    }
+
   });
 
   modal.onDidDismiss().then((data) => {

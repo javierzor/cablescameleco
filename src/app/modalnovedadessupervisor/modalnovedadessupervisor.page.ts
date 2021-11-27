@@ -18,6 +18,7 @@ export class ModalnovedadessupervisorPage implements OnInit {
   apretoparaentregar: any;
   respuestaentregarorden: any;
   respuestanovedadesvolverafracciona: any;
+  observacion_atencion_novedad: any;
 
   constructor(
     private location: Location,
@@ -81,8 +82,13 @@ export class ModalnovedadessupervisorPage implements OnInit {
       });
   }
 
+  CHANGEnovedad(event){console.log('evento',event.target.value);
+    this.observacion_atencion_novedad=event.target.value;
+  }
+
   confirmarparaentrega(){
     var dataentregarorden = {
+      observacion_atencion_novedad:this.observacion_atencion_novedad,
       id_inutilizado:this.traidopormodalparams.id_inutilizado,
       nombre_solicitud:'entregarorden'
       }

@@ -21,6 +21,7 @@ export class ModalsolicitudfracionamientoPage implements OnInit {
   user_id: any;
   fecha_orden: Date;
   yaapretoaceptar: string;
+  bodega: any;
 
   constructor(
     public loadingController: LoadingController,
@@ -53,7 +54,7 @@ export class ModalsolicitudfracionamientoPage implements OnInit {
   }
 
   ONCHANGEverificarcampos(){
-    if(this.documento!=null&&this.metrosafraccionar!=null&&this.observacion!=null&&this.documento!=undefined&&this.metrosafraccionar!=undefined&&this.observacion!=undefined&&this.documento!=''&&this.metrosafraccionar!=''&&this.observacion!='')
+    if(this.documento!=null&&this.metrosafraccionar!=null&&this.documento!=undefined&&this.metrosafraccionar!=undefined&&this.documento!=''&&this.metrosafraccionar!='')
     {
       this.activarbotonaceptar='si';
     }
@@ -68,6 +69,14 @@ export class ModalsolicitudfracionamientoPage implements OnInit {
     // can "dismiss" itself and optionally pass back data
     this.modalController.dismiss({
       'dismissed': true
+    });
+  }
+
+  dismissystep1() {
+    // using the injected ModalController this page
+    // can "dismiss" itself and optionally pass back data
+    this.modalController.dismiss({
+      'dismissed': 'step1'
     });
   }
 
@@ -94,6 +103,7 @@ export class ModalsolicitudfracionamientoPage implements OnInit {
 
     this.user_nombre=this.globalpermisos.nombre;
     this.user_id=this.globalpermisos.id_usuario;
+    this.bodega=this.globalpermisos.bodega;
 
     var datasolicitudfraccionamiento = {
       nombre_solicitud:'solicitudfraccionamiento',
@@ -103,7 +113,7 @@ export class ModalsolicitudfracionamientoPage implements OnInit {
       nombre_ordenador:this.user_nombre,
       user_id_ordenador: this.user_id,
       id_material:this.traidopormodalparams.id,
-      bodega:this.traidopormodalparams.bodega,
+      bodega:this.bodega,
       carreteorrollo:this.traidopormodalparams.carreteorrollo,
       descripcion:this.traidopormodalparams.descripcion,
       fecha_ingreso_material:this.traidopormodalparams.fecha_autogenerada,
@@ -120,7 +130,7 @@ export class ModalsolicitudfracionamientoPage implements OnInit {
         console.log('res de datasolicitudfraccionamiento',res);
         exitoso.present();
         this.modalController.dismiss({
-          'dismissed': true
+          'dismissed': 'step1'
         });
       }
       });

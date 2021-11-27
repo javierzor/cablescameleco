@@ -118,7 +118,11 @@ const routes: Routes = [
   {
     path: 'modalnovedadessupervisor',
     loadChildren: () => import('./modalnovedadessupervisor/modalnovedadessupervisor.module').then( m => m.ModalnovedadessupervisorPageModule)
+  },  {
+    path: 'modaleditarusuario',
+    loadChildren: () => import('./modaleditarusuario/modaleditarusuario.module').then( m => m.ModaleditarusuarioPageModule)
   }
+
 
 
 

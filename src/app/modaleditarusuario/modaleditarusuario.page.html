@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>modaleditarusuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button  (click)="dismiss()" color="danger" >
+          <ion-icon style="color:black;" name="close-outline"></ion-icon>
+          <ion-text style="font-weight: 500;">cerrar</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="3">
+
+      </ion-col>
+      <ion-col size="6" class="ion-text-center">
+        <p>Nombre Usuario:</p><br>
+      <ion-card>
+        <ion-input value="{{this.nombre}}" (ionChange)="CHANGEnombre($event)"></ion-input>
+      </ion-card>
+      </ion-col>
+      <ion-col size="3">
+
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="2.5">
+
+      </ion-col>
+      <ion-col size="7" class="ion-text-center">
+      <ion-card>
+        <ion-item>
+          <ion-label>Seleccione un Rol:</ion-label>
+          <ion-select (ionChange)="CHANGErol($event)" placeholder="Rol:">
+            <ion-select-option *ngFor="let roles of this.respuestatodoslosroleseditarusuario" value="{{roles.id_rol}}">{{roles.nombre_rol}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      </ion-card>
+      </ion-col>
+      <ion-col size="2.5">
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="4">
+
+      </ion-col>
+      <ion-col size="4" class="ion-text-center">
+
+        <ion-list>
+          <ion-radio-group  (ionChange)="CHANGEactivo($event)">
+            <ion-list-header>
+              <ion-label><strong>Estado:</strong></ion-label>
+            </ion-list-header>
+        
+            <ion-item>
+              <ion-label>Activo</ion-label>
+              <ion-radio slot="start" value="1"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Inactivo</ion-label>
+              <ion-radio slot="start" value="0"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+
+        
+    </ion-col>
+    <ion-col size="4">
+
+    </ion-col>
+</ion-row>
+
+        <ion-row class="ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-button  (click)="guardaredicion()" color="danger" >
+          <ion-icon style="color:green;" name="save-outline"></ion-icon>          
+          <ion-text style="font-weight: 500;">Guardar</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+
+
+
+
+  </ion-grid>

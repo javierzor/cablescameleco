@@ -22,11 +22,11 @@
 
   <ion-grid *ngIf="traidopormodalparams.tipodemodal=='novedad'">
     <ion-select placeholder="seleccione la novedad" interface="popover" (ionChange)="ONCHANGEtipo_novedad($event)" style="background-color: #d4d4d4;">
-      <ion-select-option value="Novedad 1">Novedad 1</ion-select-option>
-      <ion-select-option value="Novedad 2">Novedad 2</ion-select-option>
-      <ion-select-option value="Novedad 3">Novedad 3</ion-select-option>
+        <ion-select-option value="Diferencia en cantidad(Logística)">Diferencia en cantidad(Logística)</ion-select-option>
+        <ion-select-option value="Diferencia en Cantidad(Comercial)">Diferencia en Cantidad(Comercial)</ion-select-option>
+        <ion-select-option value="Diferencia en Producto(Logística)">Diferencia en Producto(Logística)</ion-select-option>
+        <ion-select-option value="Diferencia en Producto(Comercial)">Diferencia en Producto(Comercial)</ion-select-option>
     </ion-select>
-
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
       <ion-button disabled *ngIf="this.tipo_novedad==null||this.tipo_novedad==undefined||this.tipo_novedad==''"  (click)="aceptarentregarnovedad()" color="danger" ><ion-text style="font-weight: 500;">Aceptar</ion-text>
