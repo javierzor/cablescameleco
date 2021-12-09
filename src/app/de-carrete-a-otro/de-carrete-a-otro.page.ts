@@ -163,6 +163,7 @@ ONCHANGEcarreteochipa(event){
           console.log('data dismissed', data['data'].dismissed);
           if(data['data'].dismissed=='volverastep1'){
             // this.consultausuarios()
+            this.step=='1';
           }
         });
 

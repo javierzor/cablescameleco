@@ -190,7 +190,8 @@ reingresar(){
     nombre:this.nombre,
     dependencia:this.dependencia,
     activo:this.activo,
-    id_rol:this.id_rol
+    id_rol:this.id_rol,
+    creado_por:this.globalpermisos.nombre
 
   };   console.log('intentando enviar data:',guardarusuario);
   this.json.variasfunciones(guardarusuario).subscribe((res: any ) =>{

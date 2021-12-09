@@ -63,6 +63,9 @@ export class ModaldecarreteaotroPage implements OnInit {
       const fallo = await this.loadingController.create({
         message: 'Ingrese el codigo del supervisor!',spinner: 'bubbles',duration: 1200,
         });
+        const informacionfalsa = await this.loadingController.create({
+          message: 'Incorrecto porfavor verifique!',spinner: 'bubbles',duration: 1200,
+          });
       verificando.present();
     var data = {
       codigo_qr_acceso:this.codigo_qr_acceso
@@ -71,6 +74,11 @@ export class ModaldecarreteaotroPage implements OnInit {
         this.quieroaccederporfavordigamelarespuestadelaconsultadelsupervisor=res[0];
         console.log('respuesta de Json quieroaccederporfavordigamelarespuestadelaconsultadelsupervisor empieza:', this.quieroaccederporfavordigamelarespuestadelaconsultadelsupervisor);
 
+
+        if(this.quieroaccederporfavordigamelarespuestadelaconsultadelsupervisor==undefined||this.quieroaccederporfavordigamelarespuestadelaconsultadelsupervisor==null){
+          verificando.dismiss();
+          informacionfalsa.present();
+        }
         if(this.quieroaccederporfavordigamelarespuestadelaconsultadelsupervisor.id_rol=='4'){
           verificando.dismiss();
           console.log('paso el supervisor');
@@ -100,8 +108,38 @@ export class ModaldecarreteaotroPage implements OnInit {
       });
   }
 
-  autorizar(){
+  async autorizar(){
     console.log('autorizando cambio de almacenaje');
+
+    const exitoso = await this.loadingController.create({
+      message: 'Cambio exitoso!.',spinner: 'bubbles',duration: 1500,
+      });
+
+      const yafuecambiado = await this.loadingController.create({
+        message: 'Este registro ya ha sido cambiado de carrete a chipa anteriormente!.',spinner: 'bubbles',duration: 2500,
+        });
+
+    var dataautorizarcambiodecarrete = {
+      nombre_solicitud:'autorizarcambiodecarrete',
+      id_inutilizado:this.traidopormodalparams.id_inutilizado,
+      nombre_cambio_almacenaje:this.globalpermisos.nombre,
+      carreteorrollo: 'Chipa'
+    }
+  
+    this.json.variasfunciones(dataautorizarcambiodecarrete).subscribe((res: any ) =>{
+      console.log('res autorizarcambiodecarrete',res);
+      if(res>0){
+        exitoso.present();
+        this.funciondismissyvolverastep1();
+      }
+      else if(res==0){
+        yafuecambiado.present();
+        this.funciondismissyvolverastep1();
+
+      }
+
+      });
+
   }
 
 

@@ -15,6 +15,7 @@ export class ModalrolesPage implements OnInit {
   permisoaagregar: any;
   id_rol_traido: any;
   respuestaconocertodoslospermisosparaagregarunoaunrol: any;
+  permisosagregarsplit: any;
   
   constructor(
     public loadingController: LoadingController,
@@ -80,6 +81,11 @@ export class ModalrolesPage implements OnInit {
 
   OnChangeOFpermiso(event){ console.log('OnChange:',event.target.value);
   this.permisoaagregar=event.target.value;
+  this.permisosagregarsplit=this.permisoaagregar.split(',');
+  console.log('permisoaagregar con split:',this.permisosagregarsplit);
+  console.log('id_permiso:',this.permisosagregarsplit[0]);
+  console.log('nombre_permiso:',this.permisosagregarsplit[1]);
+
 }
 
   async agregar(){
@@ -88,8 +94,9 @@ export class ModalrolesPage implements OnInit {
     });
   var dataagregarpermiso = {
     nombre_solicitud:'agregarpermisosaunrol',
-    id_permiso:this.permisoaagregar,
-    id_rol:this.id_rol_traido
+    id_rol:this.id_rol_traido,
+    id_permiso:this.permisosagregarsplit[0],
+    nombre_permiso:this.permisosagregarsplit[1]
   }
 
   this.json.variasfunciones(dataagregarpermiso).subscribe((res: any ) =>{

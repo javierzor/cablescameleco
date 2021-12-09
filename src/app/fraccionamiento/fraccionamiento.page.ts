@@ -30,7 +30,9 @@ export class FraccionamientoPage implements OnInit {
   user_nombre: any;
   user_id: any;
   ordencreadaporeloperario: any;
+  codigoingresadoporusuarioparaverificarqueseaelcarrete: string | number | string[];
   constructor(
+    private alertController: AlertController,
     private location: Location,
     private router: Router,
     private json: JsonService,
@@ -106,7 +108,12 @@ reingresar(){
  async ngOnInit() {
 }
 
-async faccionar(ordenafraccionar){
+verificarsielcodigoescaneadoeselseleccionado(ordenafraccionar){
+
+}
+
+
+async ordenar(ordenafraccionar){
   this.nuevafecha = new Date ();
   let fecha_fraccionado =this.datepipe.transform(this.nuevafecha, 'yyyy-MM-dd');
   let hora_fraccionado =this.datepipe.transform(this.nuevafecha, 'hh:mm');
@@ -115,11 +122,12 @@ async faccionar(ordenafraccionar){
   this.user_id=this.globalpermisos.id_usuario;
 
     var datafraccionarordenfraccionamiento = {
-      nombre_solicitud:'fraccionarordenfraccionamiento',
+      nombre_solicitud:'tomarordenfraccionamiento',
       id_inutilizado:ordenafraccionar.id_inutilizado,
-      operario_fraccionado:this.user_nombre,
+      nombre_ordenador:this.user_nombre,
       fecha_fraccionado:fecha_fraccionado,
-      hora_fraccionado:hora_fraccionado
+      hora_fraccionado:hora_fraccionado,
+      estado:'En alistamiento'
       }
       this.json.variasfunciones(datafraccionarordenfraccionamiento).subscribe(async (res: any ) =>{
         console.log('respuesta a la solicitud variasfunciones,  fraccionarordenfraccionamiento', res);
@@ -155,11 +163,122 @@ async faccionar(ordenafraccionar){
 
         }); //cierre envio fraccionamiento
 
+}
 
 
 
+async presentAlertPrompt(ordenafraccionar) {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Verifique La Información:',
+    message: 'Orden Frac. Nro: '+ordenafraccionar.numero_fraccionado+'<br/> Factura:'+ordenafraccionar.numerodenotadeentrada+'  <br/> Nombre: <br\>'+ordenafraccionar.descripcion+'<br\>Observacion: '+ordenafraccionar.observacion,
+    inputs: [
 
 
+      {
+        name: 'codigoingresadoenalerta',
+        type: 'password',
+        placeholder: 'Codigo de Carrete/Chipa',
+        cssClass: 'specialClass',
+        attributes: {
+          maxlength: 9,
+          inputmode: 'decimal',
+          value:this.codigoingresadoporusuarioparaverificarqueseaelcarrete
+        },
+      },
+    ],
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          console.log('Confirm Cancel');
+
+        },
+      },
+      {
+        text: 'Verificar',
+        handler: async (alertData) => {
+          console.log('Confirm Ok');
+          console.log(alertData.codigoingresadoenalerta);
+          if(alertData.codigoingresadoenalerta==ordenafraccionar.numero_fraccionado){
+
+            console.log('Confirmado el codigo es el mismo');
+
+            const codigoscoinciden = await this.loadingController.create({
+              message: 'Verificación exitosa, Fraccionando.',spinner: 'bubbles',duration: 1000,
+              });
+              codigoscoinciden.present();
+              this.faccionar(ordenafraccionar);
+          }
+          else{
+            const incorrecto = await this.loadingController.create({
+              message: 'Carrete Incorrecto',spinner: 'bubbles',duration: 1000,
+              });
+              incorrecto.present();
+
+          }
+
+        },
+      },
+    ],
+  });
+
+  await alert.present();
+}
+
+
+async faccionar(ordenafraccionar){
+  this.nuevafecha = new Date ();
+  let fecha_fraccionado =this.datepipe.transform(this.nuevafecha, 'yyyy-MM-dd');
+  let hora_fraccionado =this.datepipe.transform(this.nuevafecha, 'hh:mm');
+
+  this.user_nombre=this.globalpermisos.nombre;
+  this.user_id=this.globalpermisos.id_usuario;
+
+    var datafraccionarordenfraccionamiento = {
+      nombre_solicitud:'fraccionarordenfraccionamiento',
+      id_inutilizado:ordenafraccionar.id_inutilizado,
+      operario_fraccionado:this.user_nombre,
+      fecha_fraccionado:fecha_fraccionado,
+      hora_fraccionado:hora_fraccionado,
+      estado:'fraccionado'
+
+      }
+      this.json.variasfunciones(datafraccionarordenfraccionamiento).subscribe(async (res: any ) =>{
+        console.log('respuesta a la solicitud variasfunciones,  fraccionarordenfraccionamiento', res);
+        this.respuestafraccionarordenfraccionamiento=res;
+        if(this.respuestafraccionarordenfraccionamiento>0) {
+          var dataobtenerfraccionamientodespuesdefraccionar = {
+            nombre_solicitud:'obtenerfraccionamientodespuesdefraccionar',
+            id_inutilizado:ordenafraccionar.id_inutilizado,
+            }
+            this.json.variasfunciones(dataobtenerfraccionamientodespuesdefraccionar).subscribe(async (res: any ) =>{
+              this.ordencreadaporeloperario=res[0];
+
+                //empieza el modal
+                const modal = await this.modalController.create({
+                  component: ModalfraccionamientoqrPage,
+                  componentProps: {
+                    cssClass: 'my-custom-class',
+                    'dataparaelmodal': this.ordencreadaporeloperario,
+                  }
+                });
+                
+                modal.onDidDismiss().then((data) => {
+                  this.actualizarlista();
+                });
+                console.log('enviando estos datos al modal qr',this.ordencreadaporeloperario);
+                return await modal.present();
+                //termina el modal
+
+
+            });   //cierre reconsultar fraccionamiento que se guardo con un operario.
+
+          }  //cierre condicional if
+
+        }); //cierre envio fraccionamiento
 
 }
 

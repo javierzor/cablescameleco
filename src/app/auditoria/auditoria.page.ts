@@ -24,6 +24,8 @@ export class AuditoriaPage implements OnInit {
   seccionactiva: string;
   usuariologeado: any;
   segmentModel = "ordenesdefraccionamiento";
+    segmentModel2 = "creados";
+
   respuestaauditoria1: any;
   respuestaauditoria2: any;
   respuestaauditoria3: any;
@@ -37,6 +39,11 @@ export class AuditoriaPage implements OnInit {
   campo6: any;
   campo7: any;
   campo8: any;
+  auditoria4_numero_fraccionado: any;
+  respuestaauditoria4: any;
+  respuestaauditoriausuarioscreados: any;
+  respuestaauditoriausuariosmodificados: any;
+  respuestaauditoriausuariosdesactivadosactivados: any;
 
   constructor(
     private location: Location,
@@ -272,14 +279,123 @@ reingresar(){
     if(this.segmentModel=='fraccionamientosacarrete'){
 
       //consultar que va en esta seccion
+
       actualizando.dismiss();
+        
+      
+
+    }
+
+        if(this.segmentModel=='usuarios'){
+
       //consultar que va en esta seccion
+      actualizando.dismiss();
+
+      
+      var data = {
+        nombre_solicitud:'auditoriausuarioscreados',
+       
+        }
+        this.json.variasfunciones(data).subscribe(async (res: any ) =>{
+          console.log('respuesta a la solicitud auditoriausuarioscreados', res);
+          this.respuestaauditoriausuarioscreados=res;
+           actualizando.dismiss();
+      });
+        
+
+      
 
     }
 
 
 
   }
+
+
+  CHANGEauditoria4_numero_fraccionado(event){ console.log('event',event.target.value);
+    this.auditoria4_numero_fraccionado=event.target.value;
+  }
+
+  buscarauditoria4(){
+
+    var dataauditoria4 = {
+      nombre_solicitud:'auditoria4buscar',
+      auditoria4_numero_fraccionado: this.auditoria4_numero_fraccionado
+      
+      }
+      this.json.variasfunciones(dataauditoria4).subscribe(async (res: any ) =>{
+        console.log('respuesta a la solicitud variasfunciones,  auditoria4 busqueda', res);
+        this.respuestaauditoria4=res;
+        if(res.length>0){
+
+          this.step='2';
+        }
+      });
+  }
+
+  async segmentChanged2(event){
+    this.campo1='';
+    this.campo2='';
+    this.campo3='';
+    this.campo4='';
+    this.campo5='';
+    this.campo6='';
+    this.campo7='';
+    this.campo8='';
+    this.step='1';
+    const actualizando = await this.loadingController.create({
+      message: 'Actualizando...',spinner: 'bubbles',duration: 15000,
+      });
+    actualizando.present();
+    console.log(this.segmentModel);
+    console.log(event);
+      if(this.segmentModel2=='creados'){
+
+        var data = {
+          nombre_solicitud:'auditoriausuarioscreados',
+         
+          }
+          this.json.variasfunciones(data).subscribe(async (res: any ) =>{
+            console.log('respuesta a la solicitud auditoriausuarioscreados', res);
+            this.respuestaauditoriausuarioscreados=res;
+             actualizando.dismiss();
+        });
+
+      }
+
+      if(this.segmentModel2=='modificados'){
+
+
+        var data = {
+          nombre_solicitud:'auditoriausuariosmodificados',
+         
+          }
+          this.json.variasfunciones(data).subscribe(async (res: any ) =>{
+            console.log('respuesta a la solicitud auditoriausuarioscreados', res);
+            this.respuestaauditoriausuariosmodificados=res;
+             actualizando.dismiss();
+        });
+
+
+      }
+
+      if(this.segmentModel2=='desactivadosactivados'){
+
+        
+        var data = {
+          nombre_solicitud:'auditoriausuariosdesactivadosactivados',
+         
+          }
+          this.json.variasfunciones(data).subscribe(async (res: any ) =>{
+            console.log('respuesta a la solicitud auditoriausuarioscreados', res);
+            this.respuestaauditoriausuariosdesactivadosactivados=res;
+             actualizando.dismiss();
+        });
+      }
+
+
+
+ }
 
 
 }

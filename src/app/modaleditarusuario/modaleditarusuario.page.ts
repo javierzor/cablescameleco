@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Platform, NavController,LoadingController, AlertController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { Location } from "@angular/common";
+import { GlobalpermisosService } from '../globalpermisos.service';
 
 @Component({
   selector: 'app-modaleditarusuario',
@@ -20,8 +21,11 @@ export class ModaleditarusuarioPage implements OnInit {
   respuestaeditarusuariomodal: any;
   nombre_rol: any;
   activo: any;
+  modificado_por: any;
+  activado_o_desactivado_por: any;
 
   constructor(
+    public globalpermisos: GlobalpermisosService,
     public loadingController: LoadingController,
     private location: Location,
     private json: JsonService,
@@ -61,6 +65,7 @@ export class ModaleditarusuarioPage implements OnInit {
 
   CHANGEactivo(event){console.log('change',event.target.value);
   this.activo=event.target.value;
+  this.activado_o_desactivado_por=this.globalpermisos.nombre;
 }
 
   ngOnInit() {
@@ -84,14 +89,16 @@ export class ModaleditarusuarioPage implements OnInit {
   }
   
   async guardaredicion(){
-
+    this.modificado_por=this.globalpermisos.nombre;
 
     var dataeditarusuariomodal = {
       nombre_solicitud: 'editarusuariomodal',
       id:this.traidopormodalparams.id,
       id_rol:this.id_rol,
       nombre:this.nombre,
-      activo:this.activo
+      activo:this.activo,
+      modificado_por:this.modificado_por,
+      activado_o_desactivado_por: this.activado_o_desactivado_por
       }
       this.json.variasfunciones(dataeditarusuariomodal).subscribe((res: any ) =>{
       console.log('respuesta a la solicitud variasfunciones,  editarusuariomodal', res);

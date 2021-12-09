@@ -25,7 +25,7 @@
       <ion-col size="8" class="ion-text-center">
         <ion-item>
           <ion-select (ionChange)="OnChangeOFpermiso($event)" interface="popover" placeholder="Selec. Permiso">
-            <ion-select-option *ngFor="let cadapermiso of respuestaconocertodoslospermisosparaagregarunoaunrol" value="{{cadapermiso.id_permiso}}">({{cadapermiso.id_permiso}}){{cadapermiso.permiso_nombre}}</ion-select-option>
+            <ion-select-option *ngFor="let cadapermiso of respuestaconocertodoslospermisosparaagregarunoaunrol" value="{{cadapermiso.id_permiso}},{{cadapermiso.permiso_nombre}}">({{cadapermiso.id_permiso}}){{cadapermiso.permiso_nombre}}</ion-select-option>
           </ion-select>
         </ion-item>
         <!-- <ion-item>
@@ -41,7 +41,10 @@
 
   <ion-row *ngFor="let tienestospermisos of this.esteroltieneestospermisosactualmente" class="ion-align-items-center">
     <ion-col size="12" class="ion-text-center">
-      <ion-button  (click)="borrar(tienestospermisos)" color="danger" ><ion-text style="font-weight: 500;">{{tienestospermisos.id_permiso}}</ion-text>
+      <ion-button *ngIf="tienestospermisos.nombre_permiso==null||tienestospermisos.nombre_permiso==undefined"  (click)="borrar(tienestospermisos)" color="danger" ><ion-text style="font-weight: 500;">{{tienestospermisos.id_permiso}}</ion-text>
+        &nbsp;&nbsp; <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="tienestospermisos.nombre_permiso!=null&&tienestospermisos.nombre_permiso!=undefined"  (click)="borrar(tienestospermisos)" color="danger" ><ion-text style="font-weight: 500;">{{tienestospermisos.nombre_permiso}}</ion-text>
         &nbsp;&nbsp; <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
     </ion-col>
