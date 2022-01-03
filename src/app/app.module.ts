@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common'
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { Printer, PrintOptions } from '@awesome-cordova-plugins/printer/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { File } from '@ionic-native/file/ngx';
     FormsModule,
     BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [    
+    Printer,
     File,
     BarcodeScanner,
     DatePipe,

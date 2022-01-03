@@ -44,6 +44,11 @@ export class AuditoriaPage implements OnInit {
   respuestaauditoriausuarioscreados: any;
   respuestaauditoriausuariosmodificados: any;
   respuestaauditoriausuariosdesactivadosactivados: any;
+  respuestacambiodecarreteachipa: any;
+  respuestaauditoriaingresomaterial: any;
+  respuestaauditoriabloqueoingresomaterial: any;
+  respuestaauditoriaentregas: any;
+  respuestanovedadesenentrega: any;
 
   constructor(
     private location: Location,
@@ -221,6 +226,7 @@ reingresar(){
 
 
   async segmentChanged(event){
+
     this.campo1='';
     this.campo2='';
     this.campo3='';
@@ -233,10 +239,12 @@ reingresar(){
     const actualizando = await this.loadingController.create({
       message: 'Actualizando...',spinner: 'bubbles',duration: 15000,
       });
-    actualizando.present();
+
     console.log(this.segmentModel);
     console.log(event);
     if(this.segmentModel=='ordenesdefraccionamiento'){
+
+          actualizando.present();
       this.step='1';
       var dataauditoria1 = {
         nombre_solicitud:'auditoria1',
@@ -252,6 +260,8 @@ reingresar(){
 
     if(this.segmentModel=='fraccionamientosrealizados'){
 
+          actualizando.present();
+
       var dataauditoria2 = {
         nombre_solicitud:'auditoria2',
         }
@@ -264,6 +274,8 @@ reingresar(){
     }
 
     if(this.segmentModel=='fraccionamientossuspendidos'){
+
+          actualizando.present();
 
       var dataauditoria3 = {
         nombre_solicitud:'auditoria3',
@@ -278,6 +290,8 @@ reingresar(){
 
     if(this.segmentModel=='fraccionamientosacarrete'){
 
+          actualizando.present();
+
       //consultar que va en esta seccion
 
       actualizando.dismiss();
@@ -286,12 +300,90 @@ reingresar(){
 
     }
 
-        if(this.segmentModel=='usuarios'){
+    if(this.segmentModel=='cambiodecarreteachipa'){
 
-      //consultar que va en esta seccion
+      actualizando.present();
+
+  var datacambiodecarreteachipa = {
+    nombre_solicitud:'cambiodecarreteachipa',
+    }
+    this.json.variasfunciones(datacambiodecarreteachipa).subscribe(async (res: any ) =>{
+      console.log('respuesta a la solicitud variasfunciones,  cambiodecarreteachipa', res);
+      this.respuestacambiodecarreteachipa=res;
       actualizando.dismiss();
+    });
 
-      
+  }
+
+  if(this.segmentModel=='ingresodematerial'){
+
+    actualizando.present();
+
+var dataauditoriaingresomaterial = {
+  nombre_solicitud:'auditoriaingresomaterial',
+  }
+  this.json.variasfunciones(dataauditoriaingresomaterial).subscribe(async (res: any ) =>{
+    console.log('respuesta a la solicitud variasfunciones,  auditoriaingresomaterial', res);
+    this.respuestaauditoriaingresomaterial=res;
+    actualizando.dismiss();
+  });
+
+}
+
+if(this.segmentModel=='bloqueoingresodematerial'){
+
+  actualizando.present();
+var dataauditoriabloqueoingresomaterial = {
+nombre_solicitud:'auditoriabloqueoingresomaterial',
+}
+this.json.variasfunciones(dataauditoriabloqueoingresomaterial).subscribe(async (res: any ) =>{
+  console.log('respuesta a la solicitud variasfunciones,  auditoriabloqueoingresomaterial', res);
+  this.respuestaauditoriabloqueoingresomaterial=res;
+  actualizando.dismiss();
+});
+
+}
+
+if(this.segmentModel=='entregas'){
+
+  actualizando.present();
+var dataauditoriaentregas = {
+nombre_solicitud:'auditoriaentregas',
+}
+this.json.variasfunciones(dataauditoriaentregas).subscribe(async (res: any ) =>{
+  console.log('respuesta a la solicitud variasfunciones,  auditoriaentregas', res);
+  this.respuestaauditoriaentregas=res;
+  actualizando.dismiss();
+});
+
+}
+
+
+if(this.segmentModel=='novedadesenentrega'){
+
+  actualizando.present();
+var datanovedadesenentrega = {
+nombre_solicitud:'novedadesenentrega',
+}
+this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>{
+  console.log('respuesta a la solicitud variasfunciones,  novedadesenentrega', res);
+  this.respuestanovedadesenentrega=res;
+  actualizando.dismiss();
+});
+
+}
+
+
+
+
+
+
+
+     if(this.segmentModel=='usuarios'){
+
+           actualizando.present();
+
+    
       var data = {
         nombre_solicitud:'auditoriausuarioscreados',
        
@@ -306,6 +398,8 @@ reingresar(){
       
 
     }
+
+
 
 
 

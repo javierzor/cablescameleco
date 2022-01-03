@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
+import { Printer, PrintOptions } from '@awesome-cordova-plugins/printer/ngx';
 
 @Component({
   selector: 'app-modalfraccionamientoqr',
@@ -11,6 +12,7 @@ export class ModalfraccionamientoqrPage implements OnInit {
   traidopormodalparams: any;
 
   constructor(
+    private printer: Printer,
     public modalController: ModalController,
     navParams: NavParams
 
@@ -30,12 +32,14 @@ export class ModalfraccionamientoqrPage implements OnInit {
     this.modalController.dismiss({
       'dismissed': true
     });
+
+
   }
 
   
   
   imprimir(){
-    
+    this.printer.print();
   }
   
 }

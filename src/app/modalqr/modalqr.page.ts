@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { JsonService } from '../json.service';
+import { Printer, PrintOptions } from '@awesome-cordova-plugins/printer/ngx';
 
 @Component({
   selector: 'app-modalqr',
@@ -13,6 +14,7 @@ export class ModalqrPage implements OnInit {
   traidopormodalparams: any;
 
   constructor(
+    private printer: Printer,
     public loadingController: LoadingController,
     private json: JsonService,
     private router: Router,
@@ -69,13 +71,21 @@ export class ModalqrPage implements OnInit {
 
     this.json.variasfunciones(updatearelingresodematerialenelmodal).subscribe(async (res: any ) =>{
         console.log('respuesta del ingreso de material (pero en el modal), ingreso de material',res);
+        guardandoespere.dismiss();
         if(res>0){
-          guardandoespere.dismiss();
           materialingresado.present();
+          this.printer.print();
           this.dismiss();
         }
     });
     
   }
+
+  
+  // imprimirviewcontent(){
+  //   // cordova.plugins.printer.print();
+  // this.printer.print()
+  // }
+
   
 }
