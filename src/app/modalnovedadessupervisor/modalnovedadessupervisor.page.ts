@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Platform, NavController,LoadingController, AlertController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { Location } from "@angular/common";
+import { GlobalpermisosService } from '../globalpermisos.service';
 
 @Component({
   selector: 'app-modalnovedadessupervisor',
@@ -21,6 +22,7 @@ export class ModalnovedadessupervisorPage implements OnInit {
   observacion_atencion_novedad: any;
 
   constructor(
+    public globalpermisos: GlobalpermisosService,
     private location: Location,
     private json: JsonService,
     public modalController: ModalController,
@@ -87,13 +89,15 @@ export class ModalnovedadessupervisorPage implements OnInit {
   }
 
   confirmarparaentrega(){
-    var dataentregarorden = {
-      observacion_atencion_novedad:this.observacion_atencion_novedad,
+    var datanovedadesentregarordenconnovedad = {
+      nombre_solicitud:'novedadesentregarordenconnovedad',
+      observa_entrega_con_novedad:this.observacion_atencion_novedad,
       id_inutilizado:this.traidopormodalparams.id_inutilizado,
-      nombre_solicitud:'entregarorden'
+      operario_entrega_con_novedad:this.globalpermisos.nombre
+
       }
-      this.json.variasfunciones(dataentregarorden).subscribe(async (res: any ) =>{
-        console.log('respuesta a la solicitud variasfunciones,  entregarorden', res);
+      this.json.variasfunciones(datanovedadesentregarordenconnovedad).subscribe(async (res: any ) =>{
+        console.log('respuesta a la solicitud variasfunciones,  novedadesentregarordenconnovedad', res);
         this.respuestaentregarorden=res;
         if(res>0){
           this.dismissyactualiza();

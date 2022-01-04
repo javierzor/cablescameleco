@@ -38,7 +38,7 @@ export class ModalfraccionamientoqrPage implements OnInit {
 
   
   
-  imprimir(){
+  cortarydescontardelcarrete(){
     this.printer.print();
   }
   

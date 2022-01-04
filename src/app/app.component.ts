@@ -24,7 +24,7 @@ export class AppComponent {
     { title: 'Creación de Roles', url: 'crear-roles', icon: 'enter' },
     { title: 'Creación de usuarios', url: 'crear-usuarios', icon: 'person-add' },
     { title: 'Creación de referencias', url: 'crear-referencias', icon: 'duplicate' },
-    { title: 'De Carrete a otro almacenaje', url: 'de-carrete-a-otro', icon: 'at-circle' },
+    { title: 'Cambio de carrete a Chipa', url: 'de-carrete-a-otro', icon: 'at-circle' },
     { title: 'Pantalla de entregas', url: 'pantalla-entregas', icon: 'checkbox' },
     { title: 'Entregas', url: 'entregas', icon: 'laptop' },
     { title: 'Novedades Supervisor', url: 'novedades-supervisor', icon: 'newspaper' },

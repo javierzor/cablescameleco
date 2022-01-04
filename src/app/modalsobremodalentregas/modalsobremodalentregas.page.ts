@@ -4,6 +4,7 @@ import { NavParams } from '@ionic/angular';
 import { JsonService } from '../json.service';
 import { Router } from '@angular/router';
 import { Location } from "@angular/common";
+import { GlobalpermisosService } from '../globalpermisos.service';
 
 @Component({
   selector: 'app-modalsobremodalentregas',
@@ -17,6 +18,7 @@ export class ModalsobremodalentregasPage implements OnInit {
   tipo_novedad: any;
 
   constructor(
+    public globalpermisos: GlobalpermisosService,
     private location: Location,
     private json: JsonService,
     navParams: NavParams,
@@ -72,6 +74,7 @@ export class ModalsobremodalentregasPage implements OnInit {
 
   aceptarentregarnovedad(){
     var datanovedadorden = {
+      operario_entrega:this.globalpermisos.nombre,
       id_inutilizado:this.traidopormodalparams.id_inutilizado,
       nombre_solicitud:'novedadorden',
       tipo_novedad:this.tipo_novedad

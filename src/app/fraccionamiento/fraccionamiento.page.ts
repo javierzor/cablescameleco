@@ -214,8 +214,9 @@ async presentAlertPrompt(ordenafraccionar) {
           }
           else{
             const incorrecto = await this.loadingController.create({
-              message: 'Carrete Incorrecto',spinner: 'bubbles',duration: 1000,
+              message: 'Carrete Incorrecto',spinner: 'bubbles',duration: 800,
               });
+              this.presentAlertPrompt(ordenafraccionar);
               incorrecto.present();
 
           }

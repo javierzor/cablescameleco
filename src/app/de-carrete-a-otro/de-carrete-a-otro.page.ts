@@ -139,6 +139,22 @@ ONCHANGEcarreteochipa(event){
 
  async abrirmodalcarrete(){
 
+
+  const verifiqueconexion = await this.loadingController.create({
+    message: 'Porfavor verifique su conexion..',spinner: 'bubbles',duration: 1400,
+    });
+  const espereporfavor = await this.loadingController.create({
+    message: 'Verificando, espere porfavor...',spinner: 'bubbles',duration: 25000,
+    });
+    const exitoso = await this.loadingController.create({
+    message: 'Verificación exitosa accediendo.',spinner: 'bubbles',duration: 1200,
+    });
+    const error = await this.loadingController.create({
+    message: 'Verifique su información...',spinner: 'bubbles',duration: 1700,
+    });
+  espereporfavor.present();
+
+
     var datadecarreteachipaconsultarcodigo = {
       nombre_solicitud: 'decarreteachipaconsultarcodigo',
       numero_fraccionado:this.numero_fraccionado,
@@ -147,8 +163,16 @@ ONCHANGEcarreteochipa(event){
     this.json.variasfunciones(datadecarreteachipaconsultarcodigo).subscribe(async (res: any ) =>{
       console.log('respuesta a la solicitud variasfunciones,  decarreteachipaconsultarcodigo', res);
       this.respuestadecarreteachipaconsultarcodigo=res[0];
+
+      if(!this.respuestadecarreteachipaconsultarcodigo){
+        espereporfavor.dismiss();
+        error.present();
+      }
+
       if(res[0].id_inutilizado>0){
 
+        espereporfavor.dismiss();
+        exitoso.present();
 
         const modal = await this.modalController.create({
           component: ModaldecarreteaotroPage,
@@ -165,20 +189,34 @@ ONCHANGEcarreteochipa(event){
             // this.consultausuarios()
             this.step=='1';
           }
-        });
+        }
+
+        );
 
         console.log('enviando estos datos al modal qr',this.respuestadecarreteachipaconsultarcodigo);
         return await modal.present();
         
       }
+
+      else if(!this.respuestadecarreteachipaconsultarcodigo){
+        espereporfavor.dismiss();
+        error.present();
+      }
       
       else{
-        console.log('verifique')
+        espereporfavor.dismiss();
+        error.present();
+        console.log('verifique');
       }
 
 
     
-});
+}
+
+
+)
+
+;
 
 
 }

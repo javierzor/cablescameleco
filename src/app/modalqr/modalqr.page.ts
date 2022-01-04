@@ -49,7 +49,7 @@ export class ModalqrPage implements OnInit {
       const materialingresado = await this.loadingController.create({
         message: 'Material ingresado',spinner: 'bubbles',duration: 1200,
         });
-      guardandoespere.present();
+      // guardandoespere.present();
 
     var updatearelingresodematerialenelmodal = {
       nombre_solicitud:'updatearelingresodematerialenelmodal',
@@ -70,10 +70,10 @@ export class ModalqrPage implements OnInit {
 
 
     this.json.variasfunciones(updatearelingresodematerialenelmodal).subscribe(async (res: any ) =>{
+      //  guardandoespere.dismiss();
         console.log('respuesta del ingreso de material (pero en el modal), ingreso de material',res);
-        guardandoespere.dismiss();
         if(res>0){
-          materialingresado.present();
+          // materialingresado.present();
           this.printer.print();
           this.dismiss();
         }

@@ -49,6 +49,8 @@ export class AuditoriaPage implements OnInit {
   respuestaauditoriabloqueoingresomaterial: any;
   respuestaauditoriaentregas: any;
   respuestanovedadesenentrega: any;
+  respuestaauditoriaconsultartodosfraccionados: any;
+  respuestaauditoriaconsultarfraccionamientosdeuncarrete: any;
 
   constructor(
     private location: Location,
@@ -288,17 +290,21 @@ reingresar(){
       
     }
 
+
     if(this.segmentModel=='fraccionamientosacarrete'){
 
-          actualizando.present();
-
-      //consultar que va en esta seccion
-
-      actualizando.dismiss();
-        
-      
-
+      actualizando.present();
+    var dataauditoriaconsultartodosfraccionados = {
+    nombre_solicitud:'auditoriaconsultartodosfraccionados',
     }
+    this.json.variasfunciones(dataauditoriaconsultartodosfraccionados).subscribe(async (res: any ) =>{
+      console.log('respuesta a la solicitud variasfunciones,  auditoriaconsultartodosfraccionados', res);
+      this.respuestaauditoriaconsultartodosfraccionados=res;
+      actualizando.dismiss();
+    });
+    
+    }
+    
 
     if(this.segmentModel=='cambiodecarreteachipa'){
 
@@ -403,6 +409,35 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
 
 
 
+  }
+
+  volverastep2(){
+    console.log('volviendo a step 2' );
+    this.step='2';
+  }
+
+
+  async step3(producto){
+    const consultando = await this.loadingController.create({
+      message: 'Consultando...',spinner: 'bubbles',duration: 15000,
+      });
+
+
+    console.log('producto a consultarle todos los fraccionamientos', producto);
+    consultando.present();
+    var dataauditoriaconsultarfraccionamientosdeuncarrete = {
+    nombre_solicitud:'auditoriaconsultarfraccionamientosdeuncarrete',
+    id_material: producto.id_material
+    }
+    this.json.variasfunciones(dataauditoriaconsultarfraccionamientosdeuncarrete).subscribe(async (res: any ) =>{
+      console.log('respuesta a la solicitud variasfunciones,  auditoriaconsultarfraccionamientosdeuncarrete', res);
+      this.step='3';
+      this.respuestaauditoriaconsultarfraccionamientosdeuncarrete=res;
+      consultando.dismiss();
+    });
+
+
+    
   }
 
 

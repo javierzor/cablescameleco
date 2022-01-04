@@ -138,8 +138,18 @@ async import() {
   }
 };
 
-guardar(){
-  
+  async guardar(){
+  const actualizando = await this.loadingController.create({
+    message: 'Guardando...',spinner: 'bubbles',duration: 5000,
+    });
+    actualizando.present();
+    this.step='1';
+    // this.router.navigate(['/ingreso-material']);
+
+}
+
+subir(){
+
 }
 
 /* Export button */

@@ -66,7 +66,7 @@
             </ion-item>            
           </ion-col>
           <ion-col size="4">
-            <ion-button (click)="guardar()">Crear</ion-button>
+            <ion-button [disabled]="!this.nombre_rol||!this.rol_descripcion||this.nombre_rol==null||this.rol_descripcion==null||this.nombre_rol==undefined||this.rol_descripcion==undefined||this.nombre_rol==''||this.rol_descripcion==''" (click)="guardar()">Crear</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
