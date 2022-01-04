@@ -40,7 +40,8 @@ export class PantallaEntregasPage implements OnInit {
   )
 
 {      
-  
+  this.menuCtrl.enable(false);
+
 
   var datapantallaentregas = {
     nombre_solicitud:'pantallaentregas'

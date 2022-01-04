@@ -7,10 +7,20 @@
           <ion-note>www.cameleco.com</ion-note>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item (click)="distribuirlotraidodellogin()" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item *ngIf="p.title!='Pantalla de entregas'" (click)="distribuirlotraidodellogin()" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+              <ion-label >{{ p.title }}</ion-label>
+
+
             </ion-item>
+            
+            <ion-item lines="none" detail="false" style="text-decoration: none;"*ngIf="p.title=='Pantalla de entregas'" href="https://cables.cameleco.com/pantalla-entregas/" style="text-transform: none;" target="_blank">
+            <!-- <a > -->
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label style="text-decoration: none;" *ngIf="p.title=='Pantalla de entregas'"> {{ p.title }}</ion-label>
+              <!-- </a> -->
+            </ion-item>
+
           </ion-menu-toggle>
         </ion-list>
 
