@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { GlobalpermisosService } from '../globalpermisos.service';
 import { ModalfraccionamientoqrPage } from '../modalfraccionamientoqr/modalfraccionamientoqr.page';
+import { ModalordenarfracciqrPage } from '../modalordenarfracciqr/modalordenarfracciqr.page';
 
 @Component({
   selector: 'app-fraccionamiento',
@@ -25,7 +26,7 @@ export class FraccionamientoPage implements OnInit {
   seccionactiva: string;
   usuariologeado: any;
   respuestaobtenerordenesdefraccionamientopendientesynobloqueados: any;
-  respuestafraccionarordenfraccionamiento: any;
+  respuestatomarordenfraccionamiento: any;
   nuevafecha: Date;
   user_nombre: any;
   user_id: any;
@@ -114,54 +115,27 @@ verificarsielcodigoescaneadoeselseleccionado(ordenafraccionar){
 
 
 async ordenar(ordenafraccionar){
-  this.nuevafecha = new Date ();
-  let fecha_fraccionado =this.datepipe.transform(this.nuevafecha, 'yyyy-MM-dd');
-  let hora_fraccionado =this.datepipe.transform(this.nuevafecha, 'hh:mm');
-
-  this.user_nombre=this.globalpermisos.nombre;
-  this.user_id=this.globalpermisos.id_usuario;
-
-    var datafraccionarordenfraccionamiento = {
-      nombre_solicitud:'tomarordenfraccionamiento',
-      id_inutilizado:ordenafraccionar.id_inutilizado,
-      nombre_ordenador:this.user_nombre,
-      fecha_fraccionado:fecha_fraccionado,
-      hora_fraccionado:hora_fraccionado,
-      estado:'En alistamiento'
-      }
-      this.json.variasfunciones(datafraccionarordenfraccionamiento).subscribe(async (res: any ) =>{
-        console.log('respuesta a la solicitud variasfunciones,  fraccionarordenfraccionamiento', res);
-        this.respuestafraccionarordenfraccionamiento=res;
-        if(this.respuestafraccionarordenfraccionamiento>0) {
-          var dataobtenerfraccionamientodespuesdefraccionar = {
-            nombre_solicitud:'obtenerfraccionamientodespuesdefraccionar',
-            id_inutilizado:ordenafraccionar.id_inutilizado,
-            }
-            this.json.variasfunciones(dataobtenerfraccionamientodespuesdefraccionar).subscribe(async (res: any ) =>{
-              this.ordencreadaporeloperario=res[0];
 
                 //empieza el modal
                 const modal = await this.modalController.create({
-                  component: ModalfraccionamientoqrPage,
+                  component: ModalordenarfracciqrPage,
                   componentProps: {
                     cssClass: 'my-custom-class',
-                    'dataparaelmodal': this.ordencreadaporeloperario,
+                    'dataparaelmodal': ordenafraccionar,
                   }
                 });
                 
                 modal.onDidDismiss().then((data) => {
-                  this.actualizarlista();
+                  console.log('data al cerrar DATA=',data);
+                  if(data.data.dismissed==true){
+                    console.log('solo cerro la ventana::..');
+                  }
+                  if(data.data.dismissed=='dismissporqueordeno'){
+                    this.actualizarlista();
+                  }
                 });
-                console.log('enviando estos datos al modal qr',this.ordencreadaporeloperario);
                 return await modal.present();
                 //termina el modal
-
-
-            });   //cierre reconsultar fraccionamiento que se guardo con un operario.
-
-          }  //cierre condicional if
-
-        }); //cierre envio fraccionamiento
 
 }
 
@@ -231,55 +205,26 @@ async presentAlertPrompt(ordenafraccionar) {
 
 
 async faccionar(ordenafraccionar){
-  this.nuevafecha = new Date ();
-  let fecha_fraccionado =this.datepipe.transform(this.nuevafecha, 'yyyy-MM-dd');
-  let hora_fraccionado =this.datepipe.transform(this.nuevafecha, 'hh:mm');
-
-  this.user_nombre=this.globalpermisos.nombre;
-  this.user_id=this.globalpermisos.id_usuario;
-
-    var datafraccionarordenfraccionamiento = {
-      nombre_solicitud:'fraccionarordenfraccionamiento',
-      id_inutilizado:ordenafraccionar.id_inutilizado,
-      operario_fraccionado:this.user_nombre,
-      fecha_fraccionado:fecha_fraccionado,
-      hora_fraccionado:hora_fraccionado,
-      estado:'fraccionado'
-
-      }
-      this.json.variasfunciones(datafraccionarordenfraccionamiento).subscribe(async (res: any ) =>{
-        console.log('respuesta a la solicitud variasfunciones,  fraccionarordenfraccionamiento', res);
-        this.respuestafraccionarordenfraccionamiento=res;
-        if(this.respuestafraccionarordenfraccionamiento>0) {
-          var dataobtenerfraccionamientodespuesdefraccionar = {
-            nombre_solicitud:'obtenerfraccionamientodespuesdefraccionar',
-            id_inutilizado:ordenafraccionar.id_inutilizado,
-            }
-            this.json.variasfunciones(dataobtenerfraccionamientodespuesdefraccionar).subscribe(async (res: any ) =>{
-              this.ordencreadaporeloperario=res[0];
 
                 //empieza el modal
                 const modal = await this.modalController.create({
                   component: ModalfraccionamientoqrPage,
                   componentProps: {
                     cssClass: 'my-custom-class',
-                    'dataparaelmodal': this.ordencreadaporeloperario,
+                    'dataparaelmodal': ordenafraccionar,
                   }
                 });
-                
                 modal.onDidDismiss().then((data) => {
-                  this.actualizarlista();
+                  console.log('data al cerrar DATA=',data);
+                  if(data.data.dismissed==true){
+                  console.log('solo cerro la ventana::..');
+                  }
+                  if(data.data.dismissed=='dismissporquefracciono'){
+                    this.actualizarlista();
+                  }
                 });
-                console.log('enviando estos datos al modal qr',this.ordencreadaporeloperario);
                 return await modal.present();
                 //termina el modal
-
-
-            });   //cierre reconsultar fraccionamiento que se guardo con un operario.
-
-          }  //cierre condicional if
-
-        }); //cierre envio fraccionamiento
 
 }
 
