@@ -152,10 +152,10 @@ async presentAlertPrompt(ordenafraccionar) {
       {
         name: 'codigoingresadoenalerta',
         type: 'password',
-        placeholder: 'Codigo de Carrete/Chipa',
+        placeholder: 'Referecia a solicitar',
         cssClass: 'specialClass',
         attributes: {
-          maxlength: 9,
+          maxlength: 40,
           inputmode: 'decimal',
           value:this.codigoingresadoporusuarioparaverificarqueseaelcarrete
         },
@@ -176,7 +176,7 @@ async presentAlertPrompt(ordenafraccionar) {
         handler: async (alertData) => {
           console.log('Confirm Ok');
           console.log(alertData.codigoingresadoenalerta);
-          if(alertData.codigoingresadoenalerta==ordenafraccionar.numero_fraccionado){
+          if(alertData.codigoingresadoenalerta==ordenafraccionar.documento){
 
             console.log('Confirmado el codigo es el mismo');
 

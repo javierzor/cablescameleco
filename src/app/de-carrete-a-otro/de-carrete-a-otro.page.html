@@ -40,7 +40,7 @@
   <ion-grid *ngIf="this.puedenavegaraqui=='si'">
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
-        <ion-text *ngIf="this.escanearonview!='no'" color="danger" >Bienvenido escanee / Digite el codigo.</ion-text>
+        <ion-text *ngIf="this.escanearonview!='no'" color="danger" >Bienvenido escanee / Digite el código.</ion-text>
         <ion-text *ngIf="this.escanearonview=='no'" color="danger" >Carrete a cambiar a Chipa</ion-text>
 
       </ion-col>
@@ -52,7 +52,7 @@
 
       <ion-card class="ion-text-center">
         <ion-item >
-          <ion-label  position="floating">Ingrese Codigo:</ion-label>
+          <ion-label  position="floating">Ingrese Código:</ion-label>
           <ion-input (keyup.enter)="continuar()" type="tel-local" (ionChange)="ONCHANGEcodigo($event)" color="danger" ></ion-input>
         </ion-item>
       </ion-card>
@@ -66,7 +66,7 @@
     <ion-row style="justify-content: center;align-items: center;" *ngIf="this.step=='2'" class="ion-align-items-center">
         <ion-card color="danger" >
           <ion-item >
-            <ion-label position="floating">Codigo de Carrete/Chipa:</ion-label>
+            <ion-label position="floating">Código de Carrete/Chipa:</ion-label>
             <ion-input (keyup.enter)="abrirmodalcarrete()" type="tel-local" (ionChange)="ONCHANGEcarreteochipa($event)" color="danger" ></ion-input>
           </ion-item>
         </ion-card>

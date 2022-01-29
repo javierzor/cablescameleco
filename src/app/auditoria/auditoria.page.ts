@@ -51,6 +51,8 @@ export class AuditoriaPage implements OnInit {
   respuestanovedadesenentrega: any;
   respuestaauditoriaconsultartodosfraccionados: any;
   respuestaauditoriaconsultarfraccionamientosdeuncarrete: any;
+  respuestaconsultarstockpornumerofraccionado: any;
+  stockinicial: any;
 
   constructor(
     private location: Location,
@@ -433,9 +435,23 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
       console.log('respuesta a la solicitud variasfunciones,  auditoriaconsultarfraccionamientosdeuncarrete', res);
       this.step='3';
       this.respuestaauditoriaconsultarfraccionamientosdeuncarrete=res;
-      consultando.dismiss();
+      this.stockinicial=res[0].metrosencarrete;
+      // consultando.dismiss();
     });
 
+    //consulta de stock
+    var dataconsultarstockpornumerofraccionado = {
+      nombre_solicitud:'consultarstockpornumerofraccionado',
+      id_material: producto.id_material,
+      metrosencarrete: producto.metrosencarrete
+      }
+      this.json.variasfunciones(dataconsultarstockpornumerofraccionado).subscribe(async (res: any ) =>{
+        console.log('respuesta a la solicitud variasfunciones,  consultarstockpornumerofraccionado', res);
+        this.step='3';
+        this.respuestaconsultarstockpornumerofraccionado=res;
+        consultando.dismiss();
+      });
+      //termina la consulta de stock
 
     
   }

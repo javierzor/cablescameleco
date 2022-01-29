@@ -58,7 +58,7 @@
 
         <ion-segment-button [disabled]="segmentModel=='ordenesdefraccionamiento'" value="ordenesdefraccionamiento">
           <ion-button [disabled]="segmentModel=='ordenesdefraccionamiento'" > 
-             <ion-label>Ordenes de<br>fraccionamiento</ion-label>
+             <ion-label>Órdenes de<br>fraccionamiento</ion-label>
           </ion-button>
         </ion-segment-button>
 
@@ -193,7 +193,7 @@
           </ion-col>
           <ion-col size="3" class="ion-text-center">
             
-              <p>Codigo</p>
+              <p>Código</p>
               <ion-item>
               <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo2}}" (input)="CHANGEcampo2($event)"></ion-input>
             </ion-item>
@@ -325,7 +325,7 @@
 
     <ion-card *ngIf="this.segmentModel=='fraccionamientosrealizados'">
       <ion-card-header>
-        <ion-card-subtitle>Listado de ordenes de fraccionamiento</ion-card-subtitle>
+        <ion-card-subtitle>Listado de órdenes de fraccionamiento</ion-card-subtitle>
         <ion-card-title>Fraccionamientos Realizados</ion-card-title>
       </ion-card-header>
     
@@ -342,7 +342,7 @@
           </ion-col>
           <ion-col size="3" class="ion-text-center">
             
-              <p>Codigo</p>
+              <p>Código</p>
               <ion-item>
               <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo2}}" (input)="CHANGEcampo2($event)"></ion-input>
             </ion-item>
@@ -430,8 +430,8 @@
                 <ion-col size="3.5" style="font-size:small;"><ion-text>Nombre</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Factura</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Metros</ion-text></ion-col>
-                <ion-col size="2.5" style="font-size:small;"><ion-text>operario</ion-text></ion-col>
-                <ion-col size="2" style="font-size:small;"><ion-text>ordenado<br>por</ion-text></ion-col>
+                <ion-col size="2.5" style="font-size:small;"><ion-text>Operario</ion-text></ion-col>
+                <ion-col size="2" style="font-size:small;"><ion-text>Ordenado<br>por</ion-text></ion-col>
 
               </ion-row>
 
@@ -479,7 +479,7 @@
 
     <ion-card *ngIf="this.segmentModel=='fraccionamientossuspendidos'">
       <ion-card-header>
-        <ion-card-subtitle>Listado de ordenes de fraccionamiento</ion-card-subtitle>
+        <ion-card-subtitle>Listado de órdenes de fraccionamiento</ion-card-subtitle>
         <ion-card-title>Fraccionamientos suspendidos</ion-card-title>
       </ion-card-header>
     
@@ -497,7 +497,7 @@
           </ion-col>
           <ion-col size="3" class="ion-text-center">
             
-              <p>Codigo</p>
+              <p>Código</p>
               <ion-item>
               <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo2}}" (input)="CHANGEcampo2($event)"></ion-input>
             </ion-item>
@@ -694,7 +694,7 @@
     
               <ion-row style="text-align: center;">
                 <!-- <ion-col size="1" style="font-size:small;"><ion-text>ID <br>de Carrete</ion-text></ion-col> -->
-                <ion-col size="1" style="font-size:small;"><ion-text>Codigo<br>Carrete</ion-text></ion-col>
+                <ion-col size="1" style="font-size:small;"><ion-text>Código<br>Carrete</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Referencia</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Código</ion-text></ion-col>
                 <ion-col size="2.5" style="font-size:small;"><ion-text>Nombre</ion-text></ion-col>
@@ -743,18 +743,38 @@
        </ion-col>
      </ion-row>
 
-     <ion-row *ngIf="this.step=='3'" class="ion-align-items-center">
+
+<section *ngIf="this.step=='3'">
+
+     <ion-row>
+          <ion-col size="2">
+          </ion-col>
+            <ion-col size="8">
+                <ion-row>
+                      <ion-col size="6">
+                          <ion-text><strong color="danger">Stock Inicial:</strong>{{this.stockinicial}}</ion-text>
+                      </ion-col>
+                      <ion-col size="6">
+                          <ion-text><strong color="danger">Stock Actual:</strong>{{this.respuestaconsultarstockpornumerofraccionado}}</ion-text>
+                      </ion-col>
+                </ion-row>
+          </ion-col>
+          <ion-col size="2">
+          </ion-col>
+     </ion-row>
+
+     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
 
             <ion-button (click)="volverastep2()"><ion-icon style="color:green;" name="arrow-back-outline"></ion-icon>volver</ion-button>
 
           <ion-row style="text-align: center;">
-            <ion-col size="1" style="font-size:small;"><ion-text>Codigo<br>Carrete</ion-text></ion-col>
+            <ion-col size="1" style="font-size:small;"><ion-text>Código<br>Carrete</ion-text></ion-col>
             <ion-col size="1" style="font-size:small;"><ion-text>Referencia</ion-text></ion-col>
             <ion-col size="1" style="font-size:small;"><ion-text>Código</ion-text></ion-col>
             <ion-col size="3.5" style="font-size:small;"><ion-text>Nombre</ion-text></ion-col>
             <ion-col size="1.5" style="font-size:small;"><ion-text>Metros<br>Inicio</ion-text></ion-col>
-            <ion-col size="1" style="font-size:small;"><ion-text>Metros en<br>carrete</ion-text></ion-col>
+            <ion-col size="1" style="font-size:small;"><ion-text>Metrs a<br>fracc</ion-text></ion-col>
             <ion-col size="1.5" style="font-size:small;"><ion-text>Carrete<br>o rollo</ion-text></ion-col>
             <ion-col size="1.5" style="font-size:small;"><ion-text>Bodega</ion-text></ion-col>
           </ion-row>
@@ -800,6 +820,7 @@
       </ion-col>
     </ion-row>
 
+  </section>
 
 
         
@@ -812,7 +833,7 @@
 
     <ion-card *ngIf="this.segmentModel=='cambiodecarreteachipa'">
       <ion-card-header>
-        <ion-card-subtitle>Busqueda de auditoria por cambios de Carrete a Chipa</ion-card-subtitle>
+        <ion-card-subtitle>Búsqueda de auditoria por cambios de Carrete a Chipa</ion-card-subtitle>
       </ion-card-header>
     
       <ion-card-content>
@@ -872,7 +893,7 @@
                 <ion-col size="1" style="font-size:small;"><ion-text>Fecha/<br>Hora</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>ID <br>de Carrete</ion-text></ion-col>
                 <ion-col size="1.5" style="font-size:small;"><ion-text>Referencia</ion-text></ion-col>
-                <ion-col size="1" style="font-size:small;"><ion-text>Codigo</ion-text></ion-col>
+                <ion-col size="1" style="font-size:small;"><ion-text>Código</ion-text></ion-col>
                 <ion-col size="3" style="font-size:small;"><ion-text>Nombre</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Metros</ion-text></ion-col>
                 <ion-col size="1.5" style="font-size:small;"><ion-text>Operario<br>ordena</ion-text></ion-col>
@@ -928,7 +949,7 @@
 
     <ion-card *ngIf="this.segmentModel=='ingresodematerial'">
       <ion-card-header>
-        <ion-card-subtitle>Busqueda de auditoria por ingreso de material</ion-card-subtitle>
+        <ion-card-subtitle>Búsqueda de auditoria por ingreso de material</ion-card-subtitle>
       </ion-card-header>
     
       <ion-card-content>
@@ -988,7 +1009,7 @@
                 <ion-col size="1" style="font-size:small;"><ion-text>ID <br>de Carrete</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Carrete <br>o tramo</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Referencia</ion-text></ion-col>
-                <ion-col size="2.5" style="font-size:small;"><ion-text>Codigo</ion-text></ion-col>
+                <ion-col size="2.5" style="font-size:small;"><ion-text>Código</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Doc Ref.<br>ingreso</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Metros<br>Iniciales</ion-text></ion-col>
                 <ion-col size="2" style="font-size:small;"><ion-text>Operario</ion-text></ion-col>
@@ -1048,7 +1069,7 @@
 
     <ion-card *ngIf="this.segmentModel=='bloqueoingresodematerial'">
       <ion-card-header>
-        <ion-card-subtitle>Busqueda de auditoria por bloqueo de ingreso de material</ion-card-subtitle>
+        <ion-card-subtitle>Búsqueda de auditoria por bloqueo de ingreso de material</ion-card-subtitle>
       </ion-card-header>
     
       <ion-card-content>
@@ -1108,7 +1129,7 @@
                 <ion-col size="1" style="font-size:small;"><ion-text>ID <br>de Carrete</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Carrete <br>o tramo</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Referencia</ion-text></ion-col>
-                <ion-col size="2.5" style="font-size:small;"><ion-text>Codigo</ion-text></ion-col>
+                <ion-col size="2.5" style="font-size:small;"><ion-text>Nombre</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Doc Ref.<br>ingreso</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Metros<br>Iniciales</ion-text></ion-col>
                 <ion-col size="2" style="font-size:small;"><ion-text>Operario</ion-text></ion-col>
@@ -1227,7 +1248,7 @@
               <ion-row style="text-align: center;">
                 <!-- <ion-col size="1" style="font-size:small;"><ion-text>ID <br>de Carrete</ion-text></ion-col> -->
                 <ion-col size="1" style="font-size:small;"><ion-text>Referencia</ion-text></ion-col>
-                <ion-col size="1" style="font-size:small;"><ion-text>Codigo</ion-text></ion-col>
+                <ion-col size="1" style="font-size:small;"><ion-text>Código</ion-text></ion-col>
                 <ion-col size="3.5" style="font-size:small;"><ion-text>Nombre</ion-text></ion-col>
                 <ion-col size="1.5" style="font-size:small;"><ion-text>Documento<br>referencia</ion-text></ion-col>
                 <ion-col size="1" style="font-size:small;"><ion-text>Metros</ion-text></ion-col>
@@ -1335,7 +1356,7 @@
       
                 <ion-row style="text-align: center;">
                   <ion-col size="1" style="font-size:small;"><ion-text>Referencia</ion-text></ion-col>
-                  <ion-col size="1" style="font-size:small;"><ion-text>Codigo</ion-text></ion-col>
+                  <ion-col size="1" style="font-size:small;"><ion-text>Código</ion-text></ion-col>
                   <ion-col size="2.5" style="font-size:small;"><ion-text>Nombre</ion-text></ion-col>
                   <ion-col size="1" style="font-size:small;"><ion-text>Documento<br>referencia</ion-text></ion-col>
                   <ion-col size="1" style="font-size:small;"><ion-text>Metros</ion-text></ion-col>
@@ -1414,7 +1435,7 @@
           <ion-label>Modificados</ion-label>
         </ion-segment-button>
       <ion-segment-button value="desactivadosactivados">
-        <ion-label>Desactivados/ Desactivados</ion-label>
+        <ion-label>Desactivados</ion-label>
       </ion-segment-button>
       
     </ion-segment>
@@ -1494,7 +1515,7 @@
                 <ion-text color=danger>Usuario:</ion-text>
               </ion-col>
               <ion-col  style="text-align:center;" size="6">
-                <ion-text color=danger>desac/act Por:</ion-text>
+                <ion-text color=danger>Desac/act Por:</ion-text>
               </ion-col>
 
             </ion-row>

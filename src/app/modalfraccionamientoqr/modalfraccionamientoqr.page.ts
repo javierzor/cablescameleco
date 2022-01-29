@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { Printer, PrintOptions } from '@awesome-cordova-plugins/printer/ngx';
 import { JsonService } from '../json.service';
@@ -16,8 +16,10 @@ export class ModalfraccionamientoqrPage implements OnInit {
   nuevafecha: Date;
   user_nombre: any;
   user_id: any;
+  respuestaconsultarstockpornumerofraccionado: any;
   
   constructor(
+    public loadingController: LoadingController,
     private json: JsonService,
     private printer: Printer,
     public modalController: ModalController,
@@ -53,28 +55,53 @@ export class ModalfraccionamientoqrPage implements OnInit {
 
   
   
-  cortarydescontardelcarrete(){
+  async cortarydescontardelcarrete(){
+    const consultando = await this.loadingController.create({message: 'Consultando...',spinner: 'bubbles',
+    duration: 15000, });
+    const stocknodisponible= await this.loadingController.create({message: 'Stock No Disponible...',spinner: 'bubbles',
+    duration: 1800,});
+    consultando.present();
+    //consulta de stock
+    var dataconsultarstockpornumerofraccionado = {
+      nombre_solicitud:'consultarstockpornumerofraccionado',
+      id_material: this.traidopormodalparams.id_material,
+      metrosencarrete: this.traidopormodalparams.metrosencarrete
+      }
+      this.json.variasfunciones(dataconsultarstockpornumerofraccionado).subscribe(async (res: any ) =>{
+            console.log('respuesta a la solicitud variasfunciones,  consultarstockpornumerofraccionado', res);
+            this.respuestaconsultarstockpornumerofraccionado=res;
+            if(this.respuestaconsultarstockpornumerofraccionado>=this.traidopormodalparams.metrosafraccionar){
 
-    this.nuevafecha = new Date ();
-    let fecha_fraccionado =this.datepipe.transform(this.nuevafecha, 'yyyy-MM-dd');
-    let hora_fraccionado =this.datepipe.transform(this.nuevafecha, 'hh:mm');
-    this.user_nombre=this.globalpermisos.nombre;
-    this.user_id=this.globalpermisos.id_usuario;
-  
-      var datafraccionarordenfraccionamiento = {
-        nombre_solicitud:'fraccionarordenfraccionamiento',
-        id_inutilizado:this.traidopormodalparams.id_inutilizado,
-        operario_fraccionado:this.user_nombre,
-        fecha_fraccionado:fecha_fraccionado,
-        hora_fraccionado:hora_fraccionado,
-        estado:'fraccionado',
-        }
-    this.json.variasfunciones(datafraccionarordenfraccionamiento).subscribe(async (res: any ) =>{
-      console.log('respuesta a la solicitud variasfunciones,  fraccionarordenfraccionamiento', res);
-      this.printer.print();
-      this.dismissporquefracciono();
+                  this.nuevafecha = new Date ();
+                  let fecha_fraccionado =this.datepipe.transform(this.nuevafecha, 'yyyy-MM-dd');
+                  let hora_fraccionado =this.datepipe.transform(this.nuevafecha, 'hh:mm');
+                  this.user_nombre=this.globalpermisos.nombre;
+                  this.user_id=this.globalpermisos.id_usuario;
+                
+                    var datafraccionarordenfraccionamiento = {
+                      nombre_solicitud:'fraccionarordenfraccionamiento',
+                      id_inutilizado:this.traidopormodalparams.id_inutilizado,
+                      operario_fraccionado:this.user_nombre,
+                      fecha_fraccionado:fecha_fraccionado,
+                      hora_fraccionado:hora_fraccionado,
+                      estado:'fraccionado',
+                      }
+                  this.json.variasfunciones(datafraccionarordenfraccionamiento).subscribe(async (res: any ) =>{
+                        console.log('respuesta a la solicitud variasfunciones,  fraccionarordenfraccionamiento', res);
+                        consultando.dismiss();
+                        this.printer.print();
+                        this.dismissporquefracciono();
+                  });
 
-     });
+            } //cierre del condicional stock mayor a ESTOS METROS a fraccionar
+            else{
+              consultando.dismiss();
+              stocknodisponible.present();
+            } //cierre del FALSO Else
+      }); //termina la consulta de stock
+
+
+
   }
   
-}
+} //cierre de la clase
