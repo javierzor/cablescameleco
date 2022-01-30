@@ -297,7 +297,7 @@ reingresar(){
 
       actualizando.present();
     var dataauditoriaconsultartodosfraccionados = {
-    nombre_solicitud:'auditoriaconsultartodosfraccionados',
+    nombre_solicitud:'auditoriaconsultartodoslosingresodematerialversion2',
     }
     this.json.variasfunciones(dataauditoriaconsultartodosfraccionados).subscribe(async (res: any ) =>{
       console.log('respuesta a la solicitud variasfunciones,  auditoriaconsultartodosfraccionados', res);
@@ -430,7 +430,7 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
       console.log('respuesta a la solicitud variasfunciones,  auditoriaconsultarfraccionamientosdeuncarrete', res);
       this.step='3';
       this.respuestaauditoriaconsultarfraccionamientosdeuncarrete=res;
-      this.stockinicial=res[0].metrosencarrete;
+      this.stockinicial=producto.metrosencarrete;
       // consultando.dismiss();
     });
 
