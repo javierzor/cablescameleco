@@ -382,11 +382,6 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
 }
 
 
-
-
-
-
-
      if(this.segmentModel=='usuarios'){
 
            actualizando.present();

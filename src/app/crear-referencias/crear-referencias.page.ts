@@ -28,6 +28,7 @@ export class CrearReferenciasPage implements OnInit {
   usuariologeado: any;
   step: any;
   data: any[][] = [[1,2,3],[4,5,6]];
+  respuestadatacrearreferenciasguardarexcel: any;
 
   constructor(
     private file: File,
@@ -139,13 +140,37 @@ async import() {
 };
 
   async guardar(){
-  const actualizando = await this.loadingController.create({
+    const actualizando = await this.loadingController.create({
     message: 'Guardando...',spinner: 'bubbles',duration: 5000,
+    });
+    const informacioncargada = await this.loadingController.create({
+    message: 'Información guardada exitosamente...',spinner: 'bubbles',duration: 1500,
+    });
+    const verifique = await this.loadingController.create({
+    message: 'Verifique su información',spinner: 'bubbles',duration: 1500,
     });
     actualizando.present();
     this.step='1';
     // this.router.navigate(['/ingreso-material']);
+    console.log('data:',this.data);
 
+
+    var datacrearreferenciasguardarexcel = {
+      nombre_solicitud: 'crearreferenciasguardarexcel',
+      enviodedata: this.data
+    }
+    this.json.variasfunciones(datacrearreferenciasguardarexcel).subscribe(async (res: any ) =>{
+      console.log('respuesta a la solicitud variasfunciones, crearreferenciasguardarexcel', res);
+      this.respuestadatacrearreferenciasguardarexcel=res;
+      if(res.length>0){
+        actualizando.dismiss();
+        informacioncargada.present();
+      }
+      else{
+        actualizando.dismiss();
+        verifique.present();
+      }
+      });
 }
 
 subir(){
