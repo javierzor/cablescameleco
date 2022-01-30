@@ -43,7 +43,9 @@ export class LoginPage implements OnInit {
   
   {
 
-
+  //   this.json.prueba().subscribe((res: any ) =>{
+  //     console.log('res prueba:', res);
+  //  });
   }
 
   ngOnInit() {
