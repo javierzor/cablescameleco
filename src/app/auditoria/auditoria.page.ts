@@ -24,8 +24,7 @@ export class AuditoriaPage implements OnInit {
   seccionactiva: string;
   usuariologeado: any;
   segmentModel = "ordenesdefraccionamiento";
-    segmentModel2 = "creados";
-
+  segmentModel2 = "creados";
   respuestaauditoria1: any;
   respuestaauditoria2: any;
   respuestaauditoria3: any;
@@ -53,7 +52,7 @@ export class AuditoriaPage implements OnInit {
   respuestaauditoriaconsultarfraccionamientosdeuncarrete: any;
   respuestaconsultarstockpornumerofraccionado: any;
   stockinicial: any;
-
+  
   constructor(
     private location: Location,
     private router: Router,
@@ -80,7 +79,6 @@ export class AuditoriaPage implements OnInit {
   this.campo8='';
   this.step='1';
   this.auditoria1alentrar()
-
 }
 
 CHANGEcampo1(event){
@@ -228,9 +226,7 @@ reingresar(){
  async ngOnInit() {
 }
 
-
   async segmentChanged(event){
-
     this.campo1='';
     this.campo2='';
     this.campo3='';
@@ -247,8 +243,7 @@ reingresar(){
     console.log(this.segmentModel);
     console.log(event);
     if(this.segmentModel=='ordenesdefraccionamiento'){
-
-          actualizando.present();
+      actualizando.present();
       this.step='1';
       var dataauditoria1 = {
         nombre_solicitud:'auditoria1',
@@ -259,13 +254,11 @@ reingresar(){
           actualizando.dismiss();
         });
 
-
     }
 
     if(this.segmentModel=='fraccionamientosrealizados'){
 
-          actualizando.present();
-
+      actualizando.present();
       var dataauditoria2 = {
         nombre_solicitud:'auditoria2',
         }
@@ -279,8 +272,7 @@ reingresar(){
 
     if(this.segmentModel=='fraccionamientossuspendidos'){
 
-          actualizando.present();
-
+      actualizando.present();
       var dataauditoria3 = {
         nombre_solicitud:'auditoria3',
         }
@@ -295,7 +287,7 @@ reingresar(){
 
     if(this.segmentModel=='fraccionamientosacarrete'){
 
-      actualizando.present();
+    actualizando.present();
     var dataauditoriaconsultartodosfraccionados = {
     nombre_solicitud:'auditoriaconsultartodoslosingresodematerialversion2',
     }
@@ -310,18 +302,17 @@ reingresar(){
 
     if(this.segmentModel=='cambiodecarreteachipa'){
 
-      actualizando.present();
+    actualizando.present();
+    var datacambiodecarreteachipa = {
+      nombre_solicitud:'cambiodecarreteachipa',
+      }
+      this.json.variasfunciones(datacambiodecarreteachipa).subscribe(async (res: any ) =>{
+        console.log('respuesta a la solicitud variasfunciones,  cambiodecarreteachipa', res);
+        this.respuestacambiodecarreteachipa=res;
+        actualizando.dismiss();
+      });
 
-  var datacambiodecarreteachipa = {
-    nombre_solicitud:'cambiodecarreteachipa',
     }
-    this.json.variasfunciones(datacambiodecarreteachipa).subscribe(async (res: any ) =>{
-      console.log('respuesta a la solicitud variasfunciones,  cambiodecarreteachipa', res);
-      this.respuestacambiodecarreteachipa=res;
-      actualizando.dismiss();
-    });
-
-  }
 
   if(this.segmentModel=='ingresodematerial'){
 
@@ -366,7 +357,6 @@ this.json.variasfunciones(dataauditoriaentregas).subscribe(async (res: any ) =>{
 
 }
 
-
 if(this.segmentModel=='novedadesenentrega'){
 
   actualizando.present();
@@ -381,12 +371,9 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
 
 }
 
-
      if(this.segmentModel=='usuarios'){
 
-           actualizando.present();
-
-    
+      actualizando.present();
       var data = {
         nombre_solicitud:'auditoriausuarioscreados',
        
@@ -396,14 +383,8 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
           this.respuestaauditoriausuarioscreados=res;
            actualizando.dismiss();
       });
-        
-
-      
 
     }
-
-
-
 
 
   }
@@ -419,12 +400,11 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
       message: 'Consultando...',spinner: 'bubbles',duration: 15000,
       });
 
-
     console.log('producto a consultarle todos los fraccionamientos', producto);
     consultando.present();
     var dataauditoriaconsultarfraccionamientosdeuncarrete = {
     nombre_solicitud:'auditoriaconsultarfraccionamientosdeuncarrete',
-    id_material: producto.id_material
+    id_material: producto.id
     }
     this.json.variasfunciones(dataauditoriaconsultarfraccionamientosdeuncarrete).subscribe(async (res: any ) =>{
       console.log('respuesta a la solicitud variasfunciones,  auditoriaconsultarfraccionamientosdeuncarrete', res);
@@ -437,7 +417,7 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
     //consulta de stock
     var dataconsultarstockpornumerofraccionado = {
       nombre_solicitud:'consultarstockpornumerofraccionado',
-      id_material: producto.id_material,
+      id_material: producto.id,
       metrosencarrete: producto.metrosencarrete
       }
       this.json.variasfunciones(dataconsultarstockpornumerofraccionado).subscribe(async (res: any ) =>{
@@ -447,8 +427,6 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
         consultando.dismiss();
       });
       //termina la consulta de stock
-
-    
   }
 
 
@@ -457,7 +435,6 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
   }
 
   buscarauditoria4(){
-
     var dataauditoria4 = {
       nombre_solicitud:'auditoria4buscar',
       auditoria4_numero_fraccionado: this.auditoria4_numero_fraccionado
@@ -493,7 +470,7 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
 
         var data = {
           nombre_solicitud:'auditoriausuarioscreados',
-         
+
           }
           this.json.variasfunciones(data).subscribe(async (res: any ) =>{
             console.log('respuesta a la solicitud auditoriausuarioscreados', res);
@@ -504,7 +481,6 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
       }
 
       if(this.segmentModel2=='modificados'){
-
 
         var data = {
           nombre_solicitud:'auditoriausuariosmodificados',
@@ -521,7 +497,6 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
 
       if(this.segmentModel2=='desactivadosactivados'){
 
-        
         var data = {
           nombre_solicitud:'auditoriausuariosdesactivadosactivados',
          
