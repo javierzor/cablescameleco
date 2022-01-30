@@ -304,7 +304,7 @@ reingresar(){
 
     actualizando.present();
     var datacambiodecarreteachipa = {
-      nombre_solicitud:'cambiodecarreteachipa',
+      nombre_solicitud:'cambiodecarreteachipav2ingresomaterial',
       }
       this.json.variasfunciones(datacambiodecarreteachipa).subscribe(async (res: any ) =>{
         console.log('respuesta a la solicitud variasfunciones,  cambiodecarreteachipa', res);

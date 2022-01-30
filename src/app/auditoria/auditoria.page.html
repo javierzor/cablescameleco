@@ -908,18 +908,18 @@
                 </ion-col>
                 <ion-col size="1" class="ion-align-items-center ion-no-padding" no-padding>
 
-                  <ion-text *ngIf="producto.id_inutilizado>0&&producto.id_inutilizado<10" color="danger" style="color:danger">0000000{{producto.id_inutilizado}}</ion-text>
-                  <ion-text *ngIf="producto.id_inutilizado>10&&producto.id_inutilizado<100" color="danger" style="color:danger">000000{{producto.id_inutilizado}}</ion-text>
-                  <ion-text *ngIf="producto.id_inutilizado>100&&producto.id_inutilizado<1000" color="danger" style="color:danger">00000{{producto.id_inutilizado}}</ion-text>
-                  <ion-text *ngIf="producto.id_inutilizado>1000&&producto.id_inutilizado<10000" color="danger" style="color:danger">0000{{producto.id_inutilizado}}</ion-text>
-                  <ion-text *ngIf="producto.id_inutilizado>10000&&producto.id_inutilizado<100000" color="danger" style="color:danger">000{{producto.id_inutilizado}}</ion-text>
+                  <ion-text *ngIf="producto.id>0&&producto.id<10" color="danger" style="color:danger">0000000{{producto.id}}</ion-text>
+                  <ion-text *ngIf="producto.id>10&&producto.id<100" color="danger" style="color:danger">000000{{producto.id}}</ion-text>
+                  <ion-text *ngIf="producto.id>100&&producto.id<1000" color="danger" style="color:danger">00000{{producto.id}}</ion-text>
+                  <ion-text *ngIf="producto.id>1000&&producto.id<10000" color="danger" style="color:danger">0000{{producto.id}}</ion-text>
+                  <ion-text *ngIf="producto.id>10000&&producto.id<100000" color="danger" style="color:danger">000{{producto.id}}</ion-text>
 
                 </ion-col>
                 <ion-col size="1.5" class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-text color="danger" style="color:danger">{{producto.referencia}}</ion-text>
                 </ion-col>
                 <ion-col size="1" class="ion-align-items-right ion-no-padding" no-padding>
-                  <ion-text color="danger" style="color:danger">{{producto.numero_fraccionado}}</ion-text>
+                  <ion-text color="danger" style="color:danger">{{producto.numerodenotadeentrada}}</ion-text>
                 </ion-col>
                 <ion-col size="3" class="ion-align-items-right ion-no-padding" no-padding>
                   <ion-text color="danger" style="color:danger">{{producto.descripcion}}</ion-text>
@@ -928,10 +928,10 @@
                   <ion-text color="danger" style="color:danger">{{producto.metrosencarrete}}</ion-text>
                 </ion-col>
                 <ion-col size="1.5" class="ion-align-items-right ion-no-padding" no-padding>
-                  <ion-text color="danger" style="color:danger">{{producto.nombre_ordenador}}</ion-text>
+                  <ion-text color="danger" style="color:danger">{{producto.nombre_cambio_almacenaje}}</ion-text>
                 </ion-col>
                 <ion-col size="2" class="ion-align-items-right ion-no-padding" no-padding>
-                  <ion-text color="danger" style="color:danger">{{producto.cambiado_observacion}}</ion-text>
+                  <ion-text color="danger" style="color:danger">{{producto.supervisor_autoriza}}</ion-text>
                 </ion-col>
                 
               </ion-row>

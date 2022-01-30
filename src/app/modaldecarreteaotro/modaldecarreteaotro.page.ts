@@ -120,6 +120,7 @@ export class ModaldecarreteaotroPage implements OnInit {
         });
 
     var dataautorizarcambiodecarrete = {
+      supervisor_autoriza: this.quieroaccederporfavordigamelarespuestadelaconsultadelsupervisor.nombre,
       nombre_solicitud:'autorizarcambiodecarretev2ingresomaterial',
       id:this.traidopormodalparams.id,
       nombre_cambio_almacenaje:this.globalpermisos.nombre,
