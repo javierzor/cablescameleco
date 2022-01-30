@@ -16,6 +16,7 @@ export class ModaldecarreteaotroPage implements OnInit {
   quieroaccederporfavordigamelarespuestadelaconsultadelsupervisor: any;
   respuestaconsultarpermisosidroldecarreteaotro: any;
   traidopormodalparams: any;
+  fecha_cambio_almacenaje: Date;
 
   constructor(
     public loadingController: LoadingController,
@@ -119,12 +120,14 @@ export class ModaldecarreteaotroPage implements OnInit {
         message: 'Este registro ya ha sido cambiado de carrete a chipa anteriormente!.',spinner: 'bubbles',duration: 2500,
         });
 
+    this.fecha_cambio_almacenaje = new Date ();
     var dataautorizarcambiodecarrete = {
       supervisor_autoriza: this.quieroaccederporfavordigamelarespuestadelaconsultadelsupervisor.nombre,
       nombre_solicitud:'autorizarcambiodecarretev2ingresomaterial',
       id:this.traidopormodalparams.id,
       nombre_cambio_almacenaje:this.globalpermisos.nombre,
-      carreteorrollo: 'Chipa'
+      carreteorrollo: 'Chipa',
+      fecha_cambio_almacenaje:this.fecha_cambio_almacenaje
     }
   
     this.json.variasfunciones(dataautorizarcambiodecarrete).subscribe((res: any ) =>{
