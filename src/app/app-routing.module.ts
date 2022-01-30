@@ -126,7 +126,8 @@ const routes: Routes = [
   {
     path: 'modaldecarreteaotro',
     loadChildren: () => import('./modaldecarreteaotro/modaldecarreteaotro.module').then( m => m.ModaldecarreteaotroPageModule)
-  },  {
+  },
+  {
     path: 'modalordenarfracciqr',
     loadChildren: () => import('./modalordenarfracciqr/modalordenarfracciqr.module').then( m => m.ModalordenarfracciqrPageModule)
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController,LoadingController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { JsonService } from '../json.service';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ export class ModalsobremodalentregasPage implements OnInit {
   tipo_novedad: any;
 
   constructor(
+    public loadingController: LoadingController,
     public globalpermisos: GlobalpermisosService,
     private location: Location,
     private json: JsonService,
@@ -56,7 +57,15 @@ export class ModalsobremodalentregasPage implements OnInit {
     this.tipo_novedad=event.target.value;
   }
 
-  aceptarentregar(){
+  async aceptarentregar(){
+    const consultando = await this.loadingController.create({message: 'Validando información...',spinner: 'bubbles',
+    duration: 15000, });
+    const entregaenviada= await this.loadingController.create({message: 'Entrega guardada!',spinner: 'bubbles',
+    duration: 1700,});
+    const estaordenyahasidoentregada= await this.loadingController.create({message: 'ESTA ORDEN DE COMPRA YA FUE VALIDADA PARA ENTREGA!',spinner: 'bubbles',
+    duration: 1700,});
+    consultando.present();
+
     var dataentregarorden = {
       id_inutilizado:this.traidopormodalparams.id_inutilizado,
       nombre_solicitud:'entregarorden'
@@ -65,14 +74,30 @@ export class ModalsobremodalentregasPage implements OnInit {
         console.log('respuesta a la solicitud variasfunciones,  entregarorden', res);
         this.respuestaentregarorden=res;
         if(res>0){
+          consultando.dismiss();
+          entregaenviada.present();
           // this.router.navigate(['/entregas']);
-          this.dismissyacualiza()
+          console.log('aceptar ( se cambio a entregado) entrega:...')
+          this.dismissyacualiza();
+        }
+        else if(res<1){
+          consultando.dismiss();
+          estaordenyahasidoentregada.present();
         }
   
       });
   }
 
-  aceptarentregarnovedad(){
+  async aceptarentregarnovedad(){
+
+    const consultando = await this.loadingController.create({message: 'Validando información...',spinner: 'bubbles',
+    duration: 15000, });
+    const entregaenviada= await this.loadingController.create({message: 'Novedad guardada!',spinner: 'bubbles',
+    duration: 1700,});
+    const estaordenyahasidoentregada= await this.loadingController.create({message: 'ESTA NOVEDAD YA FUE VALIDADA!',spinner: 'bubbles',
+    duration: 1700,});
+    consultando.present();
+
     var datanovedadorden = {
       operario_entrega:this.globalpermisos.nombre,
       id_inutilizado:this.traidopormodalparams.id_inutilizado,
@@ -83,11 +108,15 @@ export class ModalsobremodalentregasPage implements OnInit {
         console.log('respuesta a la solicitud variasfunciones,  novedadorden', res);
         this.respuestanovedadorden=res;
         if(res>0){
-          // this.router.navigate(['/entregas']);
-          // this.router.navigate(['/entregas']);
-          this.dismissyacualiza()
-
+          consultando.dismiss();
+          entregaenviada.present();
+          this.dismissyacualiza();
         }
+        else if(res<1){
+          consultando.dismiss();
+          estaordenyahasidoentregada.present();
+        }
+
       });
 
   }

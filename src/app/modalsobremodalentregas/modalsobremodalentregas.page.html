@@ -6,8 +6,7 @@
 
 <ion-content>
 
-  <ion-text style="font-size: small;">Porfavor confirme que desea enviar la siguiente información:</ion-text>
-
+  
   <ion-grid *ngIf="traidopormodalparams.tipodemodal=='entregar'">
     <ion-row class="ion-align-items-center">
     <ion-col size="12" class="ion-text-center">
@@ -21,12 +20,53 @@
   </ion-grid>
 
   <ion-grid *ngIf="traidopormodalparams.tipodemodal=='novedad'">
-    <ion-select placeholder="seleccione la novedad" interface="popover" (ionChange)="ONCHANGEtipo_novedad($event)" style="background-color: #d4d4d4;">
-        <ion-select-option value="Diferencia en cantidad(Logística)">Diferencia en cantidad(Logística)</ion-select-option>
-        <ion-select-option value="Diferencia en Cantidad(Comercial)">Diferencia en Cantidad(Comercial)</ion-select-option>
-        <ion-select-option value="Diferencia en Producto(Logística)">Diferencia en Producto(Logística)</ion-select-option>
-        <ion-select-option value="Diferencia en Producto(Comercial)">Diferencia en Producto(Comercial)</ion-select-option>
-    </ion-select>
+
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-radio-group (ionChange)="ONCHANGEtipo_novedad($event)">
+            <ion-list-header>
+              <ion-label>
+                Seleccione la novedad
+              </ion-label>
+            </ion-list-header>
+        
+            <ion-item>
+              <ion-label>Diferencia en Cantidad(Comercial)</ion-label>
+              <ion-radio value="Diferencia en Cantidad(Comercial)"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Diferencia en Producto(Logística)</ion-label>
+              <ion-radio value="Diferencia en Producto(Logística)"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Diferencia en Producto(Comercial)</ion-label>
+              <ion-radio value="Diferencia en Producto(Comercial)"></ion-radio>
+            </ion-item>
+        
+            <!-- <ion-item>
+              <ion-label>Packard</ion-label>
+              <ion-radio value="packard"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Studebaker</ion-label>
+              <ion-radio value="studebaker"></ion-radio>
+            </ion-item> -->
+          </ion-radio-group>
+        </ion-list>
+        <ion-text style="font-size: small;">Porfavor confirme que desea enviar la siguiente información:</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-select class="ion-select-overflow custom-options" style="width: 100%; max-width: 100%; min-width: 70%;" placeholder="seleccione la novedad" interface="popover" (ionChange)="ONCHANGEtipo_novedad($event)" style="background-color: #d4d4d4;">
+        <ion-select-option class="my-select" class="my-select" value="Diferencia en cantidad(Logística)">Diferencia en cantidad(Logística)</ion-select-option>
+        <ion-select-option class="my-select" value="Diferencia en Cantidad(Comercial)">Diferencia en Cantidad(Comercial)</ion-select-option>
+        <ion-select-option class="my-select" value="Diferencia en Producto(Logística)">Diferencia en Producto(Logística)</ion-select-option>
+        <ion-select-option class="my-select" value="Diferencia en Producto(Comercial)">Diferencia en Producto(Comercial)</ion-select-option>
+    </ion-select> -->
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
       <ion-button disabled *ngIf="this.tipo_novedad==null||this.tipo_novedad==undefined||this.tipo_novedad==''"  (click)="aceptarentregarnovedad()" color="danger" ><ion-text style="font-weight: 500;">Aceptar</ion-text>

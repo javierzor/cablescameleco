@@ -40,7 +40,7 @@
   <ion-grid *ngIf="this.puedenavegaraqui=='si'">
     <ion-row class="ion-align-items-center">
       <ion-col size="12" class="ion-text-center">
-        <ion-text *ngIf="this.escanearonview!='no'" color="danger" >Pantalla de entrega Inicio de sesión.</ion-text>
+        <ion-text *ngIf="this.escanearonview!='no'" color="danger" >Pantalla de entrega inicio de sesión.</ion-text>
         <ion-text *ngIf="this.escanearonview=='no'" color="danger" >Pantalla de entrega Lectura carrete/Chipa</ion-text>
 
       </ion-col>
@@ -64,7 +64,7 @@
     <ion-row style="justify-content: center;align-items: center;" *ngIf="this.escanearonview=='no'" class="ion-align-items-center">
         <ion-card color="danger" >
           <ion-item >
-            <ion-label position="floating">Código de Carrete/Chipa a entregar</ion-label>
+            <ion-label position="floating">Código de orden de corte</ion-label>
             <ion-input (keyup.enter)="continuarcarrete()" type="tel-local" (ionChange)="ONCHANGEcarreteochipa($event)" color="danger" ></ion-input>
           </ion-item>
         </ion-card>
