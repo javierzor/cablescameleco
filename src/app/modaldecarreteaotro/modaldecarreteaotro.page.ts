@@ -120,8 +120,8 @@ export class ModaldecarreteaotroPage implements OnInit {
         });
 
     var dataautorizarcambiodecarrete = {
-      nombre_solicitud:'autorizarcambiodecarrete',
-      id_inutilizado:this.traidopormodalparams.id_inutilizado,
+      nombre_solicitud:'autorizarcambiodecarretev2ingresomaterial',
+      id:this.traidopormodalparams.id,
       nombre_cambio_almacenaje:this.globalpermisos.nombre,
       carreteorrollo: 'Chipa'
     }

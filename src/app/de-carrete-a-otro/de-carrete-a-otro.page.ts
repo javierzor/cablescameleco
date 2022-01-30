@@ -155,13 +155,12 @@ ONCHANGEcarreteochipa(event){
   espereporfavor.present();
 
 
-    var datadecarreteachipaconsultarcodigo = {
-      nombre_solicitud: 'decarreteachipaconsultarcodigo',
-      numero_fraccionado:this.numero_fraccionado,
-  
+    var datadecarreteachipaconsultarcodigov2paraingreso = {
+      nombre_solicitud: 'decarreteachipaconsultarcodigov2paraingreso',
+      id:this.numero_fraccionado,
     };
-    this.json.variasfunciones(datadecarreteachipaconsultarcodigo).subscribe(async (res: any ) =>{
-      console.log('respuesta a la solicitud variasfunciones,  decarreteachipaconsultarcodigo', res);
+    this.json.variasfunciones(datadecarreteachipaconsultarcodigov2paraingreso).subscribe(async (res: any ) =>{
+      console.log('respuesta a la solicitud variasfunciones,  decarreteachipaconsultarcodigov2paraingreso', res);
       this.respuestadecarreteachipaconsultarcodigo=res[0];
 
       if(!this.respuestadecarreteachipaconsultarcodigo){
@@ -169,7 +168,7 @@ ONCHANGEcarreteochipa(event){
         error.present();
       }
 
-      if(res[0].id_inutilizado>0){
+      if(res[0].id>0){
 
         espereporfavor.dismiss();
         exitoso.present();

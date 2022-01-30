@@ -16,25 +16,30 @@
   </ion-row>
 
   <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
-    <ion-col size="3" class="ion-text-center">
+    <ion-col size="2.5" class="ion-text-center">
       <ion-text color="danger" style="font-weight: 500;">Referencia: </ion-text><br>
       <ion-text>{{this.traidopormodalparams.referencia}} </ion-text>
     </ion-col>
-    <ion-col size="2" class="ion-text-center">
+    <ion-col size="3" class="ion-text-center">
       <ion-text color="danger" style="font-weight: 500;">Código: </ion-text><br>
+      <ion-text *ngIf="traidopormodalparams.id>0&&traidopormodalparams.id_inutilizado<10" style="size:small;">0000000{{traidopormodalparams.id}}</ion-text>
+      <ion-text *ngIf="traidopormodalparams.id>10&&traidopormodalparams.id<100" style="size:small;">000000{{traidopormodalparams.id}}</ion-text>
+      <ion-text *ngIf="traidopormodalparams.id>100&&traidopormodalparams.id<1000" style="size:small;">00000{{traidopormodalparams.id}}</ion-text>
+      <ion-text *ngIf="traidopormodalparams.id>1000&&traidopormodalparams.id<10000" style="size:small;">0000{{traidopormodalparams.id}}</ion-text>
+      <ion-text *ngIf="traidopormodalparams.id>10000&&traidopormodalparams.id<100000" style="size:small;">000{{traidopormodalparams.id}}</ion-text>
             <ion-text>{{this.traidopormodalparams.numero_fraccionado}} </ion-text>
     </ion-col>
-    <ion-col size="4" class="ion-text-center">
+    <ion-col size="3.7" class="ion-text-center">
       <ion-text color="danger" style="font-weight: 500;">Nombre: </ion-text><br>
             <ion-text>{{this.traidopormodalparams.descripcion}} </ion-text>
     </ion-col>
-    <ion-col size="3" class="ion-text-center">
+    <ion-col size="2.8" class="ion-text-center">
       <ion-text color="danger" style="font-weight: 500;">Documento de<br>referencia:</ion-text><br>
-      <ion-text>{{this.traidopormodalparams.documento}} </ion-text>
+      <ion-text>{{this.traidopormodalparams.numerodenotadeentrada}} </ion-text>
     </ion-col>
   </ion-row>
 
-  <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
+  <!-- <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
     <ion-col size="4" class="ion-text-center">
     </ion-col>
     <ion-col size="4" class="ion-text-center">
@@ -48,6 +53,21 @@
     </ion-col>
     <ion-col size="4" class="ion-text-center">
     </ion-col>
+  </ion-row> -->
+
+  <ion-row style="justify-content: center;align-items: center;" *ngIf="this.step=='1'" class="ion-align-items-center">
+    <p>Verificación del supervisor::</p>
+
+    <ion-card class="ion-text-center">
+      <ion-item >
+        <ion-label  position="floating">Supervisor</ion-label>
+        <ion-input (keyup.enter)="verificarsupervisor()" type="tel-local" (ionChange)="CHANGEcodigosupervisor($event)" color="danger" ></ion-input>
+      </ion-item>
+    </ion-card>
+
+      <ion-button (click)="verificarsupervisor()" >
+        <ion-icon name="qr-code-outline"></ion-icon>
+      </ion-button>
   </ion-row>
 
   <ion-row *ngIf="this.step=='1'" class="ion-align-items-center">
@@ -72,6 +92,13 @@
                 Orden Fraccionamiento
               </ion-card-header>
               <ion-card-content>
+                <!-- <ion-text color="danger" style="font-weight: 500;">Código: </ion-text><br> -->
+                <ion-text *ngIf="traidopormodalparams.id>0&&traidopormodalparams.id_inutilizado<10" style="size:small;">Código: 0000000{{traidopormodalparams.id}}</ion-text>
+                <ion-text *ngIf="traidopormodalparams.id>10&&traidopormodalparams.id<100" style="size:small;">Código: 000000{{traidopormodalparams.id}}</ion-text>
+                <ion-text *ngIf="traidopormodalparams.id>100&&traidopormodalparams.id<1000" style="size:small;">Código: 00000{{traidopormodalparams.id}}</ion-text>
+                <ion-text *ngIf="traidopormodalparams.id>1000&&traidopormodalparams.id<10000" style="size:small;">Código: 0000{{traidopormodalparams.id}}</ion-text>
+                <ion-text *ngIf="traidopormodalparams.id>10000&&traidopormodalparams.id<100000" style="size:small;">Código: 000{{traidopormodalparams.id}}</ion-text>
+                      <ion-text>{{this.traidopormodalparams.numero_fraccionado}} </ion-text>
                 <ion-text>Código: {{this.traidopormodalparams.codigo_fraccionado}} </ion-text>
 
 
