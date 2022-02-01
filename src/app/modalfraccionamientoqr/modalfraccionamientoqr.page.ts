@@ -64,8 +64,10 @@ export class ModalfraccionamientoqrPage implements OnInit {
     //consulta de stock
     var dataconsultarstockpornumerofraccionado = {
       nombre_solicitud:'consultarstockpornumerofraccionado',
-      id_material: this.traidopormodalparams.id_material,
-      metrosencarrete: this.traidopormodalparams.metrosencarrete
+      // id_material: this.traidopormodalparams.id_material,
+      referencia:this.traidopormodalparams.referencia,
+      // metrosencarrete: this.traidopormodalparams.metrosencarrete
+      id_ingresado_por_el_usuario: this.traidopormodalparams.id_ingresado_por_el_usuario
       }
       this.json.variasfunciones(dataconsultarstockpornumerofraccionado).subscribe(async (res: any ) =>{
             console.log('respuesta a la solicitud variasfunciones,  consultarstockpornumerofraccionado', res);
@@ -85,6 +87,7 @@ export class ModalfraccionamientoqrPage implements OnInit {
                       fecha_fraccionado:fecha_fraccionado,
                       hora_fraccionado:hora_fraccionado,
                       estado:'fraccionado',
+                      id_ingresado_por_el_usuario: this.traidopormodalparams.id_ingresado_por_el_usuario
                       }
                   this.json.variasfunciones(datafraccionarordenfraccionamiento).subscribe(async (res: any ) =>{
                         console.log('respuesta a la solicitud variasfunciones,  fraccionarordenfraccionamiento', res);

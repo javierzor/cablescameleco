@@ -125,6 +125,8 @@ export class ModalsolicitudfracionamientoPage implements OnInit {
       hora_orden: hora_orden_arreglada
       
     }
+    console.log('esta Info sale:',datasolicitudfraccionamiento);
+
     this.json.variasfunciones(datasolicitudfraccionamiento).subscribe((res: any ) =>{
       if(res.id>0){
         console.log('res de datasolicitudfraccionamiento',res);

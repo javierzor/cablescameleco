@@ -52,7 +52,7 @@ export class SolicitudFraccionamientoPage implements OnInit {
     this.campo3='';
     this.step='1';  
     var dataconsultaringresosdematerialnobloqueados = {
-      nombre_solicitud:'obteneringresomaterialnobloqueados'
+      nombre_solicitud:'obteneringresomaterialnobloqueadosv2pegadoaproductos'
     };
     this.json.variasfunciones(dataconsultaringresosdematerialnobloqueados).subscribe((res: any ) =>{
       this.ingresodematerialnobloqueados=res;

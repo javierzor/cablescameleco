@@ -417,8 +417,10 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
     //consulta de stock
     var dataconsultarstockpornumerofraccionado = {
       nombre_solicitud:'consultarstockpornumerofraccionado',
-      id_material: producto.id,
-      metrosencarrete: producto.metrosencarrete
+      referencia: producto.referencia,
+      id_ingresado_por_el_usuario:producto.id
+      // id_material: producto.id,
+      // metrosencarrete: producto.metrosencarrete
       }
       this.json.variasfunciones(dataconsultarstockpornumerofraccionado).subscribe(async (res: any ) =>{
         console.log('respuesta a la solicitud variasfunciones,  consultarstockpornumerofraccionado', res);
@@ -507,8 +509,6 @@ this.json.variasfunciones(datanovedadesenentrega).subscribe(async (res: any ) =>
              actualizando.dismiss();
         });
       }
-
-
 
  }
 

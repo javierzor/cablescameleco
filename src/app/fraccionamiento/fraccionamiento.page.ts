@@ -145,14 +145,14 @@ async presentAlertPrompt(ordenafraccionar) {
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
     header: 'Verifique La Información:',
-    message: 'Orden Frac. Nro: '+ordenafraccionar.numero_fraccionado+'<br/> Factura:'+ordenafraccionar.numerodenotadeentrada+'  <br/> Nombre: <br\>'+ordenafraccionar.descripcion+'<br\>Observacion: '+ordenafraccionar.observacion,
+    message: 'Orden Frac. Nro: '+ordenafraccionar.numero_fraccionado+'<br/> Factura:'+ordenafraccionar.documento+'  <br/> Nombre: <br\>'+ordenafraccionar.descripcion+'<br\>Observacion: '+ordenafraccionar.observacion,
     inputs: [
 
 
       {
         name: 'codigoingresadoenalerta',
         type: 'password',
-        placeholder: 'Referecia a solicitar',
+        placeholder: 'Carrete',
         cssClass: 'specialClass',
         attributes: {
           maxlength: 40,
@@ -176,24 +176,39 @@ async presentAlertPrompt(ordenafraccionar) {
         handler: async (alertData) => {
           console.log('Confirm Ok');
           console.log(alertData.codigoingresadoenalerta);
-          if(alertData.codigoingresadoenalerta==ordenafraccionar.documento){
 
-            console.log('Confirmado el codigo es el mismo');
 
-            const codigoscoinciden = await this.loadingController.create({
-              message: 'Verificación exitosa, Fraccionando.',spinner: 'bubbles',duration: 1000,
-              });
-              codigoscoinciden.present();
-              this.faccionar(ordenafraccionar);
+
+
+          var datasolicitudfraccionamiento = {
+            nombre_solicitud:'validarordendefraccionamiento',
+            id_ingresado_por_el_usuario:alertData.codigoingresadoenalerta,
+            referencia:ordenafraccionar.referencia
           }
-          else{
-            const incorrecto = await this.loadingController.create({
-              message: 'Carrete Incorrecto',spinner: 'bubbles',duration: 800,
-              });
-              this.presentAlertPrompt(ordenafraccionar);
-              incorrecto.present();
+          console.log('esta Info sale:',datasolicitudfraccionamiento);
+      
+          this.json.variasfunciones(datasolicitudfraccionamiento).subscribe(async (res: any ) =>{
+            if(res>0){
+              console.log('Confirmado el codigo ingresado dice que existe un carrete que coincide con esta rederencia');
+              const codigoscoinciden = await this.loadingController.create({
+                message: 'Verificación exitosa, Espere...',spinner: 'bubbles',duration: 1000,
+                });
+                codigoscoinciden.present();
+                ordenafraccionar.id_ingresado_por_el_usuario=res;
+                this.faccionar(ordenafraccionar);
+            }
+            else{
+              const incorrecto = await this.loadingController.create({
+                message: 'Carrete incorrecto!',spinner: 'bubbles',duration: 900,
+                });
+                this.presentAlertPrompt(ordenafraccionar);
+                incorrecto.present();
+  
+            }
 
-          }
+            });
+
+
 
         },
       },
