@@ -34,6 +34,8 @@ export class ConsultaPage implements OnInit {
   sebuscaraporelnombre: string;
   respuestabusqueda: any;
   respuestabusquedaingresomaterialdeunproducto: any;
+  temporal:  Array<any> = [];
+  acumulandotodos:  Array<any> = [];
   constructor(
     private location: Location,
     private router: Router,
@@ -161,6 +163,7 @@ export class ConsultaPage implements OnInit {
         this.json.variasfunciones(dataconsultaringresomaterial).subscribe(async (res: any ) =>{
           console.log('respuesta a la solicitud variasfunciones,  buscarconsulta', res);
           this.respuestabusquedaingresomaterialdeunproducto=res;
+
 
             const modal = await this.modalController.create({
               component: ModalconsultaPage,

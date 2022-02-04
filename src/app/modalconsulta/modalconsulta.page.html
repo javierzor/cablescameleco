@@ -44,7 +44,7 @@
     <ion-col size="12">
           <ion-list class="ion-align-items-center">
               <!-- <ion-item > -->
-                <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" *ngFor="let producto of traidopormodalparams" class="ion-align-items-center ion-no-padding" no-padding>
+                <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" *ngFor="let producto of traidopormodalparams; let i = index;" class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
                     <ion-text *ngIf="producto.id>0&&producto.id<10" color="danger" style="color:danger">0000000{{producto.id}}</ion-text>
                     <ion-text *ngIf="producto.id>10&&producto.id<100" color="danger" style="color:danger">000000{{producto.id}}</ion-text>
@@ -57,7 +57,8 @@
                     <ion-text color="danger" style="color:danger">{{producto.carreteorrollo}}</ion-text>
                   </ion-col>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
-                    <ion-text color="danger" style="color:danger">{{producto.metrosencarrete}}</ion-text>
+                    <!-- <ion-text color="danger" style="color:danger">{{producto.metrosencarrete}}</ion-text> -->
+                    <ion-text color="danger" style="color:danger;">{{producto.metrosencarrete}}</ion-text> <ion-button (click)="consultarstock(producto)" size="small" color="danger">Stock</ion-button>
                   </ion-col>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
                     <ion-text *ngIf="producto.bodega" color="danger" style="color:danger">{{producto.bodega}}</ion-text>

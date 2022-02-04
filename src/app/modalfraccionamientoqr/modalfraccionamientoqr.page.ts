@@ -92,7 +92,7 @@ export class ModalfraccionamientoqrPage implements OnInit {
                   this.json.variasfunciones(datafraccionarordenfraccionamiento).subscribe(async (res: any ) =>{
                         console.log('respuesta a la solicitud variasfunciones,  fraccionarordenfraccionamiento', res);
                         consultando.dismiss();
-                        this.printer.print();
+                        // this.printer.print();
                         this.dismissporquefracciono();
                   });
 

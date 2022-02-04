@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Consulta</ion-title>
       <ion-buttons slot="end">
-          <ion-button href="https://cables.cameleco.com/ayuda-consulta-2/" target="_blank" style="text-transform: none; margin-right: 15px;">Ayuda 
+          <ion-button href="https://cables.cameleco.com/ayudas/ayuda-consulta-2/" target="_blank" style="text-transform: none; margin-right: 15px;">Ayuda 
               <ion-icon  name="information-circle-outline"></ion-icon>
           </ion-button>
       </ion-buttons>
@@ -98,6 +98,24 @@
     <ion-col size="12">
           <ion-list class="ion-align-items-center">
               <!-- <ion-item > -->
+
+
+                <ion-row *ngIf="respuestabusqueda" style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" class="ion-align-items-center ion-no-padding" no-padding>
+                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text color="danger" style="color:danger; font-size: small;">Referencia</ion-text>
+                  </ion-col>
+                  <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text color="danger" style="color:danger; font-size: small;">Producto</ion-text>
+                  </ion-col>
+                  <ion-col style="text-align: center;" size="4" class="ion-align-items-center ion-no-padding" no-padding>
+                    <ion-text color="danger" style="color:danger; font-size: small;">Descripción</ion-text>
+                  </ion-col>
+                  <ion-col size="2" class="ion-align-items-right ion-no-padding" no-padding>
+                    <ion-text color="danger" style="color:danger; font-size: small;">&nbsp;</ion-text>
+                  </ion-col>
+                </ion-row>
+
+
                 <ion-row style="border-bottom: 1px solid #151515 !important; border-top: 1px solid #151515 !important;" *ngFor="let producto of respuestabusqueda" class="ion-align-items-center ion-no-padding" no-padding>
                   <ion-col size="3" class="ion-align-items-center ion-no-padding" no-padding>
                     <ion-text color="danger" style="color:danger; font-size: small;">{{producto.referencia}}</ion-text>
