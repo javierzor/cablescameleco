@@ -41,16 +41,42 @@ export class PantallaEntregasPage implements OnInit {
 
 {      
   this.menuCtrl.enable(false);
+  this.funciondeConsultaPantallaentregas();
+       //se consultara una vez:
+          var datapantallaentregas = {
+          nombre_solicitud:'pantallaentregas'
+        }
+        this.json.variasfunciones(datapantallaentregas).subscribe((res: any ) =>{
+          //  console.log('respuesta de pantallaentregas',res);
+          console.log('2do actualizando pantalla de entregas',res);
+          this.respuestapantallaentregas=res;
+        });
 
+}
 
-  var datapantallaentregas = {
-    nombre_solicitud:'pantallaentregas'
-   }
+  async funciondeConsultaPantallaentregas(){
 
-   this.json.variasfunciones(datapantallaentregas).subscribe((res: any ) =>{
-     console.log('respuesta de pantallaentregas',res);
-    this.respuestapantallaentregas=res;
-  });
+    
+    setTimeout(async () => 
+    {
+      
+      const actualizandoentregas = await this.loadingController.create({
+        message: 'Actualizando...',spinner: 'bubbles',duration: 700,
+        });
+        var datapantallaentregas = {
+          nombre_solicitud:'pantallaentregas'
+        }
+        actualizandoentregas.present();
+        this.json.variasfunciones(datapantallaentregas).subscribe((res: any ) =>{
+          //  console.log('respuesta de pantallaentregas',res);
+          console.log('2do actualizando pantalla de entregas',res);
+          this.respuestapantallaentregas=res;
+          actualizandoentregas.dismiss();
+          this.funciondeConsultaPantallaentregas();
+        });
+
+},
+22000);
 
 }
 

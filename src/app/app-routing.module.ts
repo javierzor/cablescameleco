@@ -2,6 +2,22 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+
+  {
+    path: 'pantalla-entregas/pantalla-entregas',
+    redirectTo: 'pantalla-entregas',
+    pathMatch: 'full'
+  },
+  {
+    path: 'pantalla-entregas',
+    redirectTo: 'pantalla-entregas',
+    pathMatch: 'full'
+  },
+  // {
+  //   path: '',
+  //   redirectTo: 'pantalla-entregas',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
     redirectTo: 'login',
