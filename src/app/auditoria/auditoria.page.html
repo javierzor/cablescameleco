@@ -238,16 +238,14 @@
             
               <p>Fecha:</p>
               <ion-item>
-              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
+              <ion-input placeholder="AAAA-MM-DD" (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
             </ion-item>
 
           </ion-col>
           <ion-col size="3" class="ion-text-center">
             
               <p> &nbsp; </p>
-              <ion-item>
-              <!-- <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo8}}" (input)="CHANGEcampo8($event)"></ion-input> -->
-            </ion-item>
+
 
           </ion-col>
         </ion-row>
@@ -387,7 +385,7 @@
             
               <p>Fecha:</p>
               <ion-item>
-              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
+              <ion-input  placeholder="AAAA-MM-DD" (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
             </ion-item>
 
           </ion-col>
@@ -542,7 +540,7 @@
             
               <p>Fecha:</p>
               <ion-item>
-              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
+              <ion-input  placeholder="AAAA-MM-DD" (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
             </ion-item>
 
           </ion-col>
@@ -657,7 +655,7 @@
           <ion-col size="3" class="ion-text-center">
               <p>Fecha:</p>
               <ion-item>
-              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
+              <ion-input  placeholder="AAAA-MM-DD" (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="3" class="ion-text-center">
@@ -709,12 +707,12 @@
 
 
                 <ion-col size="1" class="ion-align-items-center ion-no-padding" no-padding>
-                  <ion-text color="danger" style="color:danger">{{producto.producto}}</ion-text>
-                  <!-- <ion-text *ngIf="producto.id_inutilizado>0&&producto.id_inutilizado<10" color="danger" style="color:danger">0000000{{producto.id_inutilizado}}</ion-text>
-                  <ion-text *ngIf="producto.id_inutilizado>10&&producto.id_inutilizado<100" color="danger" style="color:danger">000000{{producto.id_inutilizado}}</ion-text>
-                  <ion-text *ngIf="producto.id_inutilizado>100&&producto.id_inutilizado<1000" color="danger" style="color:danger">00000{{producto.id_inutilizado}}</ion-text>
-                  <ion-text *ngIf="producto.id_inutilizado>1000&&producto.id_inutilizado<10000" color="danger" style="color:danger">0000{{producto.id_inutilizado}}</ion-text>
-                  <ion-text *ngIf="producto.id_inutilizado>10000&&producto.id_inutilizado<100000" color="danger" style="color:danger">000{{producto.id_inutilizado}}</ion-text> -->
+                  <!-- <ion-text color="danger" style="color:danger">{{producto.producto}}</ion-text> -->
+                  <ion-text *ngIf="producto.id>0&&producto.id<10" color="danger" style="color:danger">0000000{{producto.id}}</ion-text>
+                  <ion-text *ngIf="producto.id>10&&producto.id<100" color="danger" style="color:danger">000000{{producto.id}}</ion-text>
+                  <ion-text *ngIf="producto.id>100&&producto.id<1000" color="danger" style="color:danger">00000{{producto.id}}</ion-text>
+                  <ion-text *ngIf="producto.id>1000&&producto.id<10000" color="danger" style="color:danger">0000{{producto.id}}</ion-text>
+                  <ion-text *ngIf="producto.id>10000&&producto.id<100000" color="danger" style="color:danger">000{{producto.id}}</ion-text>
                 </ion-col>
 
                 <ion-col size="1" class="ion-align-items-center ion-no-padding" no-padding>
@@ -772,7 +770,7 @@
           <ion-row style="text-align: center;">
             <ion-col size="1" style="font-size:small;"><ion-text>Código<br>Carrete</ion-text></ion-col>
             <ion-col size="1" style="font-size:small;"><ion-text>Referencia</ion-text></ion-col>
-            <ion-col size="1" style="font-size:small;"><ion-text>Código</ion-text></ion-col>
+            <ion-col size="1" style="font-size:small;"><ion-text>Orden de<br>Fraccionamiento</ion-text></ion-col>
             <ion-col size="3.5" style="font-size:small;"><ion-text>Nombre</ion-text></ion-col>
             <ion-col size="1.5" style="font-size:small;"><ion-text>Metros<br>Inicio</ion-text></ion-col>
             <ion-col size="1" style="font-size:small;"><ion-text>Metrs a<br>fracc</ion-text></ion-col>
@@ -855,7 +853,7 @@
           <ion-col size="3" class="ion-text-center">
               <p>Fecha:</p>
               <ion-item>
-              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
+              <ion-input  placeholder="AAAA-MM-DD" (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="3" class="ion-text-center">
@@ -974,7 +972,7 @@
           <ion-col size="3" class="ion-text-center">
               <p>Fecha:</p>
               <ion-item>
-              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
+              <ion-input  placeholder="AAAA-MM-DD" (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="3" class="ion-text-center">
@@ -1094,7 +1092,7 @@
           <ion-col size="3" class="ion-text-center">
               <p>Fecha:</p>
               <ion-item>
-              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
+              <ion-input  placeholder="AAAA-MM-DD" (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="3" class="ion-text-center">
@@ -1214,7 +1212,7 @@
           <ion-col size="3" class="ion-text-center">
               <p>Fecha:</p>
               <ion-item>
-              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
+              <ion-input  placeholder="AAAA-MM-DD" (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="3" class="ion-text-center">
@@ -1324,7 +1322,7 @@
           <ion-col size="3" class="ion-text-center">
               <p>Fecha:</p>
               <ion-item>
-              <ion-input (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
+              <ion-input  placeholder="AAAA-MM-DD" (keyup.enter)="buscar()" type="text" value="{{this.campo7}}" (input)="CHANGEcampo7($event)"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="3" class="ion-text-center">

@@ -158,10 +158,14 @@ export class ConsultaPage implements OnInit {
 
       var dataconsultaringresomaterial = {
         nombre_solicitud:'obteneringresomaterialdeunproducto',
-        producto:producto.producto
+        producto:producto.producto,
+        referencia:producto.referencia,
+        id_inutilizado:producto.id_inutilizado,
+
+        
         }
         this.json.variasfunciones(dataconsultaringresomaterial).subscribe(async (res: any ) =>{
-          console.log('respuesta a la solicitud variasfunciones,  buscarconsulta', res);
+          console.log('respuesta a la solicitud variasfunciones,  obteneringresomaterialdeunproducto', res);
           this.respuestabusquedaingresomaterialdeunproducto=res;
 
 
